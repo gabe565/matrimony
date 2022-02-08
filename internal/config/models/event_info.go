@@ -8,4 +8,5 @@ type EventInfo struct {
 	Location    string    `yaml:"location"`
 	Timezone    string    `yaml:"timezone"`
 	Greeting    string    `yaml:"greeting"`
+	HeroImage   string    `yaml:"hero_image"`
 }
