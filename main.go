@@ -52,7 +52,7 @@ func main() {
 			panic(err)
 		}
 	}
-	router := server.Router(contentFs)
+	router := server.Router(contentFs, config.DataFS())
 	log.Println("Listening on " + *address)
 	err = http.ListenAndServe(*address, router)
 	if err != nil {

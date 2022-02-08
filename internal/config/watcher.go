@@ -15,7 +15,7 @@ func Watcher() {
 		_ = watcher.Close()
 	}(watcher)
 
-	if err = watcher.Add(Path); err != nil {
+	if err = watcher.Add(Filename); err != nil {
 		log.Fatalln(err)
 	}
 

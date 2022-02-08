@@ -3,7 +3,7 @@ node_modules
 /frontend/dist
 vendor
 matrimony
-matrimony.ya?ml
+data
 
 # local env files
 .env.local

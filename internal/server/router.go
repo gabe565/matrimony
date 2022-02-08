@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-func Router(rootFs fs.FS) *chi.Mux {
+func Router(rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 	r := chi.NewRouter()
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
@@ -38,6 +38,13 @@ func Router(rootFs fs.FS) *chi.Mux {
 		} else {
 			r.NotFoundHandler().ServeHTTP(res, req)
 		}
+	})
+
+	r.Get("/public/*", func(res http.ResponseWriter, req *http.Request) {
+		rctx := chi.RouteContext(req.Context())
+		pathPrefix := strings.TrimSuffix(rctx.RoutePattern(), "/*")
+		fs := http.StripPrefix(pathPrefix, http.FileServer(http.FS(dataFs)))
+		fs.ServeHTTP(res, req)
 	})
 
 	r.Route("/api", func(r chi.Router) {
