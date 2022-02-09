@@ -54,6 +54,8 @@ func Router(rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 			r.Use(httprate.LimitByIP(60, time.Minute))
 			r.Use(middleware2.PrivateEventAuth)
 
+			r.Get("/config", handlers.GetConfig)
+
 			r.Get("/info", handlers.GetInfo)
 			r.Get("/sections", handlers.ListSections)
 			r.Get("/privacy", handlers.GetPrivacy)
