@@ -1,7 +1,11 @@
 package models
 
 type Admin struct {
-	AuthMethod AuthMethod `yaml:"auth_method" json:"auth_method"`
-	Users      []User     `yaml:"users" json:"users"`
-	Header     string     `yaml:"header" json:"header"`
+	Auth  AdminAuth `yaml:"auth" json:"auth"`
+	Users []User    `yaml:"users" json:"users"`
+}
+
+type AdminAuth struct {
+	Method AuthMethod `yaml:"method" json:"method"`
+	Header string     `yaml:"header" json:"header"`
 }

@@ -9,7 +9,7 @@ import (
 func AdminAuth(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		var success bool
-		switch config.Config.Admin.AuthMethod {
+		switch config.Config.Admin.Auth.Method {
 		case models.AuthMethodBasic:
 			success = adminBasicAuth(r)
 		case models.AuthMethodHeader:
@@ -43,7 +43,7 @@ func adminBasicAuth(r *http.Request) bool {
 }
 
 func adminHeaderAuth(r *http.Request) bool {
-	header := config.Config.Admin.Header
+	header := config.Config.Admin.Auth.Header
 	user := r.Header.Get(header)
 	if user == "" {
 		return false

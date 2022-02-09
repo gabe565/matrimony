@@ -17,11 +17,11 @@ func ExampleConfig() *models.Config {
 
 	return &models.Config{
 		EventInfo: models.EventInfo{
-			DisplayName: "Eesha & Will",
-			Date:        time.Now(),
-			Location:    "Oklahoma City, OK, USA",
-			Timezone:    "America/Chicago",
-			Greeting:    "We can't wait to share our special day with you!",
+			Name:     "Eesha & Will",
+			Date:     time.Now(),
+			Location: "Oklahoma City, OK, USA",
+			Timezone: "America/Chicago",
+			Greeting: "We can't wait to share our special day with you!",
 		},
 		Privacy: models.Privacy{
 			Password: "example1234",
@@ -39,12 +39,21 @@ func ExampleConfig() *models.Config {
 			},
 		},
 		Admin: models.Admin{
-			AuthMethod: models.AuthMethodBasic,
+			Auth: models.AdminAuth{
+				Method: models.AuthMethodBasic,
+			},
 			Users: []models.User{
 				admin,
 			},
 		},
 		Sections: []models.Section{
+			{
+				Hero: &models.HeroSection{
+					Image: models.ImageSection{
+						Src: "",
+					},
+				},
+			},
 			{
 				Text: &models.TextSection{
 					Title:   "About Us",
