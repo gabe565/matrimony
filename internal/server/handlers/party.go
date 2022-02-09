@@ -3,11 +3,21 @@ package handlers
 import (
 	"encoding/json"
 	"github.com/gabe565/matrimony/internal/config"
+	"github.com/gabe565/matrimony/internal/config/models"
 	"net/http"
 )
 
 func ListParty(w http.ResponseWriter, r *http.Request) {
-	j, err := json.Marshal(config.Config.Party.Members)
+	var section *models.PartySection
+	for _, s := range config.Config.Sections {
+		if s.Party != nil {
+			section = s.Party
+		}
+	}
+	if section == nil {
+		w.WriteHeader(404)
+	}
+	j, err := json.Marshal(section)
 	if err != nil {
 		panic(err)
 	}
@@ -19,8 +29,14 @@ func ListParty(w http.ResponseWriter, r *http.Request) {
 }
 
 func PutParty(w http.ResponseWriter, r *http.Request) {
+	var section *models.PartySection
+	for _, s := range config.Config.Sections {
+		if s.Party != nil {
+			section = s.Party
+		}
+	}
 	decoder := json.NewDecoder(r.Body)
-	err := decoder.Decode(&config.Config.Party.Members)
+	err := decoder.Decode(section)
 	if err != nil {
 		panic(err)
 	}

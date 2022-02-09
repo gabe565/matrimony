@@ -6,5 +6,4 @@ type Config struct {
 	Partners  []PartyMember `yaml:"partners" json:"partners"`
 	Admin     Admin         `yaml:"admin" json:"-"`
 	Sections  []Section     `yaml:"sections" json:"sections"`
-	Party     Party         `yaml:"party" json:"party"`
 }

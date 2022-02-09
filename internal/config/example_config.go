@@ -44,28 +44,37 @@ func ExampleConfig() *models.Config {
 				admin,
 			},
 		},
-		Party: models.Party{
-			Enabled: true,
-			Members: []models.PartyMember{
-				{
-					First: "Daniela",
-					Last:  "Dalton",
-					Title: "Maid of Honor",
+		Sections: []models.Section{
+			{
+				Text: &models.TextSection{
+					Title:   "About Us",
+					Content: "",
 				},
-				{
-					First: "Davey",
-					Last:  "Gibson",
-					Title: "Man of Honor",
-				},
-				{
-					First: "Lily-Rose",
-					Last:  "Cook",
-					Title: "Bridesmaid",
-				},
-				{
-					First: "Alan",
-					Last:  "Fresco",
-					Title: "Groomsman",
+			},
+			{
+				Party: &models.PartySection{
+					Members: []models.PartyMember{
+						{
+							First: "Daniela",
+							Last:  "Dalton",
+							Title: "Maid of Honor",
+						},
+						{
+							First: "Davey",
+							Last:  "Gibson",
+							Title: "Man of Honor",
+						},
+						{
+							First: "Lily-Rose",
+							Last:  "Cook",
+							Title: "Bridesmaid",
+						},
+						{
+							First: "Alan",
+							Last:  "Fresco",
+							Title: "Groomsman",
+						},
+					},
 				},
 			},
 		},
