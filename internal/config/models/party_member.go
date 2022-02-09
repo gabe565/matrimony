@@ -4,7 +4,7 @@ type PartyMember struct {
 	First    string `yaml:"first" json:"first"`
 	Last     string `yaml:"last" json:"last"`
 	Title    string `yaml:"title" json:"title"`
-	Email    string `yaml:"email" json:"email"`
-	Info     string `yaml:"info" json:"info"`
-	PhotoUrl string `yaml:"photo_url" json:"photo_url"`
+	Email    string `yaml:"email,omitempty" json:"email,omitempty"`
+	Info     string `yaml:"info,omitempty" json:"info,omitempty"`
+	PhotoUrl string `yaml:"photo_url,omitempty" json:"photo_url,omitempty"`
 }
