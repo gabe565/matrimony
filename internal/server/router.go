@@ -55,6 +55,7 @@ func Router(rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 			r.Use(middleware2.PrivateEventAuth)
 
 			r.Get("/info", handlers.GetInfo)
+			r.Get("/sections", handlers.ListSections)
 			r.Get("/privacy", handlers.GetPrivacy)
 			r.Get("/partners", handlers.ListPartners)
 			r.Get("/party", handlers.ListParty)
@@ -65,6 +66,7 @@ func Router(rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 			r.Use(middleware2.AdminAuth)
 
 			r.Put("/info", handlers.PutInfo)
+			r.Put("/sections", handlers.PutSections)
 			r.Put("/privacy", handlers.PutPrivacy)
 			r.Put("/partners", handlers.PutPartners)
 			r.Put("/party", handlers.PutParty)
