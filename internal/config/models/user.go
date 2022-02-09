@@ -5,8 +5,8 @@ import (
 )
 
 type User struct {
-	Username string `yaml:"username"`
-	Password string `yaml:"password"`
+	Username string `yaml:"username" json:"username"`
+	Password string `yaml:"password" json:"password"`
 }
 
 func HashPassword(password string) (string, error) {
