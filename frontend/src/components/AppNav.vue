@@ -34,7 +34,7 @@
           v-for="page in pages"
           :key="page"
           class="px-2 lg:px-4 hover:text-accent-50 duration-200"
-          href="#"
+          :href="`#${toSlug(page)}`"
         >
           {{ page }}
         </a>
@@ -60,6 +60,7 @@ import { computed, ref } from "vue";
 import { throttle } from "../util/throttle";
 import MatrimonyButton from "./MatrimonyButton.vue";
 import { passiveEventHandlerSupported } from "../util/passiveEventHandlerSupported";
+import { toSlug } from "../util/toSlug";
 /* eslint-disable-next-line import/no-unresolved */
 import blueContourTablet from "../assets/blue_contour/tablet.svg?raw";
 
