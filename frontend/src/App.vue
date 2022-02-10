@@ -42,10 +42,11 @@ const sections = computed(() => ({
 const sectionTitles = computed(() =>
   config.value.sections
     ?.map((sectionEntry) =>
-      Object.values(sectionEntry).map((section) => section.title)
+      Object.values(sectionEntry)
+        .filter((s) => s.title)
+        .map((s) => s.title)
     )
     .flat()
-    .filter((s) => s)
 );
 </script>
 
