@@ -13,9 +13,9 @@
     <div
       class="container mx-auto flex flex-wrap p-3 flex-col lg:flex-row items-center"
     >
-      <a
+      <router-link
         class="flex title-font text-5xl font-script items-center hover:text-accent-50 duration-200 ease-out mb-4 lg:mb-0 lg:pr-4"
-        href="#top"
+        to="/#top"
       >
         <font-awesome-icon :icon="['fat', 'rings-wedding']" class="mr-3" />
         <span
@@ -32,18 +32,18 @@
             <span v-else>{{ e.text }}</span>
           </template>
         </span>
-      </a>
+      </router-link>
       <nav
         class="lg:mr-auto lg:ml-4 lg:py-1 lg:pl-4 lg:border-l lg:border-slate-400 flex flex-wrap items-center justify-center"
       >
-        <a
+        <router-link
           v-for="page in pages"
           :key="page"
           class="px-2 lg:px-4 hover:text-accent-50 duration-200"
-          :href="`#${toSlug(page)}`"
+          :to="`/#${toSlug(page)}`"
         >
           {{ page }}
-        </a>
+        </router-link>
       </nav>
       <matrimony-button href="#">
         RSVP
