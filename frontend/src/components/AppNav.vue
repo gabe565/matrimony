@@ -15,7 +15,7 @@
     >
       <a
         class="flex title-font text-5xl font-script items-center hover:text-accent-50 duration-200 ease-out mb-4 lg:mb-0 lg:pr-4"
-        href="/"
+        href="#top"
       >
         <font-awesome-icon :icon="['fat', 'rings-wedding']" class="mr-3" />
         <span

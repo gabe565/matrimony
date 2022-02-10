@@ -51,6 +51,7 @@ const sectionTitles = computed(() =>
 </script>
 
 <template>
+  <span id="top" class="invisible relative" />
   <pattern-background />
   <app-nav
     :partners="config.partners"
