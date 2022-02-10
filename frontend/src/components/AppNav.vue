@@ -4,6 +4,12 @@
     class="fixed top-0 z-40 w-full text-accent-300 body-font duration-300 transition-colors transition-[padding]"
     :class="[atHero ? 'bg-primary-500/70 backdrop-blur-md' : 'pt-12']"
   >
+    <!-- eslint-disable vue/no-v-html -->
+    <div
+      class="fill-accent-500 opacity-20 absolute top-0 w-full lg:hidden -z-10"
+      v-html="blueContourTablet"
+    />
+    <!-- eslint-enable vue/no-v-html -->
     <div
       class="container mx-auto flex flex-wrap p-3 flex-col lg:flex-row items-center"
     >
@@ -46,12 +52,6 @@
         </template>
       </matrimony-button>
     </div>
-    <!-- eslint-disable vue/no-v-html -->
-    <div
-      class="fill-accent-500 opacity-20 absolute top-0 w-full lg:hidden"
-      v-html="blueContourTablet"
-    />
-    <!-- eslint-enable vue/no-v-html -->
   </header>
 </template>
 
