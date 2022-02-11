@@ -57,6 +57,7 @@
 
 <script setup>
 import { computed, ref } from "vue";
+import { useRoute } from "vue-router";
 import { throttle } from "../util/throttle";
 import MatrimonyButton from "./MatrimonyButton.vue";
 import { passiveEventHandlerSupported } from "../util/passiveEventHandlerSupported";
@@ -81,9 +82,25 @@ const title = computed(() => {
   return result;
 });
 
+const route = useRoute();
 const nav = ref(null);
 const calcAtHero = () => {
-  return window.scrollY > window.innerHeight - (nav.value?.clientHeight || 0);
+  let headerCollapse = 100;
+  if (route.meta.headerCollapseY) {
+    switch (typeof route.meta.headerCollapseY) {
+      case "function":
+        headerCollapse = route.meta.headerCollapseY();
+        break;
+      case "number":
+        headerCollapse = route.meta.headerCollapseY;
+        break;
+      default:
+        throw new Error(
+          `Invalid headerCollapseY. Got ${route.meta.headerCollapseY}`
+        );
+    }
+  }
+  return window.scrollY > headerCollapse - (nav.value?.clientHeight || 0);
 };
 const atHero = ref(calcAtHero());
 document.addEventListener(

@@ -4,8 +4,17 @@ import NotFound from "../views/NotFound.vue";
 import { waitForElement } from "../util/waitForElement";
 
 const router = [
-  { path: "/", component: Home },
-  { path: "/:pathMatch(.*)*", component: NotFound },
+  {
+    path: "/",
+    component: Home,
+    meta: {
+      headerCollapseY: () => window.innerHeight,
+    },
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    component: NotFound,
+  },
 ];
 
 export default createRouter({
