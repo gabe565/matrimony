@@ -1,26 +1,20 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import HeroSection from "../components/HeroSection.vue";
 import ImageSection from "../components/ImageSection.vue";
 import WeddingParty from "../components/WeddingParty.vue";
 import TextSection from "../components/TextSection.vue";
 import ScheduleSection from "../components/ScheduleSection.vue";
 
-const loading = ref(true);
-const config = ref({});
-fetch("/api/config").then(async (r) => {
-  config.value = await r.json();
-  loading.value = false;
-  if (config.value.info?.name) {
-    document.title = config.value.info.name;
-  }
+const props = defineProps({
+  config: { type: Object, default: () => ({}) },
 });
 
-const sections = computed(() => ({
+const sectionTypes = computed(() => ({
   hero: {
     component: HeroSection,
     bind: {
-      title: config.value.info?.name,
+      title: props.config.info?.name,
     },
   },
   image: {
@@ -42,8 +36,8 @@ const sections = computed(() => ({
   <template v-for="sectionEntry in config.sections">
     <template v-for="(section, type) in sectionEntry">
       <component
-        :is="sections[type].component"
-        v-bind="{ ...section, ...sections[type].bind }"
+        :is="sectionTypes[type].component"
+        v-bind="{ ...section, ...sectionTypes[type].bind }"
       />
     </template>
   </template>

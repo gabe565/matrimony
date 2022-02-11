@@ -32,5 +32,5 @@ const sectionTitles = computed(() =>
     :loading="loading"
     :pages="sectionTitles"
   />
-  <router-view />
+  <router-view :config="config" />
 </template>
