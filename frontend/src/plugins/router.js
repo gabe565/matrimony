@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import NotFound from "../views/NotFound.vue";
+import Moments from "../views/Moments.vue";
 import { waitForElement } from "../util/waitForElement";
 
 const router = [
@@ -9,6 +10,13 @@ const router = [
     component: Home,
     meta: {
       headerCollapseY: () => window.innerHeight,
+    },
+  },
+  {
+    path: "/moments",
+    component: Moments,
+    meta: {
+      headerCollapseY: 100,
     },
   },
   {

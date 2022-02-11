@@ -61,6 +61,7 @@ func Router(rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 			r.Get("/privacy", handlers.GetPrivacy)
 			r.Get("/partners", handlers.ListPartners)
 			r.Get("/party", handlers.ListParty)
+			r.Get("/moments", handlers.ListMoments(dataFs))
 		})
 
 		r.Group(func(r chi.Router) {
