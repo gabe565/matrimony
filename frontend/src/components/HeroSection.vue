@@ -1,4 +1,7 @@
 <template>
+  <div class="container absolute top-0 left-1/2 -translate-x-1/2 h-screen" aria-hidden="true">
+    <router-link to="#our-story" class="block w-full h-full" />
+  </div>
   <div
     class="sticky top-0 -z-10 container mx-auto pb-2 lg:pb-6 h-screen flex flex-col justify-center text-center pt-20 lg:pt-0"
   >

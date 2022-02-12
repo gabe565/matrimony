@@ -1,6 +1,6 @@
 <template>
   <section class="text-slate-600 bg-white dark:bg-slate-900 body-font">
-    <div class="container px-5 py-24 mx-auto">
+    <div class="container p-5 mx-auto">
       <div class="text-center mb-4">
         <span :id="toSlug(title)" class="invisible relative -top-[200px]" />
         <h1
