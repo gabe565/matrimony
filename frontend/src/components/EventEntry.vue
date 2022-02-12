@@ -1,7 +1,12 @@
 <template>
-  <div
-    class="absolute w-3 h-3 bg-slate-200 rounded-full -left-1.5 border border-white dark:border-slate-900 dark:bg-slate-700"
-  ></div>
+  <span
+    class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900"
+  >
+    <font-awesome-icon
+      :icon="['fas', 'calendar']"
+      class="w-3 h-3 text-blue-600 dark:text-blue-400"
+    />
+  </span>
   <time
     class="mb-1 text-sm font-normal leading-none text-slate-400 dark:text-slate-500"
   >

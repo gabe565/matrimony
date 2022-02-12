@@ -3,6 +3,7 @@ import {
   faHeart,
   faChevronDown,
   faDiamondTurnRight,
+  faCalendar,
 } from "@fortawesome/pro-solid-svg-icons";
 import { faRingsWedding } from "@fortawesome/pro-thin-svg-icons";
 import { faArrowRight } from "@fortawesome/pro-regular-svg-icons";
@@ -12,5 +13,6 @@ library.add(
   faHeart,
   faRingsWedding,
   faChevronDown,
-  faDiamondTurnRight
+  faDiamondTurnRight,
+  faCalendar
 );

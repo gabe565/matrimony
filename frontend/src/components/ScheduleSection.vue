@@ -10,7 +10,7 @@
         </h1>
       </div>
       <ol class="relative border-l border-slate-200 dark:border-slate-700">
-        <li v-for="event in events" class="mb-10 ml-4">
+        <li v-for="event in events" class="mb-10 ml-6">
           <event-entry v-bind="event" />
         </li>
       </ol>
