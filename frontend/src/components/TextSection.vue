@@ -31,10 +31,10 @@ defineProps({
 <style scoped lang="scss">
 .content {
   :deep(p) {
-    padding-bottom: 1.2rem;
+    @apply pb-5;
   }
   :deep(a) {
-    text-decoration: underline;
+    @apply underline;
   }
 }
 </style>
