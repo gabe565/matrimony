@@ -27,7 +27,7 @@ func init() {
 	flag.StringVarP(&DataDir, "data", "d", DataDirDefault, "Data directory")
 	flag.StringVarP(&Filename, "config", "c", DataDirDefault+"/matrimony.yaml", "Config filename")
 	flag.BoolVar(&Recreate, "recreate-config", false, "Force create example config file")
-	flag.BoolVar(&Watch, "watch", false, "Watch config file for updates")
+	flag.BoolVar(&Watch, "watch", true, "Watch config file for updates")
 }
 
 func UpdateFilename() {
