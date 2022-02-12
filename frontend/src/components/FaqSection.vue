@@ -21,9 +21,9 @@
             >
               {{ item.title }}
             </h5>
-            <p class="font-normal text-gray-700 dark:text-gray-400">
-              {{ item.content }}
-            </p>
+            <div class="font-normal text-gray-700 dark:text-gray-400">
+              <vue-markdown :source="item.content" />
+            </div>
           </div>
         </div>
       </div>
@@ -32,6 +32,7 @@
 </template>
 
 <script setup>
+import VueMarkdown from "vue-markdown-render";
 import { toSlug } from "../util/toSlug";
 
 defineProps({
@@ -39,3 +40,9 @@ defineProps({
   items: { type: Array, default: () => [] },
 });
 </script>
+
+<style scoped lang="scss">
+:deep(a) {
+  @apply underline;
+}
+</style>
