@@ -5,6 +5,7 @@ import ImageSection from "../components/ImageSection.vue";
 import WeddingParty from "../components/WeddingParty.vue";
 import TextSection from "../components/TextSection.vue";
 import ScheduleSection from "../components/ScheduleSection.vue";
+import FaqSection from "../components/FaqSection.vue";
 
 const props = defineProps({
   config: { type: Object, default: () => ({}) },
@@ -28,6 +29,9 @@ const sectionTypes = computed(() => ({
   },
   schedule: {
     component: ScheduleSection,
+  },
+  faq: {
+    component: FaqSection,
   },
 }));
 </script>
