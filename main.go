@@ -13,7 +13,7 @@ import (
 	"strings"
 )
 
-const EnvPrefix = "WEDDING_WEBSITE_"
+const EnvPrefix = "MATRIMONY_"
 
 //go:embed frontend/dist
 var dist embed.FS
