@@ -7,9 +7,23 @@ import TextSection from "../components/TextSection.vue";
 import ScheduleSection from "../components/ScheduleSection.vue";
 import FaqSection from "../components/FaqSection.vue";
 import SpacerSection from "../components/SpacerSection.vue";
+import { toSlug } from "../util/toSlug";
 
 const props = defineProps({
   config: { type: Object, default: () => ({}) },
+});
+
+const firstAnchor = computed(() => {
+  if (props.config.sections) {
+    for (const section of props.config.sections) {
+      for (const e of Object.values(section)) {
+        if (e.title) {
+          return `/#${toSlug(e.title)}`;
+        }
+      }
+    }
+  }
+  return "";
 });
 
 const sectionTypes = computed(() => ({
@@ -17,6 +31,7 @@ const sectionTypes = computed(() => ({
     component: HeroSection,
     bind: {
       title: props.config.info?.name,
+      toAnchor: firstAnchor.value,
     },
   },
   image: {
