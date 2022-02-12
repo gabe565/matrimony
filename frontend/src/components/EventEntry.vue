@@ -51,6 +51,7 @@
 import { computed } from "vue";
 import MatrimonyButtonGroup from "./MatrimonyButtonGroup.vue";
 import NavigateButton from "./Schedule/NavigateButton.vue";
+import CalendarButton from "./Schedule/CalendarButton.vue";
 
 const props = defineProps({
   title: { type: String, default: "" },
@@ -62,6 +63,9 @@ const props = defineProps({
 });
 
 const buttonTypes = computed(() => ({
+  calendar: {
+    component: CalendarButton,
+  },
   navigate: {
     component: NavigateButton,
     bind: {
