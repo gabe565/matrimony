@@ -22,7 +22,7 @@
               {{ item.title }}
             </h5>
             <div class="font-normal text-gray-700 dark:text-gray-400">
-              <vue-markdown :source="item.content" />
+              <matrimony-markdown :source="item.content" />
             </div>
           </div>
         </div>
@@ -32,17 +32,11 @@
 </template>
 
 <script setup>
-import VueMarkdown from "vue-markdown-render";
 import { toSlug } from "../util/toSlug";
+import MatrimonyMarkdown from "./MatrimonyMarkdown.vue";
 
 defineProps({
   title: { type: String, default: "" },
   items: { type: Array, default: () => [] },
 });
 </script>
-
-<style scoped lang="scss">
-:deep(a) {
-  @apply underline;
-}
-</style>

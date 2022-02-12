@@ -19,6 +19,7 @@
     "@fortawesome/pro-solid-svg-icons": "^6.0.0-beta3",
     "@fortawesome/pro-thin-svg-icons": "^6.0.0-beta3",
     "@fortawesome/vue-fontawesome": "^3.0.0-5",
+    "@tailwindcss/typography": "^0.5.1",
     "@vitejs/plugin-vue": "^2.1.0",
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.6",

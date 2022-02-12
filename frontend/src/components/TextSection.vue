@@ -11,30 +11,17 @@
           {{ title }}
         </h1>
       </div>
-      <div class="content">
-        <vue-markdown :source="content" />
-      </div>
+      <matrimony-markdown :source="content" />
     </div>
   </section>
 </template>
 
 <script setup>
-import VueMarkdown from "vue-markdown-render";
 import { toSlug } from "../util/toSlug";
+import MatrimonyMarkdown from "./MatrimonyMarkdown.vue";
 
 defineProps({
   title: { type: String, default: "" },
   content: { type: String, default: "" },
 });
 </script>
-
-<style scoped lang="scss">
-.content {
-  :deep(p) {
-    @apply pb-5;
-  }
-  :deep(a) {
-    @apply underline;
-  }
-}
-</style>
