@@ -41,6 +41,7 @@
     <template v-for="button in buttons">
       <component
         :is="buttonTypes[button.type].component"
+        v-if="buttonTypes[button.type]"
         v-bind="buttonTypes[button.type].bind"
       />
     </template>
