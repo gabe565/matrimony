@@ -24,44 +24,51 @@
   >
     <span class="font-semibold">Dress Code: </span> {{ dressCode }}
   </div>
-  <template v-if="location">
-    <div
-      v-if="location"
-      class="text-base font-normal text-slate-500 dark:text-slate-400"
-    >
-      <span class="font-semibold">Address: </span>
-      <a
-        :href="`https://maps.google.com/?q=${location}`"
-        target="_blank"
-        class="underline"
-      >
-        {{ location }}
-      </a>
-    </div>
-    <matrimony-button
-      :href="`https://maps.google.com/?daddr=${location}`"
+  <div
+    v-if="location"
+    class="text-base font-normal text-slate-500 dark:text-slate-400"
+  >
+    <span class="font-semibold">Address: </span>
+    <a
+      :href="`https://maps.google.com/?q=${location}`"
       target="_blank"
-      class="mt-4"
+      class="underline"
     >
-      Navigate
-      <template #icon>
-        <font-awesome-icon :icon="['fas', 'diamond-turn-right']" class="ml-2" />
-      </template>
-    </matrimony-button>
-  </template>
+      {{ location }}
+    </a>
+  </div>
+  <matrimony-button-group class="mt-4">
+    <template v-for="button in buttons">
+      <component
+        :is="buttonTypes[button.type].component"
+        v-bind="buttonTypes[button.type].bind"
+      />
+    </template>
+  </matrimony-button-group>
 </template>
 
 <script setup>
 import { computed } from "vue";
-import MatrimonyButton from "./MatrimonyButton.vue";
+import MatrimonyButtonGroup from "./MatrimonyButtonGroup.vue";
+import NavigateButton from "./Schedule/NavigateButton.vue";
 
 const props = defineProps({
   title: { type: String, default: "" },
   description: { type: String, default: "" },
   location: { type: String, default: "" },
+  buttons: { type: Array, default: () => [] },
   dressCode: { type: String, default: "" },
   start: { type: String, default: "" },
 });
+
+const buttonTypes = computed(() => ({
+  navigate: {
+    component: NavigateButton,
+    bind: {
+      location: props.location,
+    },
+  },
+}));
 
 const formatDate = (str) => {
   if (!str) {
