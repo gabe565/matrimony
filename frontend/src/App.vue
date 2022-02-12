@@ -13,15 +13,19 @@ fetch("/api/config").then(async (r) => {
   }
 });
 
-const sectionTitles = computed(() =>
-  config.value.sections
-    ?.map((sectionEntry) =>
-      Object.values(sectionEntry)
-        .filter((s) => s.title)
-        .map((s) => s.title)
-    )
-    .flat()
-);
+const sectionTitles = computed(() => {
+  const result = [];
+  if (config.value.sections) {
+    for (const sectionEntry of config.value.sections) {
+      for (const section of Object.values(sectionEntry)) {
+        if (section.title && !section.hideFromNav) {
+          result.push(section.title);
+        }
+      }
+    }
+  }
+  return result;
+});
 </script>
 
 <template>

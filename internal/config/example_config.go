@@ -56,7 +56,9 @@ func ExampleConfig() *models.Config {
 			},
 			{
 				Text: &models.TextSection{
-					Title:   "About Us",
+					BaseSection: models.BaseSection{
+						Title: "About Us",
+					},
 					Content: "",
 				},
 			},

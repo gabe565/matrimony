@@ -1,5 +1,10 @@
 package models
 
+type BaseSection struct {
+	Title       string `yaml:"title,omitempty" json:"title,omitempty"`
+	HideFromNav bool   `yaml:"hideFromNav,omitempty" json:"hideFromNav,omitempty"`
+}
+
 type HeroSection struct {
 	Title string       `yaml:"title,omitempty" json:"title,omitempty"`
 	Image ImageSection `yaml:"image" json:"image"`
@@ -11,24 +16,24 @@ type ImageSection struct {
 }
 
 type TextSection struct {
-	Title   string `yaml:"title,omitempty" json:"title,omitempty"`
-	File    string `yaml:"file" json:"-"`
-	Content string `yaml:"content,omitempty" json:"content,omitempty"`
+	BaseSection `yaml:",inline"`
+	File        string `yaml:"file" json:"-"`
+	Content     string `yaml:"content,omitempty" json:"content,omitempty"`
 }
 
 type PartySection struct {
-	Title   string        `yaml:"title,omitempty" json:"title,omitempty"`
-	Members []PartyMember `yaml:"members" json:"members"`
+	BaseSection `yaml:",inline"`
+	Members     []PartyMember `yaml:"members" json:"members"`
 }
 
 type ScheduleSection struct {
-	Title  string  `yaml:"title,omitempty" json:"title,omitempty"`
-	Events []Event `yaml:"events" json:"events"`
+	BaseSection `yaml:",inline"`
+	Events      []Event `yaml:"events" json:"events"`
 }
 
 type FaqSection struct {
-	Title string        `yaml:"title" json:"title"`
-	Items []TextSection `yaml:"items" json:"items"`
+	BaseSection `yaml:",inline"`
+	Items       []TextSection `yaml:"items" json:"items"`
 }
 
 type Section struct {
