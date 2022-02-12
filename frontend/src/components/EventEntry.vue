@@ -59,10 +59,8 @@ const props = defineProps({
   title: { type: String, default: "" },
   description: { type: String, default: "" },
   location: { type: String, default: "" },
-  showMap: { type: Boolean, default: false },
   dressCode: { type: String, default: "" },
   start: { type: String, default: "" },
-  end: { type: String, default: "" },
 });
 
 const formatDate = (str) => {
