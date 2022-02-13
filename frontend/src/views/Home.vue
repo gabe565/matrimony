@@ -17,7 +17,7 @@ const firstAnchor = computed(() => {
   if (props.config.sections) {
     for (const section of props.config.sections) {
       for (const e of Object.values(section)) {
-        if (e.title) {
+        if (e.title && !e.hideFromNav) {
           return `/#${toSlug(e.title)}`;
         }
       }
