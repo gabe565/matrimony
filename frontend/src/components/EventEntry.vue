@@ -61,11 +61,16 @@ const props = defineProps({
   buttons: { type: Array, default: () => [] },
   dressCode: { type: String, default: "" },
   start: { type: String, default: "" },
+  sectionKey: { type: Number, default: 0 },
+  eventKey: { type: Number, default: 0 },
 });
 
 const buttonTypes = computed(() => ({
   calendar: {
     component: CalendarButton,
+    bind: {
+      sectionKey: props.sectionKey,
+    },
   },
   navigate: {
     component: NavigateButton,

@@ -10,8 +10,12 @@
         </h1>
       </div>
       <ol class="relative border-l border-slate-200 dark:border-slate-700">
-        <li v-for="event in events" class="mb-10 ml-6">
-          <event-entry v-bind="event" />
+        <li v-for="(event, key) in events" class="mb-10 ml-6">
+          <event-entry
+            v-bind="event"
+            :section-key="sectionKey"
+            :event-key="key"
+          />
         </li>
       </ol>
     </div>
@@ -25,5 +29,6 @@ import { toSlug } from "../util/toSlug";
 defineProps({
   title: { type: String, default: "" },
   events: { type: Array, default: () => [] },
+  sectionKey: { type: Number, default: 0 },
 });
 </script>
