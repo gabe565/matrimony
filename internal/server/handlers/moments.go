@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/fs"
 	"net/http"
+	"strings"
 )
 
 const MomentsDir = "moments"
@@ -17,9 +18,13 @@ func ListMoments(fsys fs.FS) http.HandlerFunc {
 
 		var response []string
 		for _, file := range files {
-			if !file.IsDir() {
-				response = append(response, "/public/moments/"+file.Name())
+			lowerFilename := strings.ToLower(file.Name())
+			if file.IsDir() ||
+				!(strings.HasSuffix(lowerFilename, "jpg") ||
+					strings.HasSuffix(lowerFilename, "png")) {
+				continue
 			}
+			response = append(response, "/public/moments/"+file.Name())
 		}
 
 		j, err := json.Marshal(response)
