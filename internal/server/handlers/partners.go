@@ -18,7 +18,7 @@ func ListPartners(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func PutPartners(w http.ResponseWriter, r *http.Request) {
+func UpdatePartners(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	err := decoder.Decode(&config.Config.Partners)
 	if err != nil {

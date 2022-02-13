@@ -28,7 +28,7 @@ func ListParty(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func PutParty(w http.ResponseWriter, r *http.Request) {
+func UpdateParty(w http.ResponseWriter, r *http.Request) {
 	var section *models.PartySection
 	for _, s := range config.Config.Sections {
 		if s.Party != nil {

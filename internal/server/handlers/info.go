@@ -18,7 +18,7 @@ func GetInfo(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func PutInfo(w http.ResponseWriter, r *http.Request) {
+func UpdateInfo(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	err := decoder.Decode(&config.Config.EventInfo)
 	if err != nil {

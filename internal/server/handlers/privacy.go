@@ -18,7 +18,7 @@ func GetPrivacy(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func PutPrivacy(w http.ResponseWriter, r *http.Request) {
+func UpdatePrivacy(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	err := decoder.Decode(&config.Config.Privacy)
 	if err != nil {

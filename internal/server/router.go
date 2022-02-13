@@ -68,11 +68,11 @@ func Router(rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 			r.Use(httprate.LimitByIP(10, time.Minute))
 			r.Use(middleware2.AdminAuth)
 
-			r.Put("/info", handlers.PutInfo)
-			r.Put("/sections", handlers.PutSections)
-			r.Put("/privacy", handlers.PutPrivacy)
-			r.Put("/partners", handlers.PutPartners)
-			r.Put("/party", handlers.PutParty)
+			r.Put("/info", handlers.UpdateInfo)
+			r.Put("/sections", handlers.UpdateSections)
+			r.Put("/privacy", handlers.UpdatePrivacy)
+			r.Put("/partners", handlers.UpdatePartners)
+			r.Put("/party", handlers.UpdateParty)
 		})
 	})
 

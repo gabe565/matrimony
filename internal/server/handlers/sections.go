@@ -18,7 +18,7 @@ func ListSections(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func PutSections(w http.ResponseWriter, r *http.Request) {
+func UpdateSections(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	err := decoder.Decode(&config.Config.Sections)
 	if err != nil {
