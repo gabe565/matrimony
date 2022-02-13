@@ -2,6 +2,7 @@ package config
 
 import (
 	"github.com/fsnotify/fsnotify"
+	"github.com/gabe565/matrimony/internal/datadir"
 	"log"
 )
 
@@ -15,7 +16,7 @@ func Watcher() {
 		_ = watcher.Close()
 	}(watcher)
 
-	if err = watcher.Add(DataDir); err != nil {
+	if err = watcher.Add(datadir.DataDir); err != nil {
 		log.Fatalln(err)
 	}
 

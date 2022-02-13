@@ -3,19 +3,18 @@ package config
 import (
 	"errors"
 	"github.com/gabe565/matrimony/internal/config/models"
+	"github.com/gabe565/matrimony/internal/datadir"
 	flag "github.com/spf13/pflag"
 	"gopkg.in/yaml.v3"
-	"io/fs"
 	"log"
 	"os"
 	"path"
 	"sync"
 )
 
-const DataDirDefault = "data"
+const DefaultFilename = "matrimony.yaml"
 
 var (
-	DataDir  string
 	Filename string
 	Recreate bool
 	Watch    bool
@@ -24,20 +23,14 @@ var (
 var Config *models.Config
 
 func init() {
-	flag.StringVarP(&DataDir, "data", "d", DataDirDefault, "Data directory")
-	flag.StringVarP(&Filename, "config", "c", DataDirDefault+"/matrimony.yaml", "Config filename")
+	defaultFilepath := datadir.Default + string(os.PathSeparator) + DefaultFilename
+	flag.StringVarP(&Filename, "config", "c", defaultFilepath, "Config filename")
 	flag.BoolVar(&Recreate, "recreate-config", false, "Force create example config file")
 	flag.BoolVar(&Watch, "watch", true, "Watch config file for updates")
 }
 
-func UpdateFilename() {
-	if DataDir != DataDirDefault && Filename[0:len(DataDirDefault)] == DataDirDefault {
-		Filename = path.Join(DataDir, Filename[len(DataDirDefault):])
-	}
-}
-
 func Setup() (err error) {
-	UpdateFilename()
+	Filename = datadir.ReplaceIfInDefault(Filename)
 
 	if Watch {
 		defer func() {
@@ -135,8 +128,4 @@ func saveConfig(conf *models.Config, confpath string) (err error) {
 	}
 
 	return nil
-}
-
-func DataFS() fs.FS {
-	return os.DirFS(path.Join(DataDir, "public"))
 }
