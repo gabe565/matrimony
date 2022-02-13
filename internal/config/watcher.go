@@ -32,6 +32,9 @@ func Watcher() {
 			case event.Op&fsnotify.Write == fsnotify.Write,
 				event.Op&fsnotify.Create == fsnotify.Create:
 				{
+					if event.Name != Filename {
+						continue
+					}
 					mu.Lock()
 					log.Println("Reloading config")
 					err = ReadConfig()
