@@ -53,28 +53,11 @@ const sectionTypes = computed(() => ({
     component: SpacerSection,
   },
 }));
-
-const sections = computed(() => {
-  const result = [];
-  if (props.config.sections) {
-    for (const [key, section] of Object.entries(props.config.sections)) {
-      if (section.image && key > 2) {
-        result.push({ spacer: {} });
-      }
-
-      result.push(section);
-
-      if (section.image) {
-        result.push({ spacer: {} });
-      }
-    }
-  }
-  return result;
-});
 </script>
 
 <template>
-  <template v-for="sectionEntry in sections">
+  <template v-for="(sectionEntry, key) in config.sections">
+    <spacer-section v-if="sectionEntry.image && key > 2" />
     <template v-for="(section, type) in sectionEntry">
       <component
         :is="sectionTypes[type].component"
@@ -82,5 +65,6 @@ const sections = computed(() => {
         :class="section.class"
       />
     </template>
+    <spacer-section v-if="sectionEntry.image" />
   </template>
 </template>
