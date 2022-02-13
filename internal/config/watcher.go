@@ -15,7 +15,7 @@ func Watcher() {
 		_ = watcher.Close()
 	}(watcher)
 
-	if err = watcher.Add(Filename); err != nil {
+	if err = watcher.Add(DataDir); err != nil {
 		log.Fatalln(err)
 	}
 
@@ -27,13 +27,17 @@ func Watcher() {
 			if !ok {
 				return
 			}
-			if event.Op&fsnotify.Write == fsnotify.Write {
-				mu.Lock()
-				log.Println("Reloading config")
-				err = ReadConfig()
-				mu.Unlock()
-				if err != nil {
-					log.Printf("could not reload config: %v", err)
+			switch {
+			case event.Op&fsnotify.Write == fsnotify.Write,
+				event.Op&fsnotify.Create == fsnotify.Create:
+				{
+					mu.Lock()
+					log.Println("Reloading config")
+					err = ReadConfig()
+					if err != nil {
+						log.Printf("could not reload config: %v", err)
+					}
+					mu.Unlock()
 				}
 			}
 		case err, ok := <-watcher.Errors:
