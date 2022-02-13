@@ -11,7 +11,6 @@
           {{ title }}
         </h1>
       </div>
-      monkyyyyeyyyeyyyeyyy
       <matrimony-markdown :source="content" />
     </div>
   </section>
