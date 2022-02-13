@@ -7,6 +7,7 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/httprate"
 	"github.com/go-chi/render"
+	"gorm.io/gorm"
 	"io/fs"
 	"net/http"
 	"os"
@@ -14,7 +15,7 @@ import (
 	"time"
 )
 
-func Router(rootFs fs.FS, dataFs fs.FS) *chi.Mux {
+func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 	r := chi.NewRouter()
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
@@ -73,6 +74,12 @@ func Router(rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 			r.Put("/privacy", handlers.UpdatePrivacy)
 			r.Put("/partners", handlers.UpdatePartners)
 			r.Put("/party", handlers.UpdateParty)
+
+			r.Get("/guest", handlers.ListGuests(db))
+			r.Get("/guest/{id}", handlers.GetGuest(db))
+			r.Post("/guest", handlers.CreateGuest(db))
+			r.Put("/guest/{id}", handlers.UpdateGuest(db))
+			r.Delete("/guest/{id}", handlers.DeleteGuest(db))
 		})
 	})
 

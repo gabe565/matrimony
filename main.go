@@ -4,6 +4,7 @@ import (
 	"embed"
 	"fmt"
 	"github.com/gabe565/matrimony/internal/config"
+	"github.com/gabe565/matrimony/internal/database"
 	"github.com/gabe565/matrimony/internal/datadir"
 	"github.com/gabe565/matrimony/internal/server"
 	flag "github.com/spf13/pflag"
@@ -44,6 +45,11 @@ func main() {
 		panic(err)
 	}
 
+	db, err := database.Setup()
+	if err != nil {
+		panic(err)
+	}
+
 	var contentFs fs.FS
 	if *staticDir != "" {
 		contentFs = os.DirFS(*staticDir)
@@ -53,7 +59,7 @@ func main() {
 			panic(err)
 		}
 	}
-	router := server.Router(contentFs, datadir.PublicFS())
+	router := server.Router(db, contentFs, datadir.PublicFS())
 	log.Println("Listening on " + *address)
 	err = http.ListenAndServe(*address, router)
 	if err != nil {
