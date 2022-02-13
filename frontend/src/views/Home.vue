@@ -61,6 +61,7 @@ const sectionTypes = computed(() => ({
     <template v-for="(section, type) in sectionEntry">
       <component
         :is="sectionTypes[type].component"
+        v-if="sectionTypes[type]"
         v-bind="{ ...sectionTypes[type].bind, ...section }"
         :section-key="key"
         :class="section.class"
