@@ -13,10 +13,7 @@
         </div>
         <div class="masonry masonry-sm lg:masonry-md">
           <div v-for="file in files" class="py-3 break-inside">
-            <lazy-image
-              :src="`/public/moments/.thumb/${file}`"
-              class="rounded-lg"
-            />
+            <lazy-image :src="file" class="rounded-lg" />
           </div>
         </div>
       </div>
