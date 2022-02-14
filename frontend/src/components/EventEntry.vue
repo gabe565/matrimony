@@ -50,10 +50,10 @@
 
 <script setup>
 import { computed } from "vue";
-import { DateTime } from "luxon";
 import MatrimonyButtonGroup from "./MatrimonyButtonGroup.vue";
 import NavigateButton from "./Schedule/NavigateButton.vue";
 import CalendarButton from "./Schedule/CalendarButton.vue";
+import { formatDate } from "../util/formatDate";
 
 const props = defineProps({
   title: { type: String, default: "" },
@@ -81,10 +81,5 @@ const buttonTypes = computed(() => ({
   },
 }));
 
-const startTime = computed(() =>
-  DateTime.fromISO(props.start).toLocaleString({
-    ...DateTime.DATE_HUGE,
-    ...DateTime.TIME_SIMPLE,
-  })
-);
+const startTime = computed(() => formatDate(props.start));
 </script>

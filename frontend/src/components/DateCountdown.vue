@@ -1,42 +1,52 @@
 <template>
   <div>
     <template v-for="e in countdown">
-      <span class="pr-1 text-2xl font-medium">{{ e[1] }}</span>
-      <span class="pr-2">{{ e[0] }}</span>
+      <span class="pr-1 text-2xl font-medium">{{ e.value }}</span>
+      <span class="pr-2">{{ e.unit }}</span>
     </template>
   </div>
 </template>
 
 <script setup>
 import { computed, onUnmounted, ref } from "vue";
-import { DateTime } from "luxon";
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
 
 const props = defineProps({
   date: { type: String, default: "" },
   seconds: { type: Boolean, default: false },
 });
 
-const now = ref(DateTime.now());
-const date = computed(() => DateTime.fromISO(props.date));
+const now = ref(dayjs());
+const date = computed(() => dayjs(props.date));
 
-const units = computed(() => {
-  const v = ["days", "hours", "minutes"];
+dayjs.extend(duration);
+
+const countdown = computed(() => {
+  const d = dayjs.duration(date.value.diff(now.value));
+  const v = [
+    { unit: "years", value: d.years() },
+    { unit: "months", value: d.months() },
+    { unit: "days", value: d.days() },
+    { unit: "hours", value: d.hours() },
+    { unit: "minutes", value: d.minutes() },
+  ];
   if (props.seconds) {
-    v.push("seconds");
+    v.push({ unit: "seconds", value: d.seconds() });
   }
-  return v;
-});
-const countdown = computed(() =>
-  Object.entries(date.value.diff(now.value, units.value).toObject()).map(
-    (e) => {
-      e[1] = Math.floor(e[1]);
-      return e;
+  // Handle plurals
+  for (const e of v) {
+    if (e.value === 1) {
+      e.unit = e.unit.slice(0, -1);
     }
-  )
-);
+  }
+  // Remove beginning non-zero values
+  const firstNonZero = v.findIndex((e) => e.value !== 0);
+  return v.slice(firstNonZero);
+});
 
 const interval = setInterval(() => {
-  now.value = DateTime.now();
+  now.value = dayjs();
 }, 1000);
 
 onUnmounted(() => {

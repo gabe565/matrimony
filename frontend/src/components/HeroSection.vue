@@ -42,8 +42,8 @@
 
 <script setup>
 import { computed } from "vue";
-import { DateTime } from "luxon";
 import DateCountdown from "./DateCountdown.vue";
+import { formatDate, FullDate } from "../util/formatDate";
 
 const props = defineProps({
   title: { type: String, default: "" },
@@ -54,7 +54,5 @@ const props = defineProps({
   date: { type: String, default: "" },
 });
 
-const prettyDate = computed(() =>
-  DateTime.fromISO(props.date).toLocaleString(DateTime.DATE_HUGE)
-);
+const prettyDate = computed(() => formatDate(props.date, FullDate));
 </script>
