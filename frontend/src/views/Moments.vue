@@ -14,7 +14,12 @@
           </h1>
         </div>
         <div class="masonry masonry-sm lg:masonry-md">
-          <img v-for="file in files" :src="file" class="py-3 break-inside" />
+          <div v-for="file in files" class="py-3 break-inside">
+            <lazy-image
+              :src="`/public/moments/.thumb/${file}`"
+              class="rounded-lg"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -23,6 +28,7 @@
 
 <script setup>
 import { ref } from "vue";
+import LazyImage from "../components/LazyImage.vue";
 
 const files = ref([]);
 fetch("/api/moments").then(async (r) => {
