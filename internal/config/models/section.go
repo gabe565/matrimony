@@ -36,6 +36,11 @@ type FaqSection struct {
 	Items       []TextSection `yaml:"items" json:"items"`
 }
 
+type MomentsSection struct {
+	Title   string `yaml:"title,omitempty" json:"title,omitempty"`
+	Content string `yaml:"content" json:"content"`
+}
+
 type Section struct {
 	Hero     *HeroSection     `yaml:"hero,omitempty" json:"hero,omitempty"`
 	Image    *ImageSection    `yaml:"image,omitempty" json:"image,omitempty"`
@@ -43,4 +48,5 @@ type Section struct {
 	Party    *PartySection    `yaml:"party,omitempty" json:"party,omitempty"`
 	Schedule *ScheduleSection `yaml:"schedule,omitempty" json:"schedule,omitempty"`
 	Faq      *FaqSection      `yaml:"faq,omitempty" json:"faq,omitempty"`
+	Moments  *MomentsSection  `yaml:"moments,omitempty" json:"moments,omitempty"`
 }

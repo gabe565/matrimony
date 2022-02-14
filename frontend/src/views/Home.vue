@@ -7,6 +7,7 @@ import TextSection from "../components/TextSection.vue";
 import ScheduleSection from "../components/ScheduleSection.vue";
 import FaqSection from "../components/FaqSection.vue";
 import SpacerSection from "../components/SpacerSection.vue";
+import MomentsSection from "../components/MomentsSection.vue";
 import { toSlug } from "../util/toSlug";
 
 const props = defineProps({
@@ -51,6 +52,9 @@ const sectionTypes = computed(() => ({
   },
   spacer: {
     component: SpacerSection,
+  },
+  moments: {
+    component: MomentsSection,
   },
 }));
 </script>
