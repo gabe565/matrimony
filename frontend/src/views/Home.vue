@@ -33,6 +33,9 @@ const sectionTypes = computed(() => ({
     bind: {
       title: props.config.info?.name,
       toAnchor: firstAnchor.value,
+      greeting: props.config.info?.greeting,
+      location: props.config.info?.location,
+      date: props.config.info?.date,
     },
   },
   image: {
