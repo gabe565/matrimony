@@ -8,27 +8,33 @@
   </div>
 
   <div
-    class="sticky top-0 -z-10 container mx-auto pb-2 lg:pb-6 h-[calc(100vh-1px)] flex flex-col justify-center text-center pt-20 lg:pt-0 text-accent-50"
+    class="sticky top-0 -z-10 container mx-auto pb-2 lg:pb-6 h-screen flex flex-col justify-center text-center pt-20 lg:pt-0 text-accent-50"
   >
     <div class="h-[40rem] lg:h-[48rem] w-full pb-8 relative -z-10">
+      <!-- Image -->
       <img
         v-if="image.src"
         class="h-full w-full bg-cover object-cover lg:rounded-[1rem]"
         :src="image.src"
         :alt="title"
       />
+
+      <!-- Gradient -->
       <div
         class="absolute bottom-0 left-0 h-2/3 w-full bg-gradient-to-b from-transparent to-black lg:rounded-[1rem]"
       />
 
+      <!-- Content -->
       <div class="absolute bottom-0 left-0 w-full mx-auto flex flex-col">
-        <h1 class="pb-2 font-script text-4xl md:text-7xl whitespace-nowrap">
+        <h1 class="pb-4 font-script text-5xl md:text-7xl whitespace-nowrap">
           {{ greeting }}
         </h1>
-        <div v-if="location" class="pb-2 text-xl">{{ location }}</div>
+        <div v-if="location" class="pb-2 md:text-xl">
+          {{ location }}
+        </div>
         <template v-if="date">
-          <div class="pb-2 text-xl">{{ prettyDate }}</div>
-          <date-countdown class="pb-8 text-xl" :date="date" />
+          <div class="pb-2 md:text-xl">{{ prettyDate }}</div>
+          <date-countdown class="pb-8 md:text-xl" :date="date" />
         </template>
 
         <font-awesome-icon
