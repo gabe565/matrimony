@@ -1,3 +1,21 @@
+<template>
+  <div class="container mx-auto lg:max-w-[1436px]">
+    <template v-for="(sectionEntry, key) in config.sections">
+      <spacer-section v-if="sectionEntry.image && key > 2" />
+      <template v-for="(section, type) in sectionEntry">
+        <component
+          :is="sectionTypes[type].component"
+          v-if="sectionTypes[type]"
+          v-bind="{ ...sectionTypes[type].bind, ...section }"
+          :section-key="key"
+          :class="{ 'rounded-t-2xl': key === 1 }"
+        />
+      </template>
+      <spacer-section v-if="sectionEntry.image" />
+    </template>
+  </div>
+</template>
+
 <script setup>
 import { computed } from "vue";
 import HeroSection from "../components/HeroSection.vue";
@@ -61,21 +79,3 @@ const sectionTypes = computed(() => ({
   },
 }));
 </script>
-
-<template>
-  <div class="container mx-auto lg:max-w-[1436px]">
-    <template v-for="(sectionEntry, key) in config.sections">
-      <spacer-section v-if="sectionEntry.image && key > 2" />
-      <template v-for="(section, type) in sectionEntry">
-        <component
-          :is="sectionTypes[type].component"
-          v-if="sectionTypes[type]"
-          v-bind="{ ...sectionTypes[type].bind, ...section }"
-          :section-key="key"
-          :class="{ 'rounded-t-2xl': key === 1 }"
-        />
-      </template>
-      <spacer-section v-if="sectionEntry.image" />
-    </template>
-  </div>
-</template>

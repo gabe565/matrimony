@@ -1,3 +1,14 @@
+<template>
+  <span id="top" class="invisible relative" />
+  <pattern-background />
+  <app-nav
+    :partners="config.partners"
+    :loading="loading"
+    :pages="sectionTitles"
+  />
+  <router-view :config="config" />
+</template>
+
 <script setup>
 import { computed, ref } from "vue";
 import AppNav from "./components/AppNav.vue";
@@ -27,14 +38,3 @@ const sectionTitles = computed(() => {
   return result;
 });
 </script>
-
-<template>
-  <span id="top" class="invisible relative" />
-  <pattern-background />
-  <app-nav
-    :partners="config.partners"
-    :loading="loading"
-    :pages="sectionTitles"
-  />
-  <router-view :config="config" />
-</template>
