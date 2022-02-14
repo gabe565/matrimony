@@ -19,9 +19,7 @@ func ListMoments(fsys fs.FS) http.HandlerFunc {
 		var response []string
 		for _, file := range files {
 			lowerFilename := strings.ToLower(file.Name())
-			if file.IsDir() ||
-				!(strings.HasSuffix(lowerFilename, "jpg") ||
-					strings.HasSuffix(lowerFilename, "png")) {
+			if file.IsDir() || strings.HasPrefix(lowerFilename, ".") {
 				continue
 			}
 			response = append(response, "/public/moments/"+file.Name())
