@@ -71,7 +71,7 @@ const sectionTypes = computed(() => ({
         v-if="sectionTypes[type]"
         v-bind="{ ...sectionTypes[type].bind, ...section }"
         :section-key="key"
-        :class="section.class"
+        :class="{ 'rounded-t-2xl': key === 1 }"
       />
     </template>
     <spacer-section v-if="sectionEntry.image" />
