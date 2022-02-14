@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-100 dark:bg-slate-800 relative overflow-hidden">
+  <div class="relative overflow-hidden" :class="[bgColor, darkBgColor]">
     <img
       v-lazy="{ src, lifecycle }"
       :alt="alt"
@@ -23,6 +23,8 @@ import { ref } from "vue";
 defineProps({
   src: { type: String, default: "" },
   alt: { type: String, default: "" },
+  bgColor: { type: String, default: "bg-slate-100" },
+  darkBgColor: { type: String, default: "dark:bg-slate-800" },
 });
 
 const loading = ref(true);

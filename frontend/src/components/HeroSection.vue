@@ -12,9 +12,10 @@
   >
     <div class="h-[40rem] lg:h-[48rem] w-full relative -z-10">
       <!-- Image -->
-      <img
+      <lazy-image
         v-if="image.src"
         class="h-full w-full bg-cover object-cover lg:rounded-[1rem]"
+        bg-color="bg-slate-500"
         :src="image.src"
         :alt="title"
       />
@@ -50,6 +51,7 @@
 import { computed } from "vue";
 import DateCountdown from "./DateCountdown.vue";
 import { formatDate, FullDate } from "../util/formatDate";
+import LazyImage from "./LazyImage.vue";
 
 const props = defineProps({
   title: { type: String, default: "" },
