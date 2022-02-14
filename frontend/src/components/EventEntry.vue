@@ -50,6 +50,7 @@
 
 <script setup>
 import { computed } from "vue";
+import { DateTime } from "luxon";
 import MatrimonyButtonGroup from "./MatrimonyButtonGroup.vue";
 import NavigateButton from "./Schedule/NavigateButton.vue";
 import CalendarButton from "./Schedule/CalendarButton.vue";
@@ -80,21 +81,10 @@ const buttonTypes = computed(() => ({
   },
 }));
 
-const formatDate = (str) => {
-  if (!str) {
-    return null;
-  }
-  const date = new Date(str);
-  return date.toLocaleString("en-US", {
-    weekday: "short",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  });
-};
-
-const startTime = computed(() => formatDate(props.start));
+const startTime = computed(() =>
+  DateTime.fromISO(props.start).toLocaleString({
+    ...DateTime.DATE_HUGE,
+    ...DateTime.TIME_SIMPLE,
+  })
+);
 </script>
