@@ -38,6 +38,6 @@
 defineProps({
   title: { type: String, default: "" },
   image: { type: Object, default: () => ({}) },
-  toAnchor: { type: String, default: () => ({}) },
+  toAnchor: { type: String, default: "" },
 });
 </script>
