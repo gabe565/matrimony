@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="container mx-auto flex flex-col justify-center text-center pt-52 lg:pt-0"
-  >
+  <div class="container mx-auto lg:max-w-[1436px] flex flex-col pt-52 lg:pt-0">
     <section
       class="lg:mt-40 text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-900 body-font"
     >
