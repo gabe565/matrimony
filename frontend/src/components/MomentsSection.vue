@@ -13,7 +13,7 @@
           {{ title }}
         </h1>
       </div>
-      <matrimony-button href="/moments">
+      <matrimony-button to="/moments">
         {{ content }}
         <template #icon>
           <font-awesome-icon :icon="['far', 'arrow-right']" class="ml-2" />
