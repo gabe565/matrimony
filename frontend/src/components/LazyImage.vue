@@ -3,7 +3,7 @@
     <img
       v-lazy="{ src, lifecycle }"
       :alt="alt"
-      class="object-cover object-center h-full w-full"
+      class="object-cover object-center h-full w-full duration-300"
     />
     <div
       v-if="loading"
@@ -38,3 +38,12 @@ const lifecycle = {
   },
 };
 </script>
+
+<style scoped>
+img[lazy="loading"] {
+  @apply opacity-0;
+}
+img[lazy="loaded"] {
+  @apply opacity-100;
+}
+</style>
