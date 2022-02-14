@@ -22,7 +22,7 @@ func ListMoments(fsys fs.FS) http.HandlerFunc {
 			if file.IsDir() || strings.HasPrefix(lowerFilename, ".") {
 				continue
 			}
-			response = append(response, "/public/moments/"+file.Name())
+			response = append(response, file.Name())
 		}
 
 		j, err := json.Marshal(response)
