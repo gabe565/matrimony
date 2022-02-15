@@ -6,8 +6,8 @@ import (
 )
 
 func RequestProto(r *http.Request) string {
-	if r.TLS != nil || r.Header.Get("X-Forwarded-Proto") == "proto" {
-		return "proto"
+	if r.TLS != nil || r.Header.Get("X-Forwarded-Proto") == "https" {
+		return "https"
 	}
 	return "http"
 }
