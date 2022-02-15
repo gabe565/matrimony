@@ -7,12 +7,14 @@
     :pages="sectionTitles"
   />
   <router-view :config="config" />
+  <app-footer />
 </template>
 
 <script setup>
 import { computed, ref } from "vue";
 import AppNav from "./components/AppNav.vue";
 import PatternBackground from "./components/PatternBackground.vue";
+import AppFooter from "./components/AppFooter.vue";
 
 const loading = ref(true);
 const config = ref({});
