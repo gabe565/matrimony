@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed top-0 left-0 w-full h-full -z-20 bg-gradient-to-b from-primary-400 to-primary-200"
+    class="fixed top-0 left-0 w-full h-full -z-20 bg-gradient-to-bl from-primary-400 dark:from-primary-500 to-primary-200 dark:to-primary-300"
   >
     <div class="fill-accent-500 opacity-30">
       <!-- eslint-disable vue/no-v-html -->
