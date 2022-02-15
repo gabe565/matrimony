@@ -21,3 +21,8 @@
     break-inside: avoid;
   }
 }
+
+.v-enter-from,
+.v-leave-to {
+  @apply opacity-0;
+}

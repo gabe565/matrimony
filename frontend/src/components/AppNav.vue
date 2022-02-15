@@ -45,12 +45,17 @@
           {{ page }}
         </router-link>
       </nav>
-      <matrimony-button href="#">
-        RSVP
-        <template #icon>
-          <font-awesome-icon :icon="['far', 'arrow-right']" class="ml-2" />
-        </template>
-      </matrimony-button>
+      <Transition>
+        <matrimony-button v-show="!route.path.startsWith('/rsvp')" to="/rsvp">
+          RSVP
+          <template #icon>
+            <font-awesome-icon
+              :icon="['fas', 'calendar-lines-pen']"
+              class="ml-2"
+            />
+          </template>
+        </matrimony-button>
+      </Transition>
     </div>
   </header>
 </template>

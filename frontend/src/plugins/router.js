@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import NotFound from "../views/NotFound.vue";
 import Moments from "../views/Moments.vue";
+import RSVP from "../views/RSVP.vue";
 import { waitForElement } from "../util/waitForElement";
 
 const router = [
@@ -15,6 +16,13 @@ const router = [
   {
     path: "/moments",
     component: Moments,
+    meta: {
+      headerCollapseY: 100,
+    },
+  },
+  {
+    path: "/rsvp",
+    component: RSVP,
     meta: {
       headerCollapseY: 100,
     },

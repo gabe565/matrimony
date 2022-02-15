@@ -5,6 +5,8 @@ import {
   faDiamondTurnRight,
   faCalendar,
   faCalendarPlus,
+  faGrid2,
+  faCalendarLinesPen,
 } from "@fortawesome/pro-solid-svg-icons";
 import { faRingsWedding } from "@fortawesome/pro-thin-svg-icons";
 import { faArrowRight } from "@fortawesome/pro-regular-svg-icons";
@@ -18,5 +20,7 @@ library.add(
   faDiamondTurnRight,
   faCalendar,
   faCalendarPlus,
-  faSpinnerThird
+  faSpinnerThird,
+  faGrid2,
+  faCalendarLinesPen
 );

@@ -7,7 +7,7 @@ type Sections struct {
 	Party    *PartySection    `yaml:"party,omitempty" json:"party,omitempty"`
 	Schedule *ScheduleSection `yaml:"schedule,omitempty" json:"schedule,omitempty"`
 	Faq      *FaqSection      `yaml:"faq,omitempty" json:"faq,omitempty"`
-	Moments  *MomentsSection  `yaml:"moments,omitempty" json:"moments,omitempty"`
+	Links    *LinksSection    `yaml:"links,omitempty" json:"links,omitempty"`
 }
 
 type Section struct {
@@ -46,7 +46,13 @@ type FaqSection struct {
 	Items   []TextSection `yaml:"items" json:"items"`
 }
 
-type MomentsSection struct {
+type LinksSection struct {
+	Section `yaml:",inline"`
+	Moments Link `yaml:"moments" json:"moments"`
+	RSVP    Link `yaml:"rsvp" json:"rsvp"`
+}
+
+type Link struct {
 	Title   string `yaml:"title" json:"title,omitempty"`
 	Content string `yaml:"content" json:"content"`
 }
