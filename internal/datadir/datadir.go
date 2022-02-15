@@ -2,7 +2,7 @@ package datadir
 
 import (
 	flag "github.com/spf13/pflag"
-	"path"
+	"path/filepath"
 )
 
 const Default = "data"
@@ -15,7 +15,7 @@ func init() {
 
 func ReplaceIfInDefault(filename string) string {
 	if DataDir != Default && filename[0:len(Default)] == Default {
-		return path.Join(DataDir, filename[len(Default):])
+		return filepath.Join(DataDir, filename[len(Default):])
 	}
 	return filename
 }

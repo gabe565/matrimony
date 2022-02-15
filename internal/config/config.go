@@ -8,7 +8,7 @@ import (
 	"gopkg.in/yaml.v3"
 	"log"
 	"os"
-	"path"
+	"path/filepath"
 	"sync"
 )
 
@@ -97,7 +97,7 @@ func SaveConfig() error {
 }
 
 func saveConfig(conf *models.Config, confpath string) (err error) {
-	dir := path.Dir(confpath)
+	dir := filepath.Dir(confpath)
 	if _, err := os.Stat(dir); os.IsNotExist(err) {
 		err = os.Mkdir(dir, 0755)
 		if err != nil {

@@ -3,11 +3,11 @@ package datadir
 import (
 	"io/fs"
 	"os"
-	"path"
+	"path/filepath"
 )
 
 func PublicDir() string {
-	return path.Join(DataDir, "public")
+	return filepath.Join(DataDir, "public")
 }
 
 func PublicFS() fs.FS {
