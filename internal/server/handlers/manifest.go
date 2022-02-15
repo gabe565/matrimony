@@ -5,6 +5,7 @@ import (
 	"github.com/gabe565/matrimony/internal/config"
 	"io/fs"
 	"net/http"
+	"os"
 )
 
 func GetManifest(rootFs fs.FS) http.HandlerFunc {
@@ -17,9 +18,14 @@ func GetManifest(rootFs fs.FS) http.HandlerFunc {
 		Display         string        `json:"display"`
 		Icons           []interface{} `json:"icons"`
 	}
-
+	manifestPath := "manifest.json"
 	return func(w http.ResponseWriter, r *http.Request) {
-		f, err := rootFs.Open("manifest.json")
+		if _, err := fs.Stat(rootFs, manifestPath); os.IsNotExist(err) {
+			http.Error(w, http.StatusText(404), 404)
+			return
+
+		}
+		f, err := rootFs.Open(manifestPath)
 		if err != nil {
 			panic(err)
 		}

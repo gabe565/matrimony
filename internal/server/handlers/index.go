@@ -6,12 +6,19 @@ import (
 	"html/template"
 	"io/fs"
 	"net/http"
+	"os"
 	"path"
 )
 
 func GetIndex(rootFs fs.FS) http.HandlerFunc {
+	indexPath := "index.html"
 	return func(w http.ResponseWriter, r *http.Request) {
-		tpl, err := template.New("index.html").ParseFS(rootFs, "index.html")
+		if _, err := fs.Stat(rootFs, indexPath); os.IsNotExist(err) {
+			http.Error(w, http.StatusText(404), 404)
+			return
+
+		}
+		tpl, err := template.New(indexPath).ParseFS(rootFs, indexPath)
 		if err != nil {
 			panic(err)
 		}
