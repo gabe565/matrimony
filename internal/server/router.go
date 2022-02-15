@@ -41,6 +41,8 @@ func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 		}
 	})
 
+	r.Get("/manifest.json", handlers.GetManifest(rootFs))
+
 	r.Get("/public/*", func(res http.ResponseWriter, req *http.Request) {
 		rctx := chi.RouteContext(req.Context())
 		pathPrefix := strings.TrimSuffix(rctx.RoutePattern(), "/*")

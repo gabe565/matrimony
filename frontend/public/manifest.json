@@ -1,8 +1,9 @@
 {
-  "name": "Matrimony",
-  "short_name": "Matrimony",
+  "name": "",
+  "short_name": "",
   "start_url": ".",
-  "theme_color": "#3F4970",
+  "theme_color": "",
+  "background_color": "",
   "display":"standalone",
   "icons": [
     {

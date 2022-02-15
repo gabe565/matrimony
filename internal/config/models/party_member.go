@@ -8,3 +8,7 @@ type PartyMember struct {
 	Info  string `yaml:"info,omitempty" json:"info,omitempty"`
 	Image string `yaml:"image,omitempty" json:"image,omitempty"`
 }
+
+func (member PartyMember) Fullname() string {
+	return member.First + " " + member.Last
+}
