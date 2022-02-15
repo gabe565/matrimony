@@ -17,7 +17,7 @@
         class="h-full w-full bg-cover object-cover lg:rounded-[1rem]"
         bg-color="bg-slate-500"
         :src="image.src"
-        :alt="title"
+        :alt="alt"
       />
 
       <!-- Gradient -->
@@ -54,7 +54,7 @@ import { formatDate, FullDate } from "../util/formatDate";
 import LazyImage from "./LazyImage.vue";
 
 const props = defineProps({
-  title: { type: String, default: "" },
+  alt: { type: String, default: "" },
   image: { type: Object, default: () => ({}) },
   toAnchor: { type: String, default: "" },
   greeting: { type: String, default: "" },

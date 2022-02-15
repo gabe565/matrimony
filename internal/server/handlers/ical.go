@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/arran4/golang-ical"
 	"github.com/gabe565/matrimony/internal/config"
+	"github.com/gabe565/matrimony/internal/server/helpers"
 	"github.com/go-chi/chi/v5"
 	"github.com/google/uuid"
 	"github.com/gosimple/slug"
@@ -62,17 +63,11 @@ func GetIcal() http.HandlerFunc {
 			calEvent.SetLocation(event.Location)
 		}
 
-		summary := fmt.Sprintf("%s - %s", config.Config.ShortTitle(), event.Title)
+		summary := fmt.Sprintf("%s - %s", config.Config.TitleShort(), event.Title)
 		calEvent.SetSummary(summary)
 		calEvent.SetDescription(event.Description)
 
-		var proto string
-		if r.TLS != nil || r.Header.Get("X-Forwarded-Proto") == "proto" {
-			proto = "proto"
-		} else {
-			proto = "http"
-		}
-		calEvent.SetURL(fmt.Sprintf("%s://%s", proto, r.Host))
+		calEvent.SetURL(helpers.PublicUrl(r))
 
 		w.Header().Set("Content-Type", "text/calendar")
 		w.Header().Set(

@@ -26,6 +26,9 @@ func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 
 	fileserver := http.FileServer(http.FS(rootFs))
 
+	r.Get("/", handlers.GetIndex(rootFs))
+	r.Get("/manifest.json", handlers.GetManifest(rootFs))
+
 	// Serve index as 404
 	r.NotFound(func(res http.ResponseWriter, req *http.Request) {
 		req.URL.Path = "/"
@@ -40,8 +43,6 @@ func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 			r.NotFoundHandler().ServeHTTP(res, req)
 		}
 	})
-
-	r.Get("/manifest.json", handlers.GetManifest(rootFs))
 
 	r.Get("/public/*", func(res http.ResponseWriter, req *http.Request) {
 		rctx := chi.RouteContext(req.Context())

@@ -49,7 +49,7 @@ const sectionTypes = computed(() => ({
   hero: {
     component: HeroSection,
     bind: {
-      title: props.config.info?.name,
+      alt: props.config.partners?.map((e) => e.first).join(" & "),
       toAnchor: firstAnchor.value,
       greeting: props.config.info?.greeting,
       location: props.config.info?.location,

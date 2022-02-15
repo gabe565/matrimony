@@ -35,7 +35,7 @@ func GetManifest(rootFs fs.FS) http.HandlerFunc {
 		}
 
 		if m.ShortName == "" {
-			m.ShortName = config.Config.ShortTitle()
+			m.ShortName = config.Config.TitleShort()
 		}
 
 		if m.ThemeColor == "" {

@@ -19,9 +19,6 @@ const config = ref({});
 fetch("/api/config").then(async (r) => {
   config.value = await r.json();
   loading.value = false;
-  if (config.value.info?.name) {
-    document.title = config.value.info.name;
-  }
 });
 
 const sectionTitles = computed(() => {

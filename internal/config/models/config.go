@@ -19,7 +19,7 @@ func (config Config) Title() string {
 	return strings.Join(names, " & ")
 }
 
-func (config Config) ShortTitle() string {
+func (config Config) TitleShort() string {
 	names := make([]string, 0, len(config.Partners))
 	for _, p := range config.Partners {
 		names = append(names, p.First)
