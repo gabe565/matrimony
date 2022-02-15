@@ -62,7 +62,7 @@ func GetIcal() http.HandlerFunc {
 			calEvent.SetLocation(event.Location)
 		}
 
-		summary := fmt.Sprintf("%s - %s", config.Config.EventInfo.Name, event.Title)
+		summary := fmt.Sprintf("%s - %s", config.Config.ShortTitle(), event.Title)
 		calEvent.SetSummary(summary)
 		calEvent.SetDescription(event.Description)
 

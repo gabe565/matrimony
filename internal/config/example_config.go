@@ -17,7 +17,6 @@ func ExampleConfig() *models.Config {
 
 	return &models.Config{
 		EventInfo: models.EventInfo{
-			Name:     "Eesha & Will",
 			Date:     time.Now(),
 			Location: "Oklahoma City, OK, USA",
 			Timezone: "America/Chicago",

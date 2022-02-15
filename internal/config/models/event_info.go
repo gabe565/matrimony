@@ -3,7 +3,6 @@ package models
 import "time"
 
 type EventInfo struct {
-	Name     string    `yaml:"name" json:"name"`
 	Date     time.Time `yaml:"date" json:"date"`
 	Location string    `yaml:"location" json:"location"`
 	Timezone string    `yaml:"timezone" json:"timezone"`
