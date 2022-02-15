@@ -66,6 +66,7 @@ func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 			r.Get("/partners", handlers.ListPartners)
 			r.Get("/party", handlers.ListParty)
 			r.Get("/moments", handlers.ListMoments(dataFs))
+			r.Get("/rsvp/questions", handlers.ListRSVPQuestions)
 
 			r.Get("/ical/{section}/{key}", handlers.GetIcal())
 		})

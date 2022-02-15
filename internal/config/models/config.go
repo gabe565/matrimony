@@ -9,6 +9,7 @@ type Config struct {
 	Partners  []PartyMember `yaml:"partners" json:"partners"`
 	Admin     Admin         `yaml:"admin" json:"-"`
 	Sections  []Section     `yaml:"sections" json:"sections"`
+	RSVP      RSVP          `yaml:"rsvp" json:"rsvp"`
 }
 
 func (config Config) Title() string {
