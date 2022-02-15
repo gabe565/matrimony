@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import LazyImage from "./LazyImage.vue";
+import LazyImage from "../LazyImage.vue";
 
 defineProps({
   src: { type: String, default: "" },

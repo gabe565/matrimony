@@ -32,8 +32,8 @@
 </template>
 
 <script setup>
-import { toSlug } from "../util/toSlug";
-import MatrimonyMarkdown from "./MatrimonyMarkdown.vue";
+import { toSlug } from "../../util/toSlug";
+import MatrimonyMarkdown from "../MatrimonyMarkdown.vue";
 
 defineProps({
   title: { type: String, default: "" },

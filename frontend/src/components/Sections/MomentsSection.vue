@@ -24,8 +24,8 @@
 </template>
 
 <script setup>
-import { toSlug } from "../util/toSlug";
-import MatrimonyButton from "./MatrimonyButton.vue";
+import { toSlug } from "../../util/toSlug";
+import MatrimonyButton from "../MatrimonyButton.vue";
 
 defineProps({
   title: { type: String, default: "" },

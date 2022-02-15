@@ -49,9 +49,9 @@
 
 <script setup>
 import { computed } from "vue";
-import DateCountdown from "./DateCountdown.vue";
-import { formatDate, FullDate } from "../util/formatDate";
-import LazyImage from "./LazyImage.vue";
+import DateCountdown from "../DateCountdown.vue";
+import { formatDate, FullDate } from "../../util/formatDate";
+import LazyImage from "../LazyImage.vue";
 
 const props = defineProps({
   alt: { type: String, default: "" },

@@ -18,14 +18,14 @@
 
 <script setup>
 import { computed } from "vue";
-import HeroSection from "../components/HeroSection.vue";
-import ImageSection from "../components/ImageSection.vue";
+import HeroSection from "../components/Sections/HeroSection.vue";
+import ImageSection from "../components/Sections/ImageSection.vue";
 import WeddingParty from "../components/WeddingParty.vue";
-import TextSection from "../components/TextSection.vue";
-import ScheduleSection from "../components/ScheduleSection.vue";
-import FaqSection from "../components/FaqSection.vue";
-import SpacerSection from "../components/SpacerSection.vue";
-import MomentsSection from "../components/MomentsSection.vue";
+import TextSection from "../components/Sections/TextSection.vue";
+import ScheduleSection from "../components/Sections/ScheduleSection.vue";
+import FaqSection from "../components/Sections/FaqSection.vue";
+import SpacerSection from "../components/Sections/SpacerSection.vue";
+import MomentsSection from "../components/Sections/MomentsSection.vue";
 import { toSlug } from "../util/toSlug";
 
 const props = defineProps({

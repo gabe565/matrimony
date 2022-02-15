@@ -23,8 +23,8 @@
 </template>
 
 <script setup>
-import EventEntry from "./EventEntry.vue";
-import { toSlug } from "../util/toSlug";
+import EventEntry from "../EventEntry.vue";
+import { toSlug } from "../../util/toSlug";
 
 defineProps({
   title: { type: String, default: "" },
