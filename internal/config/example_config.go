@@ -45,7 +45,7 @@ func ExampleConfig() *models.Config {
 				admin,
 			},
 		},
-		Sections: []models.Section{
+		Sections: []models.Sections{
 			{
 				Hero: &models.HeroSection{
 					Image: models.ImageSection{
@@ -55,7 +55,7 @@ func ExampleConfig() *models.Config {
 			},
 			{
 				Text: &models.TextSection{
-					BaseSection: models.BaseSection{
+					Section: models.Section{
 						Title: "About Us",
 					},
 					Content: "",

@@ -8,7 +8,7 @@ type Config struct {
 	Privacy   Privacy       `yaml:"privacy" json:"-"`
 	Partners  []PartyMember `yaml:"partners" json:"partners"`
 	Admin     Admin         `yaml:"admin" json:"-"`
-	Sections  []Section     `yaml:"sections" json:"sections"`
+	Sections  []Sections    `yaml:"sections" json:"sections"`
 	RSVP      RSVP          `yaml:"rsvp" json:"rsvp"`
 }
 
