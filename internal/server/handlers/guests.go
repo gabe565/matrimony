@@ -43,7 +43,7 @@ func GetGuest(db *gorm.DB) http.HandlerFunc {
 		err := db.Preload(clause.Associations).First(&guest, id).Error
 		if err != nil {
 			if errors.Is(err, gorm.ErrRecordNotFound) {
-				http.Error(w, http.StatusText(404), 404)
+				http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 				return
 			}
 			panic(err)
@@ -106,7 +106,7 @@ func UpdateGuest(db *gorm.DB) http.HandlerFunc {
 		err := db.First(&guest, id).Error
 		if err != nil {
 			if errors.Is(err, gorm.ErrRecordNotFound) {
-				http.Error(w, http.StatusText(404), 404)
+				http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 				return
 			}
 			panic(err)
@@ -146,7 +146,7 @@ func DeleteGuest(db *gorm.DB) http.HandlerFunc {
 		err := db.First(&guest, id).Error
 		if err != nil {
 			if errors.Is(err, gorm.ErrRecordNotFound) {
-				http.Error(w, http.StatusText(404), 404)
+				http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 				return
 			}
 			panic(err)

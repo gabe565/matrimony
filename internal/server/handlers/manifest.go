@@ -21,7 +21,7 @@ func GetManifest(rootFs fs.FS) http.HandlerFunc {
 	manifestPath := "manifest.json"
 	return func(w http.ResponseWriter, r *http.Request) {
 		if _, err := fs.Stat(rootFs, manifestPath); os.IsNotExist(err) {
-			http.Error(w, http.StatusText(404), 404)
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 			return
 
 		}

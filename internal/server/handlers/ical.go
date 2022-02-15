@@ -25,12 +25,12 @@ func GetIcal() http.HandlerFunc {
 		}
 
 		if sectionKey > len(config.Config.Sections) {
-			http.Error(w, http.StatusText(404), 404)
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 			return
 		}
 		section := config.Config.Sections[sectionKey]
 		if section.Schedule == nil {
-			http.Error(w, http.StatusText(404), 404)
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 			return
 		}
 
@@ -40,7 +40,7 @@ func GetIcal() http.HandlerFunc {
 		}
 
 		if eventKey > len(section.Schedule.Events) {
-			http.Error(w, http.StatusText(404), 404)
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 			return
 		}
 		event := section.Schedule.Events[eventKey]
@@ -53,7 +53,7 @@ func GetIcal() http.HandlerFunc {
 		calEvent.SetModifiedAt(time.Now())
 
 		if event.Start == nil {
-			http.Error(w, http.StatusText(404), 404)
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 			return
 		}
 		calEvent.SetStartAt(*event.Start)

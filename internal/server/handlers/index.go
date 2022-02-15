@@ -14,7 +14,7 @@ func GetIndex(rootFs fs.FS) http.HandlerFunc {
 	indexPath := "index.html"
 	return func(w http.ResponseWriter, r *http.Request) {
 		if _, err := fs.Stat(rootFs, indexPath); os.IsNotExist(err) {
-			http.Error(w, http.StatusText(404), 404)
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 			return
 
 		}
