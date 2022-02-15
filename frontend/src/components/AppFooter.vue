@@ -2,7 +2,7 @@
   <footer
     class="container lg:max-w-[1436px] mx-auto p-4 bg-white shadow md:py-8 dark:bg-gray-800"
   >
-    <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+    <span class="block text-sm text-gray-500 text-center dark:text-gray-400">
       Made with
       <font-awesome-icon
         :icon="['fas', 'heart']"

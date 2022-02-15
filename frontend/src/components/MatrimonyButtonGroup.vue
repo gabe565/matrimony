@@ -4,12 +4,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "MatrimonyButtonGroup",
-};
-</script>
-
 <style scoped lang="scss">
 .root > {
   :slotted(*) {
