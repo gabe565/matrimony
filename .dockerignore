@@ -2,10 +2,11 @@
 .dockerignore
 .git
 .idea
-data
 Dockerfile
-frontend/dist
+data
+docker-compose.yml
 frontend/README.md
+frontend/dist
 frontend/node_modules
 matrimony
 vendor
