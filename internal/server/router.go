@@ -89,6 +89,11 @@ func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 			r.Put("/guest/{id}", handlers.UpdateGuest(db))
 			r.Delete("/guest/{id}", handlers.DeleteGuest(db))
 		})
+
+		r.HandleFunc("/*", func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
+			return
+		})
 	})
 
 	return r
