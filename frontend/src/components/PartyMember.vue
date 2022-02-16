@@ -25,3 +25,9 @@ defineProps({
   member: { type: Object, default: () => ({}) },
 });
 </script>
+
+<script>
+export default {
+  name: "PartyMember",
+};
+</script>

@@ -18,3 +18,9 @@ defineProps({
   eventKey: { type: Number, default: 0 },
 });
 </script>
+
+<script>
+export default {
+  name: "CalendarButton",
+};
+</script>

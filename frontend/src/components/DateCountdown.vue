@@ -53,3 +53,9 @@ onUnmounted(() => {
   clearInterval(interval);
 });
 </script>
+
+<script>
+export default {
+  name: "DateCountdown",
+};
+</script>

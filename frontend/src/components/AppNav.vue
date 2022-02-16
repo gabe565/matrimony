@@ -116,3 +116,9 @@ document.addEventListener(
   passiveEventHandlerSupported ? { passive: true } : false
 );
 </script>
+
+<script>
+export default {
+  name: "AppNav",
+};
+</script>

@@ -34,3 +34,9 @@ const value = computed({
   set: (v) => emit("update:modelValue", v),
 });
 </script>
+
+<script>
+export default {
+  name: "TextField",
+};
+</script>

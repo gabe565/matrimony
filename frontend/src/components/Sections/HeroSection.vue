@@ -64,3 +64,9 @@ const props = defineProps({
 
 const prettyDate = computed(() => formatDate(props.date, FullDate));
 </script>
+
+<script>
+export default {
+  name: "HeroSection",
+};
+</script>

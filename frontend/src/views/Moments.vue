@@ -33,3 +33,9 @@ fetch("/api/moments").then(async (r) => {
   files.value = await r.json();
 });
 </script>
+
+<script>
+export default {
+  name: "Moments",
+};
+</script>

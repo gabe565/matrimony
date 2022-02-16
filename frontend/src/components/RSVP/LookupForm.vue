@@ -50,3 +50,9 @@ const checkUser = async () => {
   }
 };
 </script>
+
+<script>
+export default {
+  name: "LookupForm",
+};
+</script>

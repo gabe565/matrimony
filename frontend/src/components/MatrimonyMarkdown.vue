@@ -12,3 +12,9 @@ defineProps({
   source: { type: String, default: "" },
 });
 </script>
+
+<script>
+export default {
+  name: "MatrimonyMarkdown",
+};
+</script>

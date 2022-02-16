@@ -49,3 +49,9 @@ defineProps({
   rsvp: { type: Object, default: () => ({}) },
 });
 </script>
+
+<script>
+export default {
+  name: "LinksSection",
+};
+</script>

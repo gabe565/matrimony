@@ -32,3 +32,9 @@ defineProps({
   sectionKey: { type: Number, default: 0 },
 });
 </script>
+
+<script>
+export default {
+  name: "ScheduleSection",
+};
+</script>

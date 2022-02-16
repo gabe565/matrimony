@@ -49,3 +49,9 @@ fetch("/api/rsvp/questions").then(async (r) => {
   questions.value = await r.json();
 });
 </script>
+
+<script>
+export default {
+  name: "RSVP",
+};
+</script>

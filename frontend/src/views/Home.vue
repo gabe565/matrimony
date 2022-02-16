@@ -79,3 +79,9 @@ const sectionTypes = computed(() => ({
   },
 }));
 </script>
+
+<script>
+export default {
+  name: "Home",
+};
+</script>

@@ -83,3 +83,9 @@ const buttonTypes = computed(() => ({
 
 const startTime = computed(() => formatDate(props.start));
 </script>
+
+<script>
+export default {
+  name: "EventEntry",
+};
+</script>

@@ -14,3 +14,9 @@ defineProps({
   alt: { type: String, default: "" },
 });
 </script>
+
+<script>
+export default {
+  name: "ImageSection",
+};
+</script>

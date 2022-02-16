@@ -25,3 +25,9 @@ import blueContourTopRight from "../assets/blue_contour/top_right.svg?raw";
 import blueContourBottomLeft from "../assets/blue_contour/bottom_left.svg?raw";
 /* eslint-enable import/no-unresolved */
 </script>
+
+<script>
+export default {
+  name: "PatternBackground",
+};
+</script>

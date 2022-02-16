@@ -49,3 +49,9 @@ img[lazy="loaded"] {
   @apply opacity-100;
 }
 </style>
+
+<script>
+export default {
+  name: "LazyImage",
+};
+</script>

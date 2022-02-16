@@ -40,3 +40,9 @@ defineProps({
   items: { type: Array, default: () => [] },
 });
 </script>
+
+<script>
+export default {
+  name: "FaqSection",
+};
+</script>

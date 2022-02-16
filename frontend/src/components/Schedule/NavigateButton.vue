@@ -17,3 +17,9 @@ defineProps({
   location: { type: String, default: "" },
 });
 </script>
+
+<script>
+export default {
+  name: "NavigateButton",
+};
+</script>

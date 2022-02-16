@@ -13,3 +13,9 @@ defineProps({
   type: { type: String, default: "submit" },
 });
 </script>
+
+<script>
+export default {
+  name: "MatrimonyFormButton",
+};
+</script>

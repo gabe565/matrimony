@@ -35,3 +35,9 @@ defineProps({
   members: { type: Array, default: () => [] },
 });
 </script>
+
+<script>
+export default {
+  name: "WeddingParty",
+};
+</script>

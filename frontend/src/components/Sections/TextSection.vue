@@ -25,3 +25,9 @@ defineProps({
   content: { type: String, default: "" },
 });
 </script>
+
+<script>
+export default {
+  name: "TextSection",
+};
+</script>
