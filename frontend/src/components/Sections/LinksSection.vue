@@ -39,7 +39,7 @@
 
 <script setup>
 import { toSlug } from "../../util/toSlug";
-import MatrimonyButton from "../MatrimonyButton.vue";
+import MatrimonyButton from "../MatrimonyButtonLink.vue";
 import MatrimonyButtonGroup from "../MatrimonyButtonGroup.vue";
 
 defineProps({

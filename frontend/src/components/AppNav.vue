@@ -64,7 +64,7 @@
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import { throttle } from "../util/throttle";
-import MatrimonyButton from "./MatrimonyButton.vue";
+import MatrimonyButton from "./MatrimonyButtonLink.vue";
 import { passiveEventHandlerSupported } from "../util/passiveEventHandlerSupported";
 import { toSlug } from "../util/toSlug";
 /* eslint-disable-next-line import/no-unresolved */

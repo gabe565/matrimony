@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import MatrimonyButton from "../MatrimonyButton.vue";
+import MatrimonyButton from "../MatrimonyButtonLink.vue";
 
 defineProps({
   sectionKey: { type: Number, default: 0 },
