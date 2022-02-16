@@ -55,22 +55,27 @@ func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 		r.Use(render.SetContentType(render.ContentTypeJSON))
 
 		r.Group(func(r chi.Router) {
-			r.Use(httprate.LimitByIP(60, time.Minute))
 			r.Use(middleware2.PrivateEventAuth)
 
-			r.Get("/config", handlers.GetConfig)
+			r.Group(func(r chi.Router) {
+				r.Use(httprate.LimitByIP(60, time.Minute))
+				r.Get("/config", handlers.GetConfig)
+				r.Get("/info", handlers.GetInfo)
+				r.Get("/sections", handlers.ListSections)
+				r.Get("/privacy", handlers.GetPrivacy)
+				r.Get("/partners", handlers.ListPartners)
+				r.Get("/party", handlers.ListParty)
+				r.Get("/moments", handlers.ListMoments(dataFs))
+				r.Get("/ical/{section}/{key}", handlers.GetIcal())
+				r.Get("/rsvp/questions", handlers.ListRSVPQuestions)
 
-			r.Get("/info", handlers.GetInfo)
-			r.Get("/sections", handlers.ListSections)
-			r.Get("/privacy", handlers.GetPrivacy)
-			r.Get("/partners", handlers.ListPartners)
-			r.Get("/party", handlers.ListParty)
-			r.Get("/moments", handlers.ListMoments(dataFs))
+			})
 
-			r.Get("/rsvp/questions", handlers.ListRSVPQuestions)
-			r.Get("/rsvp/checkUser", handlers.CheckUser(db))
+			r.Group(func(r chi.Router) {
+				r.Use(httprate.LimitByIP(10, time.Minute))
+				r.Get("/rsvp/checkUser", handlers.CheckUser(db))
+			})
 
-			r.Get("/ical/{section}/{key}", handlers.GetIcal())
 		})
 
 		r.Group(func(r chi.Router) {
