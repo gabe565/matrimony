@@ -3,7 +3,7 @@
     <label
       class="block mb-2 text-sm font-medium text-slate-900 dark:text-slate-200"
     >
-      {{ label }}
+      <slot />
       <span v-if="required" class="text-red-600">*</span>
       <input
         v-model="value"
@@ -21,7 +21,6 @@ import { computed } from "vue";
 
 const props = defineProps({
   stacked: { type: Boolean, default: false },
-  label: { type: String, default: "" },
   placeholder: { type: String, default: "" },
   type: { type: String, default: "text" },
   modelValue: { type: String, default: "" },

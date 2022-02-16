@@ -1,18 +1,14 @@
 <template>
   <form class="flex flex-wrap lg:w-1/2 mx-auto" @submit.prevent="checkUser">
-    <text-field
-      v-model="lookup.first"
-      label="First Name"
-      class="w-full sm:w-1/2 sm:pr-8"
-      required
-    />
-    <text-field
-      v-model="lookup.last"
-      label="Last Name"
-      class="w-full sm:w-1/2"
-      required
-    />
-    <text-field v-model="lookup.email" label="Email Address" class="w-full" />
+    <text-field v-model="lookup.first" class="w-full sm:w-1/2 sm:pr-8" required>
+      First Name
+    </text-field>
+    <text-field v-model="lookup.last" class="w-full sm:w-1/2" required>
+      Last Name
+    </text-field>
+    <text-field v-model="lookup.email" class="w-full">
+      Email Address
+    </text-field>
     <matrimony-form-button class="ml-auto mr-30">
       Next
       <template #icon>
