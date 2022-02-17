@@ -4,7 +4,7 @@
   >
     <div class="container p-5 mx-auto">
       <div class="text-center mb-4">
-        <span :id="toSlug(title)" class="invisible relative -top-[200px]" />
+        <offset-anchor :id="toSlug(title)" />
         <h1
           class="text-4xl font-script title-font mb-2 text-slate-900 dark:text-white"
         >
@@ -28,6 +28,7 @@
 
 <script setup>
 import PartyMember from "./PartyMember.vue";
+import OffsetAnchor from "./OffsetAnchor.vue";
 import { toSlug } from "../util/toSlug";
 
 defineProps({

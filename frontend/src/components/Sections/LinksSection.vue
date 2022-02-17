@@ -6,7 +6,7 @@
       class="container p-5 mx-auto flex flex-col h-full justify-center items-center"
     >
       <div class="text-center mb-4">
-        <span :id="toSlug(title)" class="invisible relative -top-[200px]" />
+        <offset-anchor :id="toSlug(title)" />
         <h1
           class="text-4xl font-script title-font mb-2 text-slate-900 dark:text-white"
         >
@@ -38,6 +38,7 @@
 import { toSlug } from "../../util/toSlug";
 import MatrimonyButton from "../MatrimonyButton.vue";
 import MatrimonyButtonGroup from "../MatrimonyButtonGroup.vue";
+import OffsetAnchor from "../OffsetAnchor.vue";
 
 defineProps({
   title: { type: String, default: "Links" },

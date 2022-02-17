@@ -1,5 +1,5 @@
 <template>
-  <span id="top" class="invisible relative" />
+  <offset-anchor id="top" offset="" />
   <pattern-background />
   <app-nav
     :partners="config.partners"
@@ -15,6 +15,7 @@ import { computed, ref } from "vue";
 import AppNav from "./components/AppNav.vue";
 import PatternBackground from "./components/PatternBackground.vue";
 import AppFooter from "./components/AppFooter.vue";
+import OffsetAnchor from "./components/OffsetAnchor.vue";
 
 const loading = ref(true);
 const config = ref({});

@@ -2,7 +2,7 @@
   <section class="text-slate-600 bg-white dark:bg-slate-900 body-font">
     <div class="container p-5 mx-auto max-w-prose">
       <div class="text-center mb-4">
-        <span :id="toSlug(title)" class="invisible relative -top-[200px]" />
+        <offset-anchor :id="toSlug(title)" />
         <h1
           class="text-4xl font-script title-font mb-2 text-slate-900 dark:text-white"
         >
@@ -24,6 +24,7 @@
 
 <script setup>
 import EventEntry from "../EventEntry.vue";
+import OffsetAnchor from "../OffsetAnchor.vue";
 import { toSlug } from "../../util/toSlug";
 
 defineProps({
