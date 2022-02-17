@@ -2,7 +2,7 @@
   <header
     ref="nav"
     class="fixed top-0 z-40 w-full text-accent-300 body-font duration-300 transition-colors transition-[padding]"
-    :class="[atHero ? 'bg-primary-500/70 backdrop-blur-md' : 'pt-12']"
+    :class="[atHero ? 'pt-12' : 'bg-primary-500/70 backdrop-blur-md']"
   >
     <!-- eslint-disable vue/no-v-html -->
     <div
@@ -105,7 +105,7 @@ const calcAtHero = () => {
         );
     }
   }
-  return window.scrollY > headerCollapse - (nav.value?.clientHeight || 0);
+  return window.scrollY < headerCollapse - (nav.value?.clientHeight || 0);
 };
 const atHero = ref(calcAtHero());
 document.addEventListener(
