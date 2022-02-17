@@ -27,9 +27,9 @@
 </template>
 
 <script setup>
-import PartyMember from "./PartyMember.vue";
-import OffsetAnchor from "./OffsetAnchor.vue";
-import { toSlug } from "../util/toSlug";
+import PartyMember from "../PartyMember.vue";
+import OffsetAnchor from "../OffsetAnchor.vue";
+import { toSlug } from "../../util/toSlug";
 
 defineProps({
   title: { type: String, default: "Wedding Party" },

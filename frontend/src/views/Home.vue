@@ -20,7 +20,7 @@
 import { computed } from "vue";
 import HeroSection from "../components/Sections/HeroSection.vue";
 import ImageSection from "../components/Sections/ImageSection.vue";
-import WeddingParty from "../components/WeddingParty.vue";
+import WeddingParty from "../components/Sections/WeddingParty.vue";
 import TextSection from "../components/Sections/TextSection.vue";
 import ScheduleSection from "../components/Sections/ScheduleSection.vue";
 import FaqSection from "../components/Sections/FaqSection.vue";
