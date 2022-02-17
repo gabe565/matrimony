@@ -2,6 +2,7 @@
   <matrimony-button
     :href="`/api/ical/${sectionKey}/${eventKey}`"
     target="_blank"
+    color="purple"
   >
     Add to Calendar
     <template #icon>
@@ -11,7 +12,7 @@
 </template>
 
 <script setup>
-import MatrimonyButton from "../MatrimonyButtonLink.vue";
+import MatrimonyButton from "../MatrimonyButton.vue";
 
 defineProps({
   sectionKey: { type: Number, default: 0 },

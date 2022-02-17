@@ -2,6 +2,7 @@
   <matrimony-button
     :href="`https://maps.google.com/?daddr=${location}`"
     target="_blank"
+    color="purple"
   >
     Navigate
     <template #icon>
@@ -11,7 +12,7 @@
 </template>
 
 <script setup>
-import MatrimonyButton from "../MatrimonyButtonLink.vue";
+import MatrimonyButton from "../MatrimonyButton.vue";
 
 defineProps({
   location: { type: String, default: "" },

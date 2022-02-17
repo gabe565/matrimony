@@ -14,16 +14,13 @@
         </h1>
       </div>
       <matrimony-button-group>
-        <matrimony-button to="/moments" class="text-xl">
+        <matrimony-button to="/moments" size="xl">
           {{ moments.content }}
           <template #icon>
             <font-awesome-icon :icon="['fas', 'grid-2']" class="ml-2" />
           </template>
         </matrimony-button>
-        <matrimony-button
-          to="/rsvp"
-          class="text-xl bg-green-300 hover:!bg-green-200 dark:bg-green-900 dark:hover:!bg-green-800"
-        >
+        <matrimony-button to="/rsvp" size="xl" color="green">
           {{ rsvp.content }}
           <template #icon>
             <font-awesome-icon
@@ -39,7 +36,7 @@
 
 <script setup>
 import { toSlug } from "../../util/toSlug";
-import MatrimonyButton from "../MatrimonyButtonLink.vue";
+import MatrimonyButton from "../MatrimonyButton.vue";
 import MatrimonyButtonGroup from "../MatrimonyButtonGroup.vue";
 
 defineProps({
