@@ -5,11 +5,7 @@
     <div class="container p-5 mx-auto">
       <div class="text-center mb-4">
         <offset-anchor :id="toSlug(title)" />
-        <h1
-          class="text-4xl font-script title-font mb-2 text-slate-900 dark:text-white"
-        >
-          {{ title }}
-        </h1>
+        <section-title>{{ title }}</section-title>
       </div>
       <matrimony-markdown :source="content" />
     </div>
@@ -20,6 +16,7 @@
 import { toSlug } from "../../util/toSlug";
 import MatrimonyMarkdown from "../MatrimonyMarkdown.vue";
 import OffsetAnchor from "../OffsetAnchor.vue";
+import SectionTitle from "../SectionTitle.vue";
 
 defineProps({
   title: { type: String, default: "" },

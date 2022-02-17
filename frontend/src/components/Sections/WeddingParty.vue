@@ -5,11 +5,7 @@
     <div class="container p-5 mx-auto">
       <div class="text-center mb-4">
         <offset-anchor :id="toSlug(title)" />
-        <h1
-          class="text-4xl font-script title-font mb-2 text-slate-900 dark:text-white"
-        >
-          {{ title }}
-        </h1>
+        <section-title>{{ title }}</section-title>
       </div>
       <div class="grid grid-cols-2 mx-auto">
         <div
@@ -30,6 +26,7 @@
 import PartyMember from "../PartyMember.vue";
 import OffsetAnchor from "../OffsetAnchor.vue";
 import { toSlug } from "../../util/toSlug";
+import SectionTitle from "../SectionTitle.vue";
 
 defineProps({
   title: { type: String, default: "Wedding Party" },
