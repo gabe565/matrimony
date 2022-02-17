@@ -1,5 +1,5 @@
 <template>
-  <button :type="type" :class="classes">
+  <button :type="type" :class="classes" :disabled="disabled">
     <slot name="prefix-icon" class="ml-2" />
     <slot />
     <slot name="icon" class="ml-2" />
@@ -14,6 +14,7 @@ const props = defineProps({
   type: { type: String, default: "submit" },
   size: { type: String, default: "md" },
   color: { type: String, default: "blue" },
+  disabled: { type: Boolean, default: false },
 });
 
 const classes = computed(() => {

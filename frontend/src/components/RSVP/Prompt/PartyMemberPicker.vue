@@ -19,10 +19,14 @@
             <div
               class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
             >
-              <matrimony-button disabled @click.prevent="active = guest.id">
+              <matrimony-form-button
+                type="button"
+                :disabled="active === guest.id"
+                @click.prevent="active = guest.id"
+              >
                 <template v-if="active === guest.id">Answering</template>
                 <template v-else>Respond</template>
-              </matrimony-button>
+              </matrimony-form-button>
             </div>
           </div>
         </li>
@@ -34,7 +38,7 @@
 <script setup>
 import { computed } from "vue";
 import { useStore } from "vuex";
-import MatrimonyButton from "../../MatrimonyButton.vue";
+import MatrimonyFormButton from "../../Forms/MatrimonyFormButton.vue";
 
 const store = useStore();
 
