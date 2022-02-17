@@ -12,18 +12,6 @@ export default {
 
 <style scoped lang="scss">
 :slotted(label) {
-  &:first-child {
-    @apply rounded-b-none;
-  }
-
-  @apply mb-0 border-b-0;
-
-  &:last-child {
-    @apply rounded-t-none border-b;
-  }
-
-  &:only-child {
-    @apply rounded-lg;
-  }
+  @apply first:rounded-b-none mb-0 border-b-0 last:rounded-t-none last:border-b only:rounded-lg;
 }
 </style>

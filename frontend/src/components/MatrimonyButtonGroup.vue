@@ -11,21 +11,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.root > {
-  :slotted(*) {
-    &:first-child {
-      @apply rounded-r-none border-l-0;
-    }
-
-    @apply border-l-0 border-r mr-0;
-
-    &:last-child {
-      @apply rounded-l-none border-r-0;
-    }
-
-    &:only-child {
-      @apply rounded-full;
-    }
-  }
+:slotted(a, input[type="button"]) {
+  @apply first:rounded-r-none border-l-0 border-r mr-0 last:rounded-l-none last:border-r-0 only:rounded-full;
 }
 </style>
