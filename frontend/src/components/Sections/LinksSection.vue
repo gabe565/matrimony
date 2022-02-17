@@ -1,6 +1,6 @@
 <template>
   <section
-    class="text-slate-600 dark:text-slate-400 bg-slate-300 dark:bg-slate-700 body-font h-[10rem] md:h-[15rem]"
+    class="text-slate-600 dark:text-slate-400 bg-slate-300 dark:bg-slate-700 body-font md:h-60"
   >
     <div
       class="container p-5 mx-auto flex flex-col h-full justify-center items-center"
