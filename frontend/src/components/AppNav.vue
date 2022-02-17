@@ -14,10 +14,15 @@
       class="container mx-auto flex flex-wrap p-3 flex-col lg:flex-row items-center"
     >
       <router-link
-        class="flex title-font text-5xl font-script items-center hover:text-accent-50 duration-200 ease-out mb-4 lg:mb-0 lg:pr-4"
+        class="flex title-font lg:text-5xl font-script items-center hover:text-accent-50 duration-200 ease-out lg:mb-0 lg:pr-4"
+        :class="[atHero ? 'text-5xl mb-4' : 'text-3xl mb-2']"
         to="/#top"
       >
-        <font-awesome-icon :icon="['fat', 'rings-wedding']" class="mr-3" />
+        <font-awesome-icon
+          :icon="['fat', 'rings-wedding']"
+          class="lg:mr-3"
+          :class="[atHero ? 'mr-3' : 'mr-2']"
+        />
         <span
           v-if="loading"
           class="w-40 h-5 bg-slate-400 animate-pulse rounded-full"
@@ -27,14 +32,15 @@
             <font-awesome-icon
               v-if="e.icon"
               :icon="['fas', e.icon]"
-              class="mx-2 text-xl motion-safe:animate-pulse"
+              class="lg:mx-2 lg:text-lg motion-safe:animate-pulse"
+              :class="[atHero ? 'text-lg mx-2' : 'text-sm mx-1.5']"
             />
             <span v-else>{{ e.text }}</span>
           </template>
         </span>
       </router-link>
       <nav
-        class="lg:mr-auto lg:ml-4 lg:py-1 lg:pl-4 lg:border-l lg:border-slate-400 flex flex-wrap items-center justify-center"
+        class="lg:mr-auto lg:ml-4 lg:py-1 lg:pl-4 lg:border-l lg:border-slate-400 flex flex-wrap items-center justify-center pb-3"
       >
         <router-link
           v-for="page in pages"
@@ -46,7 +52,11 @@
         </router-link>
       </nav>
       <Transition>
-        <matrimony-button v-show="!route.path.startsWith('/rsvp')" to="/rsvp">
+        <matrimony-button
+          v-show="!route.path.startsWith('/rsvp')"
+          to="/rsvp"
+          class="mb-0"
+        >
           RSVP
           <template #icon>
             <font-awesome-icon
