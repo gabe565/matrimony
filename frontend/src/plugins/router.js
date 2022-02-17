@@ -4,6 +4,8 @@ import NotFound from "../views/NotFound.vue";
 import Moments from "../views/Moments.vue";
 import RSVP from "../views/RSVP.vue";
 import { waitForElement } from "../util/waitForElement";
+import LookupPage from "../components/RSVP/LookupPage.vue";
+import QuestionsPage from "../components/RSVP/QuestionsPage.vue";
 
 const router = [
   {
@@ -22,7 +24,18 @@ const router = [
   },
   {
     path: "/rsvp",
+    redirect: "/rsvp/begin",
     component: RSVP,
+    children: [
+      {
+        path: "begin",
+        component: LookupPage,
+      },
+      {
+        path: "questions",
+        component: QuestionsPage,
+      },
+    ],
     meta: {
       headerCollapseY: 100,
     },

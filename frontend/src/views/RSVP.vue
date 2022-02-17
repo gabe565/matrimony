@@ -19,17 +19,16 @@
           <div class="mb-8">
             {{ prettyDate }}
           </div>
-          <div>Enter your name and email to RSVP.</div>
         </div>
-        <lookup-form />
+
+        <router-view />
       </div>
     </section>
   </div>
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
-import LookupForm from "../components/RSVP/LookupForm.vue";
+import { computed } from "vue";
 import { formatDate, FullDate } from "../util/formatDate";
 
 const props = defineProps({
@@ -43,11 +42,6 @@ const partnerNames = computed(() =>
 const prettyDate = computed(() =>
   formatDate(props.config.info?.date, FullDate)
 );
-
-const questions = ref({});
-fetch("/api/rsvp/questions").then(async (r) => {
-  questions.value = await r.json();
-});
 </script>
 
 <script>

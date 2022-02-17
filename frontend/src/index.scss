@@ -26,3 +26,21 @@
 .v-leave-to {
   @apply opacity-0;
 }
+
+.list-move,
+.list-enter-active,
+.list-leave-active {
+  @apply motion-safe:transition-all motion-safe:duration-300;
+}
+
+.list-enter-from {
+  @apply opacity-0 motion-safe:-translate-x-10;
+}
+
+.list-leave-to {
+  @apply opacity-0 motion-safe:translate-x-10;
+}
+
+.list-leave-active {
+  @apply motion-safe:absolute;
+}

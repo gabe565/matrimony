@@ -22,5 +22,6 @@ module.exports = {
     "no-param-reassign": ["error", { props: false }],
     "vue/require-v-for-key": "off",
     "vue/valid-v-for": "off",
+    "no-labels": ["error", { allowLoop: true }],
   },
 };

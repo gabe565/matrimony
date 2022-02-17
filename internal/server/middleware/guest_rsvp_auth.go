@@ -1,59 +1,65 @@
 package middleware
 
 import (
-	"github.com/gabe565/matrimony/internal/config"
-	"github.com/gabe565/matrimony/internal/config/models"
+	"context"
+	"encoding/json"
+	"github.com/gabe565/matrimony/internal/database/models"
+	"gorm.io/gorm"
 	"net/http"
 )
 
-func AdminAuth(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		var success bool
-		switch config.Config.Admin.Auth.Method {
-		case models.AuthMethodBasic:
-			success = adminBasicAuth(r)
-		case models.AuthMethodHeader:
-			success = adminHeaderAuth(r)
+type ContextKey string
+
+const GuestKey = ContextKey("guest")
+
+func GuestRSVPAuth(db *gorm.DB) func(http.Handler) http.Handler {
+	type Body struct {
+		ID              uint   `json:"id"`
+		SessionPassword string `json:"sessionPassword"`
+	}
+
+	checkAuth := func(r *http.Request) (*models.Guest, error) {
+		var body Body
+		err := json.NewDecoder(r.Body).Decode(&body)
+		if err != nil {
+			panic(err)
 		}
 
-		if success {
-			next.ServeHTTP(w, r)
+		guest := models.Guest{
+			Model: models.Model{
+				ID: body.ID,
+			},
+			Party: models.Party{
+				SessionPassword: body.SessionPassword,
+			},
+		}
+		var found bool
+		err = db.Model(models.Guest{}).
+			Select("count(*) > 1").
+			Where(&guest, "ID", "SessionPassword").
+			Find(&found).Error
+		if err != nil {
+			return nil, err
+		}
+
+		return &guest, nil
+	}
+
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			guest, err := checkAuth(r)
+			if err != nil {
+				panic(err)
+			}
+
+			if guest != nil {
+				ctx := context.WithValue(r.Context(), GuestKey, guest)
+				next.ServeHTTP(w, r.WithContext(ctx))
+				return
+			}
+
+			w.WriteHeader(http.StatusUnauthorized)
 			return
-		}
-
-		w.Header().Add("WWW-Authenticate", `Basic realm="Admin"`)
-		w.WriteHeader(http.StatusUnauthorized)
-		return
-	})
-}
-
-func adminBasicAuth(r *http.Request) bool {
-	user, pass, ok := r.BasicAuth()
-	if !ok {
-		return false
+		})
 	}
-
-	for _, admin := range config.Config.Admin.Users {
-		if user == admin.Username && admin.CheckPasswordHash(pass) {
-			return true
-		}
-	}
-
-	return false
-}
-
-func adminHeaderAuth(r *http.Request) bool {
-	header := config.Config.Admin.Auth.Header
-	user := r.Header.Get(header)
-	if user == "" {
-		return false
-	}
-
-	for _, admin := range config.Config.Admin.Users {
-		if user == admin.Username {
-			return true
-		}
-	}
-
-	return false
 }
