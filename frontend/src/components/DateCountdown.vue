@@ -4,6 +4,7 @@
       <span class="pr-1 text-2xl font-medium">{{ e.value }}</span>
       <span class="pr-2">{{ e.unit }}</span>
     </template>
+    <template v-if="inPast">ago</template>
   </div>
 </template>
 
@@ -22,17 +23,19 @@ const date = computed(() => dayjs(props.date));
 
 dayjs.extend(duration);
 
+const inPast = computed(() => date.value.isBefore(now.value));
+
 const countdown = computed(() => {
   const d = dayjs.duration(date.value.diff(now.value));
   const v = [
-    { unit: "years", value: d.years() },
-    { unit: "months", value: d.months() },
-    { unit: "days", value: d.days() },
-    { unit: "hours", value: d.hours() },
-    { unit: "minutes", value: d.minutes() },
+    { unit: "years", value: Math.abs(d.years()) },
+    { unit: "months", value: Math.abs(d.months()) },
+    { unit: "days", value: Math.abs(d.days()) },
+    { unit: "hours", value: Math.abs(d.hours()) },
+    { unit: "minutes", value: Math.abs(d.minutes()) },
   ];
   if (props.seconds) {
-    v.push({ unit: "seconds", value: d.seconds() });
+    v.push({ unit: "seconds", value: Math.abs(d.seconds()) });
   }
   // Handle plurals
   for (const e of v) {
