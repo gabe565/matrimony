@@ -1,9 +1,14 @@
 <template>
   <teleport to="#modals">
-    <div v-if="show" class="fixed top-0 left-0 w-full h-full bg-black/50 z-40">
+    <div
+      v-if="show"
+      class="fixed top-0 left-0 w-full h-full bg-black/50 z-40"
+      @click="toggle"
+    >
       <div
         aria-hidden="true"
         class="overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 z-50 justify-center items-center h-modal -translate-x-1/2 -translate-y-1/2"
+        @click.stop
       >
         <div class="relative px-4 w-full max-w-2xl h-full md:h-auto">
           <!-- Modal content -->
