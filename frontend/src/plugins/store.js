@@ -129,9 +129,11 @@ export default createStore({
         Object.entries(state.persistent.query)
       );
       const r = await fetch(`/api/rsvp/init?${params}`);
-      const party = await r.json();
-      commit("setParty", party);
-      return r.ok;
+      if (r.ok) {
+        const party = await r.json();
+        commit("setParty", party);
+      }
+      return r;
     },
     async respond(context, responses) {
       context.commit("setResponses", responses);

@@ -61,8 +61,8 @@ const submit = async () => {
   error.value = null;
   store.commit("setQuery", query.value);
   try {
-    const ok = await store.dispatch("fetchParty");
-    if (ok) {
+    const j = await store.dispatch("fetchParty");
+    if (j.ok) {
       await router.push("/rsvp/questions");
     } else {
       error.value = "No match was found.";
