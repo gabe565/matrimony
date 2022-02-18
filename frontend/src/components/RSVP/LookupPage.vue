@@ -1,6 +1,9 @@
 <template>
   <form class="flex flex-col lg:w-1/2 mx-auto" @submit.prevent="submit">
-    <div class="text-center pb-7">Enter your name and email to RSVP.</div>
+    <div class="text-center pb-7">
+      Enter your name and email to RSVP.<br />
+      You can respond for more guests in the next steps.
+    </div>
 
     <transition>
       <matrimony-alert v-if="error" class="mb-8" @dismiss="error = null">
@@ -27,14 +30,6 @@
         <font-awesome-icon :icon="['fas', 'envelope']" />
       </template>
     </text-field>
-
-    <div>
-      <span class="font-bold">Tip:&nbsp;</span>
-      <span v-if="error"
-        >Check your spelling and try again. "David" vs "Dave"</span
-      >
-      <span v-else>You can respond for more guests in the next steps.</span>
-    </div>
 
     <matrimony-form-button class="ml-auto mr-30" size="lg">
       Next
