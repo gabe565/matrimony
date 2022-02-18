@@ -49,6 +49,10 @@ export default createStore({
       state.persistent.activeId = 0;
       saveState(state);
     },
+    addGuest(state, guest) {
+      state.persistent.party.guests.push(guest);
+      saveState(state);
+    },
   },
   getters: {
     activeGuest(state) {
@@ -147,6 +151,21 @@ export default createStore({
       });
       if (r.ok) {
         context.commit("setSaved");
+      }
+      return r;
+    },
+    async createGuest(context, guest) {
+      const r = await fetch("/api/rsvp/guest/add", {
+        method: "POST",
+        body: JSON.stringify({
+          guest,
+          partyId: context.state.persistent.party.id,
+          sessionPassword: context.state.persistent.party.sessionPassword,
+        }),
+      });
+      if (r.ok) {
+        const j = await r.json();
+        context.commit("addGuest", j);
       }
       return r;
     },

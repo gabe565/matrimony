@@ -13,6 +13,8 @@ import {
   faFloppyDisk,
   faHouse,
   faPencil,
+  faPlus,
+  faPenToSquare,
 } from "@fortawesome/pro-solid-svg-icons";
 import { faRingsWedding, faPartyHorn } from "@fortawesome/pro-thin-svg-icons";
 import { faArrowRight, faArrowLeft } from "@fortawesome/pro-regular-svg-icons";
@@ -36,5 +38,7 @@ library.add(
   faFloppyDisk,
   faHouse,
   faPencil,
-  faPartyHorn
+  faPartyHorn,
+  faPlus,
+  faPenToSquare
 );

@@ -1,7 +1,7 @@
 <template>
   <header
     ref="nav"
-    class="fixed top-0 z-40 w-full text-accent-300 body-font duration-300 transition-colors transition-[padding]"
+    class="fixed top-0 z-30 w-full text-accent-300 body-font duration-300 transition-colors transition-[padding]"
     :class="[atHero ? 'pt-12' : 'bg-primary-500/70 backdrop-blur-md']"
   >
     <!-- eslint-disable vue/no-v-html -->

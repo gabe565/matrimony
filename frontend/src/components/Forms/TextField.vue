@@ -5,7 +5,7 @@
       class="block mb-1 text-sm font-medium text-slate-900 dark:text-slate-200"
     >
       <slot />
-      <span v-if="required" class="text-red-600">*</span>
+      <span v-if="required && $slots.default" class="text-red-600">*</span>
     </label>
     <div class="relative">
       <div

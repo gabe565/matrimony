@@ -1,5 +1,5 @@
 export const base =
-  "inline-block duration-200 transition-color font-medium rounded-full text-center px-5 py-2.5 disabled:opacity-50";
+  "duration-200 transition-color font-medium rounded-full text-center disabled:opacity-50";
 
 export const colors = {
   blue: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 dark:border-gray-600 disabled:bg-blue-700 disabled:dark:bg-blue-600",
@@ -14,12 +14,15 @@ export const colors = {
     "text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 dark:focus:ring-yellow-900 dark:border-gray-600 disabled:bg-yellow-400",
   purple:
     "text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 dark:border-gray-600 disabled:bg-purple-700 disabled:dark:bg-purple-600",
+  transparent:
+    "text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white",
 };
 
 export const sizes = {
-  xs: "px-3 py-2 text-xs",
-  sm: "px-3 py-2 text-sm",
-  md: "px-5 py-2.5",
-  lg: "px-5 py-3 text-lg",
-  xl: "px-6 py-3.5 text-xl",
+  icon: "p-3.5 aspect-square items-center inline-flex",
+  xs: "inline-block px-3 py-2 text-xs",
+  sm: "inline-block px-3 py-2 text-sm",
+  md: "inline-block px-5 py-2.5",
+  lg: "inline-block px-5 py-3 text-lg",
+  xl: "inline-block px-6 py-3.5 text-xl",
 };

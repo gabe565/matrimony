@@ -8,6 +8,7 @@
   />
   <router-view :config="config" />
   <app-footer />
+  <div id="modals" />
 </template>
 
 <script setup>

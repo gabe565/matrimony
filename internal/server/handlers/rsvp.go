@@ -5,6 +5,7 @@ import (
 	"errors"
 	"github.com/gabe565/matrimony/internal/config"
 	"github.com/gabe565/matrimony/internal/database/models"
+	"github.com/mattn/go-sqlite3"
 	"gorm.io/gorm"
 	"net/http"
 )
@@ -21,14 +22,15 @@ func ListRSVPQuestions(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func InitRSVP(db *gorm.DB) http.HandlerFunc {
-	type guest struct {
-		ID        uint   `json:"id"`
-		FirstName string `json:"first"`
-		LastName  string `json:"last"`
-		HasRSVP   bool   `json:"hasRSVP"`
-	}
+type guest struct {
+	ID        uint   `json:"id"`
+	FirstName string `json:"first"`
+	LastName  string `json:"last"`
+	PartyID   uint   `json:"partyId"`
+	HasRSVP   bool   `json:"hasRSVP" gorm:"-"`
+}
 
+func InitRSVP(db *gorm.DB) http.HandlerFunc {
 	type response struct {
 		Guests          []guest `json:"guests"`
 		ID              uint    `json:"id"`
@@ -202,6 +204,66 @@ func RSVPResponse(db *gorm.DB) http.HandlerFunc {
 		err = db.Select("RSVP").Save(&guest).Error
 		if err != nil {
 			panic(err)
+		}
+	}
+}
+
+func RSVPCreateGuest(db *gorm.DB) http.HandlerFunc {
+	type Body struct {
+		PartyID         uint   `json:"partyId"`
+		SessionPassword string `json:"sessionPassword"`
+		Guest           guest  `json:"guest"`
+	}
+
+	checkAuth := func(r *http.Request) (*models.Party, Body, error) {
+		var body Body
+		err := json.NewDecoder(r.Body).Decode(&body)
+		if err != nil {
+			panic(err)
+		}
+
+		party := models.Party{
+			Model: models.Model{
+				ID: body.PartyID,
+			},
+			SessionPassword: body.SessionPassword,
+		}
+		err = db.Where(&party, "ID", "SessionPassword").Find(&party).Error
+		if err != nil {
+			return nil, body, err
+		}
+
+		return &party, body, nil
+	}
+
+	return func(w http.ResponseWriter, r *http.Request) {
+		party, body, err := checkAuth(r)
+		if err != nil {
+			panic(err)
+		}
+
+		body.Guest.PartyID = party.ID
+		err = db.Table("guests").Create(&body.Guest).Error
+		if err != nil {
+			sqliteErr, ok := err.(sqlite3.Error)
+			if ok {
+				if sqliteErr.Code == sqlite3.ErrConstraint {
+					http.Error(w, err.Error(), 400)
+					return
+				}
+			}
+			panic(err)
+			return
+		}
+
+		j, err := json.Marshal(body.Guest)
+		if err != nil {
+			panic(err)
+		}
+
+		_, err = w.Write(j)
+		if err != nil {
+			return
 		}
 	}
 }

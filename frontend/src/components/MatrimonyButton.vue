@@ -17,10 +17,11 @@ import { base, colors, sizes } from "../util/buttonClasses";
 
 const props = defineProps({
   to: { type: String, default: "" },
-  href: { type: String, default: "" },
+  href: { type: String, default: "#" },
   size: { type: String, default: "md" },
   color: { type: String, default: "blue" },
   disabled: { type: Boolean, default: false },
+  icon: { type: Boolean, default: false },
 });
 
 const classes = computed(() => {

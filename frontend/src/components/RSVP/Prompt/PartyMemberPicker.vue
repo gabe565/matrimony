@@ -6,6 +6,12 @@
       <h3 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
         Party Members
       </h3>
+      <matrimony-button size="icon" @click.prevent="editing = !editing">
+        <font-awesome-icon
+          :icon="['fas', editing ? 'check' : 'pen-to-square']"
+          class="text-xl"
+        />
+      </matrimony-button>
     </div>
     <div class="flow-root">
       <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -33,13 +39,23 @@
         </li>
       </ul>
     </div>
+    <Transition>
+      <matrimony-button-group v-if="editing" class="duration-300">
+        <add-guest-modal />
+      </matrimony-button-group>
+    </Transition>
   </div>
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import MatrimonyFormButton from "../../Forms/MatrimonyFormButton.vue";
+import MatrimonyButtonGroup from "../../MatrimonyButtonGroup.vue";
+import MatrimonyButton from "../../MatrimonyButton.vue";
+import TextField from "../../Forms/TextField.vue";
+import MatrimonyModal from "../../MatrimonyModal.vue";
+import AddGuestModal from "../AddGuestModal.vue";
 
 const store = useStore();
 
@@ -50,6 +66,8 @@ const active = computed({
   get: () => store.state.persistent.activeId,
   set: (e) => store.commit("active", e),
 });
+
+const editing = ref(false);
 </script>
 
 <script>
