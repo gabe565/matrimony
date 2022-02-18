@@ -14,8 +14,9 @@
         <div class="masonry masonry-sm lg:masonry-md">
           <div v-for="file in files" class="py-3 break-inside">
             <lazy-image
-              :src="`/public/moments/.thumb/${file}`"
-              class="rounded-lg"
+              :src="file.thumb"
+              class="rounded-lg cursor-pointer"
+              @click="showModal(file.src)"
             />
           </div>
         </div>
@@ -29,20 +30,32 @@
           </template>
           Back
         </matrimony-button>
+
+        <photo-modal v-model="modalData.show" :src="modalData.src" />
       </div>
     </section>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import LazyImage from "../components/LazyImage.vue";
 import MatrimonyButton from "../components/MatrimonyButton.vue";
+import PhotoModal from "../components/Moments/PhotoModal.vue";
 
 const files = ref([]);
 fetch("/api/moments").then(async (r) => {
   files.value = await r.json();
 });
+
+const modalData = reactive({
+  show: false,
+  src: "",
+});
+const showModal = (src) => {
+  modalData.src = src;
+  modalData.show = true;
+};
 </script>
 
 <script>

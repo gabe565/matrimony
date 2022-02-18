@@ -6,10 +6,8 @@ import (
 	"path/filepath"
 )
 
-func PublicDir() string {
-	return filepath.Join(DataDir, "public")
-}
+const PublicDir = "public"
 
 func PublicFS() fs.FS {
-	return os.DirFS(PublicDir())
+	return os.DirFS(filepath.Join(DataDir, "public"))
 }

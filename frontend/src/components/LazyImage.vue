@@ -1,9 +1,10 @@
 <template>
-  <div class="relative overflow-hidden" :class="[bgColor, darkBgColor]">
+  <div class="relative overflow-hidden" :class="[bgColor]">
     <img
       v-lazy="{ src, lifecycle }"
       :alt="alt"
-      class="object-cover object-center h-full w-full duration-300"
+      class="h-full w-full duration-300"
+      :class="[contentFit]"
     />
     <div
       v-if="loading"
@@ -23,8 +24,8 @@ import { ref } from "vue";
 defineProps({
   src: { type: String, default: "" },
   alt: { type: String, default: "" },
-  bgColor: { type: String, default: "bg-slate-100" },
-  darkBgColor: { type: String, default: "dark:bg-slate-800" },
+  bgColor: { type: String, default: "bg-slate-100 dark:bg-slate-800" },
+  contentFit: { type: String, default: "object-cover object-center" },
 });
 
 const loading = ref(true);

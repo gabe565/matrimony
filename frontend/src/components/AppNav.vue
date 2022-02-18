@@ -115,7 +115,13 @@ const calcAtHero = () => {
         );
     }
   }
-  return window.scrollY < headerCollapse - (nav.value?.clientHeight || 0);
+  let scrollY;
+  if (document.body.classList.contains("fixed")) {
+    scrollY = parseInt(document.body.style.top || "0", 10) * -1;
+  } else {
+    scrollY = window.scrollY;
+  }
+  return scrollY < headerCollapse - (nav.value?.clientHeight || 0);
 };
 const atHero = ref(calcAtHero());
 document.addEventListener(
