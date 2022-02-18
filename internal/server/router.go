@@ -74,8 +74,11 @@ func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 			r.Group(func(r chi.Router) {
 				r.Use(httprate.LimitByIP(10, time.Minute))
 				r.Get("/rsvp/init", handlers.InitRSVP(db))
-				r.Put("/rsvp/response", handlers.RSVPResponse(db))
-				r.Post("/rsvp/guest/add", handlers.RSVPCreateGuest(db))
+				r.Group(func(r chi.Router) {
+					r.Use(middleware2.LogBody)
+					r.Put("/rsvp/response", handlers.RSVPResponse(db))
+					r.Post("/rsvp/guest/add", handlers.RSVPCreateGuest(db))
+				})
 			})
 
 		})
