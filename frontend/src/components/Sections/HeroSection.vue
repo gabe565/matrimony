@@ -12,13 +12,21 @@
   >
     <div class="h-[40rem] lg:h-[48rem] w-full relative">
       <!-- Image -->
-      <lazy-image
-        v-if="image.src"
-        class="h-full w-full bg-cover object-cover lg:rounded-[1rem]"
-        bg-color="bg-slate-500"
-        :src="image.src"
-        :alt="alt"
-      />
+      <!-- TODO: Clean up mobile hero image -->
+      <template v-if="image.src">
+        <lazy-image
+          class="hidden md:block h-full w-full bg-cover object-cover lg:rounded-[1rem]"
+          bg-color="bg-slate-500"
+          :src="image.src"
+          :alt="alt"
+        />
+        <lazy-image
+          class="md:hidden h-full w-full bg-cover object-cover lg:rounded-[1rem]"
+          bg-color="bg-slate-500"
+          :src="image.src.replace('.jpg', '-mobile.jpg')"
+          :alt="alt"
+        />
+      </template>
 
       <!-- Gradient -->
       <div
