@@ -56,7 +56,7 @@ export default createRouter({
   routes: router,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
-      return savedPosition;
+      return { ...savedPosition, behavior: "instant" };
     }
     if (to.hash) {
       /* eslint-disable-next-line no-async-promise-executor */
