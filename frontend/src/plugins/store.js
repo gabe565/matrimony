@@ -8,11 +8,13 @@ const defaultPersistence = {
   responses: {},
   activeId: 0,
   currentQuestion: 0,
+  responseSaved: {},
 };
 
 const saveState = (state) =>
   localStorage.setItem("state", JSON.stringify(state.persistent));
 const loadState = () => JSON.parse(localStorage.getItem("state"));
+export const clearState = () => localStorage.removeItem("state");
 
 export default createStore({
   state: () => ({
@@ -40,6 +42,11 @@ export default createStore({
     },
     setResponses(state, responses) {
       state.persistent.responses[state.persistent.activeId] = responses;
+      saveState(state);
+    },
+    setSaved(state) {
+      state.persistent.responseSaved[state.persistent.activeId] = true;
+      state.persistent.activeId = 0;
       saveState(state);
     },
   },
@@ -128,7 +135,7 @@ export default createStore({
     },
     async respond(context, responses) {
       context.commit("setResponses", responses);
-      return await fetch("/api/rsvp/response", {
+      const r = await fetch("/api/rsvp/response", {
         method: "PUT",
         body: JSON.stringify({
           values: responses,
@@ -136,6 +143,10 @@ export default createStore({
           sessionPassword: context.state.persistent.party.sessionPassword,
         }),
       });
+      if (r.ok) {
+        context.commit("setSaved");
+      }
+      return r;
     },
   },
 });

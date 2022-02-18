@@ -8,35 +8,68 @@
 
     <party-member-picker class="mb-12 w-full" />
 
-    <TransitionGroup name="list" tag="div" class="relative">
-      <component
-        :is="components[question[0]]"
-        v-for="question in questions"
-        :key="question[1].field"
-        v-model="responses[question[1].field]"
-        :question="question[1]"
-        class="pb-3 duration-300 transition-opacity w-full"
-      />
-
-      <div v-if="showNext" key="next-button" class="w-full">
-        <matrimony-form-button
-          size="lg"
-          class="float-right mr-30"
-          @click.prevent="saveResponses"
+    <Transition>
+      <div
+        v-if="hasActive"
+        :key="guestName"
+        class="p-4 max-w-xl mx-auto bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700 mb-10 duration-300"
+      >
+        <h4
+          class="text-xl font-bold leading-none text-gray-900 dark:text-white mb-6"
         >
-          Next
-          <template #icon>
-            <font-awesome-icon
-              :icon="
-                loading ? ['fad', 'spinner-third'] : ['far', 'arrow-right']
-              "
-              :class="{ 'animate-spin': loading }"
-              class="ml-2 fa-fw"
-            />
-          </template>
-        </matrimony-form-button>
+          Answering for {{ guestName }}
+        </h4>
+        <TransitionGroup name="list" tag="div" class="relative">
+          <component
+            :is="components[question[0]]"
+            v-for="question in questions"
+            :key="question[1].field"
+            v-model="responses[question[1].field]"
+            :question="question[1]"
+            class="pb-3 duration-300 transition-opacity w-full"
+          />
+          <div key="next-button" class="w-full flex">
+            <matrimony-form-button
+              key="next-button"
+              class="mx-auto"
+              size="lg"
+              :disabled="!completed"
+              @click.prevent="save"
+            >
+              Save
+              <template #icon>
+                <font-awesome-icon
+                  :icon="
+                    loading ? ['fad', 'spinner-third'] : ['fas', 'floppy-disk']
+                  "
+                  :class="{ 'animate-spin': loading }"
+                  class="ml-2 fa-fw"
+                />
+              </template>
+            </matrimony-form-button>
+          </div>
+        </TransitionGroup>
       </div>
-    </TransitionGroup>
+    </Transition>
+
+    <Transition>
+      <matrimony-form-button
+        v-if="allResponsesDone"
+        key="next-button"
+        class="mx-auto"
+        size="lg"
+        @click.prevent="finish"
+      >
+        Finish
+        <template #icon>
+          <font-awesome-icon
+            :icon="loading ? ['fad', 'spinner-third'] : ['fas', 'check']"
+            :class="{ 'animate-spin': loading }"
+            class="ml-2 fa-fw"
+          />
+        </template>
+      </matrimony-form-button>
+    </Transition>
   </form>
 </template>
 
@@ -55,9 +88,22 @@ import NumberPrompt from "./Prompt/NumberPrompt.vue";
 const store = useStore();
 const router = useRouter();
 
+const guestName = computed(() => {
+  const guest = store.getters.activeGuest;
+  if (guest) {
+    return `${guest.first} ${guest.last}`;
+  }
+  return "";
+});
 const party = computed(() => store.state.persistent.party);
 const responses = computed(() => store.getters.activeResponse);
+const allResponsesDone = computed(
+  () =>
+    Object.values(store.state.persistent.responseSaved).filter((e) => e)
+      .length === Object.values(store.state.persistent.responses).length
+);
 const questions = computed(() => store.getters.visibleQuestions);
+const hasActive = computed(() => store.state.persistent.activeId !== 0);
 
 if (!party.value.guests) {
   router.replace("/rsvp/begin");
@@ -71,12 +117,14 @@ store.dispatch("fetchQuestions").catch((e) => {
   error.value = "Something went wrong. Please try again later.";
 });
 
-const saveResponses = async () => {
+const save = async () => {
   let r;
   try {
     r = await store.dispatch("respond", responses.value);
   } catch (err) {
+    console.error(err);
     error.value = "Something went wrong! Please try again later.";
+    return;
   }
   if (!r.ok) {
     error.value = "Something went wrong! Please try again later.";
@@ -90,7 +138,7 @@ const components = {
   number: NumberPrompt,
 };
 
-const showNext = computed(() => {
+const completed = computed(() => {
   if (!responses.value) return false;
   for (const question of questions.value) {
     const { field } = question[1];
@@ -100,6 +148,10 @@ const showNext = computed(() => {
   }
   return true;
 });
+
+const finish = async () => {
+  await router.push("/rsvp/finish");
+};
 </script>
 
 <script>

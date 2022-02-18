@@ -9,6 +9,8 @@ import {
   faCalendarLinesPen,
   faXmark,
   faEnvelope,
+  faCheck,
+  faFloppyDisk,
 } from "@fortawesome/pro-solid-svg-icons";
 import { faRingsWedding } from "@fortawesome/pro-thin-svg-icons";
 import { faArrowRight, faArrowLeft } from "@fortawesome/pro-regular-svg-icons";
@@ -27,5 +29,7 @@ library.add(
   faCalendarLinesPen,
   faXmark,
   faEnvelope,
-  faArrowLeft
+  faArrowLeft,
+  faCheck,
+  faFloppyDisk
 );

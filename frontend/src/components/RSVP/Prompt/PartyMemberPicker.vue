@@ -25,6 +25,7 @@
                 @click.prevent="active = guest.id"
               >
                 <template v-if="active === guest.id">Answering</template>
+                <template v-else-if="responseSaved[guest.id]">Saved</template>
                 <template v-else>Respond</template>
               </matrimony-form-button>
             </div>
@@ -43,6 +44,7 @@ import MatrimonyFormButton from "../../Forms/MatrimonyFormButton.vue";
 const store = useStore();
 
 const guests = computed(() => store.state.persistent.party.guests);
+const responseSaved = computed(() => store.state.persistent.responseSaved);
 
 const active = computed({
   get: () => store.state.persistent.activeId,
