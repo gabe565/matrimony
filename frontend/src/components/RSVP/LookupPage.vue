@@ -56,6 +56,7 @@ import { useStore } from "vuex";
 import TextField from "../Forms/TextField.vue";
 import MatrimonyAlert from "../MatrimonyAlert.vue";
 import MatrimonyFormButton from "../Forms/MatrimonyFormButton.vue";
+import { ErrGeneric, ErrNoUserMatch } from "../../strings/strings";
 
 const router = useRouter();
 const store = useStore();
@@ -73,11 +74,11 @@ const submit = async () => {
     if (j.ok) {
       await router.push("/rsvp/questions");
     } else {
-      error.value = "No match was found.";
+      error.value = ErrNoUserMatch;
     }
   } catch (err) {
     console.error(err);
-    error.value = "Something went wrong. Please try again later.";
+    error.value = ErrGeneric;
   } finally {
     loading.value = false;
   }

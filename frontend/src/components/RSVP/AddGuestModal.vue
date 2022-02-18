@@ -13,6 +13,12 @@
 
     <template #body="{ toggle }">
       <form ref="form" class="flex flex-wrap" @submit.prevent="add(toggle)">
+        <transition>
+          <matrimony-alert v-if="error" class="mb-8" @dismiss="error = null">
+            {{ error }}
+          </matrimony-alert>
+        </transition>
+
         <text-field
           v-model="newGuest.first"
           class="w-full sm:w-1/2 sm:pr-8"
@@ -51,18 +57,31 @@ import { useStore } from "vuex";
 import MatrimonyModal from "../MatrimonyModal.vue";
 import MatrimonyButton from "../MatrimonyButton.vue";
 import TextField from "../Forms/TextField.vue";
+import MatrimonyAlert from "../MatrimonyAlert.vue";
+import { ErrGeneric } from "../../strings/strings";
 
 const store = useStore();
 
 const newGuest = ref({});
 const form = ref(null);
+const error = ref(null);
 
 const add = async (toggle) => {
+  error.value = null;
   if (!form.value.reportValidity()) return;
-  const r = await store.dispatch("createGuest", newGuest.value);
+  let r;
+  try {
+    r = await store.dispatch("createGuest", newGuest.value);
+  } catch (err) {
+    console.error(err);
+    error.value = ErrGeneric;
+    return;
+  }
   if (r.ok) {
     toggle();
     newGuest.value = {};
+  } else {
+    error.value = ErrGeneric;
   }
 };
 </script>

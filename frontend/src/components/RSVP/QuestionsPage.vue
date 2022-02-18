@@ -84,6 +84,7 @@ import AttendancePrompt from "./Prompt/AttendancePrompt.vue";
 import TextPrompt from "./Prompt/TextPrompt.vue";
 import ChoicePrompt from "./Prompt/ChoicePrompt.vue";
 import NumberPrompt from "./Prompt/NumberPrompt.vue";
+import { ErrGeneric } from "../../strings/strings";
 
 const store = useStore();
 const router = useRouter();
@@ -114,7 +115,7 @@ const error = ref(null);
 
 store.dispatch("fetchQuestions").catch((e) => {
   console.error(e);
-  error.value = "Something went wrong. Please try again later.";
+  error.value = ErrGeneric;
 });
 
 const save = async () => {
@@ -123,11 +124,11 @@ const save = async () => {
     r = await store.dispatch("respond", responses.value);
   } catch (err) {
     console.error(err);
-    error.value = "Something went wrong! Please try again later.";
+    error.value = ErrGeneric;
     return;
   }
   if (!r.ok) {
-    error.value = "Something went wrong! Please try again later.";
+    error.value = ErrGeneric;
   }
 };
 
