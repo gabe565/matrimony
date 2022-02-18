@@ -105,10 +105,7 @@ const allResponsesDone = computed(() => {
     store.state.persistent.responseSaved
   ).filter((e) => e);
   if (responseSaved.length === 0) return false;
-  return (
-    responseSaved.length ===
-    Object.values(store.state.persistent.responses).length
-  );
+  return responseSaved.length === store.state.persistent.party.guests.length;
 });
 
 if (!party.value.guests) {
