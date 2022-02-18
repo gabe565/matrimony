@@ -15,7 +15,6 @@ const defaultPersistence = {
 const saveState = (state) =>
   localStorage.setItem("state", JSON.stringify(state.persistent));
 const loadState = () => JSON.parse(localStorage.getItem("state"));
-export const clearState = () => localStorage.removeItem("state");
 
 export default createStore({
   state: () => ({
@@ -52,6 +51,10 @@ export default createStore({
     },
     addGuest(state, guest) {
       state.persistent.party.guests.push(guest);
+      saveState(state);
+    },
+    resetPersistence(state) {
+      state.persistent = defaultPersistence;
       saveState(state);
     },
   },
@@ -145,6 +148,10 @@ export default createStore({
       const r = await fetch(`/api/rsvp/init?${params}`);
       if (r.ok) {
         const party = await r.json();
+        if (party.id !== state.persistent.party.id) {
+          console.log("reset");
+          commit("resetPersistence");
+        }
         commit("setParty", party);
       }
       return r;
