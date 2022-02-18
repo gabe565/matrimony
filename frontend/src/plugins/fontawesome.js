@@ -11,8 +11,10 @@ import {
   faEnvelope,
   faCheck,
   faFloppyDisk,
+  faHouse,
+  faPencil,
 } from "@fortawesome/pro-solid-svg-icons";
-import { faRingsWedding } from "@fortawesome/pro-thin-svg-icons";
+import { faRingsWedding, faPartyHorn } from "@fortawesome/pro-thin-svg-icons";
 import { faArrowRight, faArrowLeft } from "@fortawesome/pro-regular-svg-icons";
 import { faSpinnerThird } from "@fortawesome/pro-duotone-svg-icons";
 
@@ -31,5 +33,8 @@ library.add(
   faEnvelope,
   faArrowLeft,
   faCheck,
-  faFloppyDisk
+  faFloppyDisk,
+  faHouse,
+  faPencil,
+  faPartyHorn
 );

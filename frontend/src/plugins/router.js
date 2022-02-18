@@ -6,6 +6,7 @@ import RSVP from "../views/RSVP.vue";
 import { waitForElement } from "../util/waitForElement";
 import LookupPage from "../components/RSVP/LookupPage.vue";
 import QuestionsPage from "../components/RSVP/QuestionsPage.vue";
+import FinishRSVP from "../components/RSVP/FinishRSVP.vue";
 
 const router = [
   {
@@ -34,6 +35,10 @@ const router = [
       {
         path: "questions",
         component: QuestionsPage,
+      },
+      {
+        path: "finish",
+        component: FinishRSVP,
       },
     ],
     meta: {
