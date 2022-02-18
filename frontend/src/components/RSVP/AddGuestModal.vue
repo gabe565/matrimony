@@ -21,7 +21,7 @@
         >
           First Name
         </text-field>
-        <text-field v-model="newGuest.last" class="w-full sm:w-1/2" required>
+        <text-field v-model="newGuest.last" class="w-full sm:w-1/2">
           Last Name
         </text-field>
         <input type="submit" class="hidden" />

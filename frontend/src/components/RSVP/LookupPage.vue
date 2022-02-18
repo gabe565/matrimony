@@ -17,7 +17,7 @@
       >
         First Name
       </text-field>
-      <text-field v-model="query.last" class="w-full sm:w-1/2" required>
+      <text-field v-model="query.last" class="w-full sm:w-1/2">
         Last Name
       </text-field>
     </div>
