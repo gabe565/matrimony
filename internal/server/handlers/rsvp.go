@@ -92,7 +92,7 @@ func InitRSVP(db *gorm.DB) http.HandlerFunc {
 
 			// Build response
 			response := response{
-				ID:              queryGuest.ID,
+				ID:              queryGuest.PartyID,
 				SessionPassword: queryGuest.Party.SessionPassword,
 			}
 
