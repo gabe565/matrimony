@@ -11,6 +11,10 @@
   </div>
 </template>
 
+<script setup>
+defineEmits(["dismiss"]);
+</script>
+
 <script>
 export default {
   name: "MatrimonyAlert",
