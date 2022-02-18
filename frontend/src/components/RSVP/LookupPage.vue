@@ -28,6 +28,14 @@
       </template>
     </text-field>
 
+    <div>
+      <span class="font-bold">Tip:&nbsp;</span>
+      <span v-if="error"
+        >Check your spelling and try again. "David" vs "Dave"</span
+      >
+      <span v-else>You can respond for more guests in the next steps.</span>
+    </div>
+
     <matrimony-form-button class="ml-auto mr-30" size="lg">
       Next
       <template #icon>
