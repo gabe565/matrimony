@@ -212,6 +212,8 @@ func RSVPResponse(db *gorm.DB) http.HandlerFunc {
 		if err != nil {
 			panic(err)
 		}
+
+		w.WriteHeader(http.StatusOK)
 	}
 }
 
