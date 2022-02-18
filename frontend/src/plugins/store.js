@@ -126,8 +126,6 @@ export default createStore({
     allQuestionsAnswered(state, getters) {
       const questions = getters.visibleQuestions;
       const response = getters.activeResponse;
-      console.log(Object.values(response).filter((e) => !!e).length);
-      console.log(questions.length);
       return (
         response &&
         Object.values(response).filter((e) => !!e).length === questions.length
