@@ -2,11 +2,11 @@
   <form class="flex flex-col lg:w-1/2 mx-auto" @submit.prevent="submit">
     <div class="text-center pb-7">Enter your name and email to RSVP.</div>
 
-    <Transition>
+    <transition>
       <matrimony-alert v-if="error" class="mb-8" @dismiss="error = null">
         {{ error }}
       </matrimony-alert>
-    </Transition>
+    </transition>
 
     <div class="flex flex-wrap">
       <text-field

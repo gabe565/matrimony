@@ -39,11 +39,11 @@
         </li>
       </ul>
     </div>
-    <Transition>
+    <transition>
       <matrimony-button-group v-if="editing" class="duration-300">
         <add-guest-modal />
       </matrimony-button-group>
-    </Transition>
+    </transition>
   </div>
 </template>
 

@@ -51,7 +51,7 @@
           {{ page }}
         </router-link>
       </nav>
-      <Transition>
+      <transition>
         <matrimony-button
           v-show="!route.path.startsWith('/rsvp')"
           to="/rsvp"
@@ -65,7 +65,7 @@
             />
           </template>
         </matrimony-button>
-      </Transition>
+      </transition>
     </div>
   </header>
 </template>

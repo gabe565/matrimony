@@ -1,14 +1,14 @@
 <template>
   <form class="flex flex-col lg:w-1/2 mx-auto" @submit.prevent="submit">
-    <Transition>
+    <transition>
       <matrimony-alert v-if="error" class="mb-8" @dismiss="error = null">
         {{ error }}
       </matrimony-alert>
-    </Transition>
+    </transition>
 
     <party-member-picker class="mb-12 w-full" />
 
-    <Transition>
+    <transition>
       <div
         v-if="hasActive"
         :key="guestName"
@@ -19,7 +19,7 @@
         >
           Answering for {{ guestName }}
         </h4>
-        <TransitionGroup name="list" tag="div" class="relative">
+        <transition-group name="list" tag="div" class="relative">
           <component
             :is="components[question[0]]"
             v-for="question in questions"
@@ -48,9 +48,9 @@
               </template>
             </matrimony-form-button>
           </div>
-        </TransitionGroup>
+        </transition-group>
       </div>
-    </Transition>
+    </transition>
 
     <Transition>
       <matrimony-form-button
