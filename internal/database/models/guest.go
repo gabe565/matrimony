@@ -6,12 +6,10 @@ import (
 
 type Guest struct {
 	Model
-	FirstName      string  `json:"first"`
-	LastName       *string `json:"last"`
-	EmailAddress   *string `json:"email"`
-	PlusOne        uint    `json:"plusOne"`
-	Tags           []Tag   `json:"tags" gorm:"many2many:guest_tags"`
-	MailingAddress *string `json:"mailingAddress"`
+	FirstName    string  `json:"first"`
+	LastName     *string `json:"last"`
+	EmailAddress *string `json:"email"`
+	Tags         []Tag   `json:"tags" gorm:"many2many:guest_tags"`
 
 	EmailStatus *EmailStatus `json:"emailStatus"`
 
