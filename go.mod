@@ -27,4 +27,6 @@ require (
 	github.com/jinzhu/now v1.1.4 // indirect
 	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
 	gorm.io/driver/mysql v1.2.2 // indirect
+	gorm.io/driver/postgres v1.2.3 // indirect
+	gorm.io/driver/sqlserver v1.2.1 // indirect
 )
