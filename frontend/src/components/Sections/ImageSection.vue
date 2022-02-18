@@ -2,7 +2,7 @@
   <lazy-image
     :src="src"
     :alt="alt"
-    class="h-[15rem] md:h-[30rem] w-full object-cover pointer-events-none"
+    class="h-[20rem] md:h-[30rem] lg:h-[40rem] w-full object-cover pointer-events-none"
   />
 </template>
 
