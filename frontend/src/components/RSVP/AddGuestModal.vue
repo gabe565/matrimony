@@ -12,7 +12,7 @@
     </template>
 
     <template #body="{ toggle }">
-      <form class="flex flex-wrap" @submit.prevent="add(toggle)">
+      <form ref="form" class="flex flex-wrap" @submit.prevent="add(toggle)">
         <text-field
           v-model="newGuest.first"
           class="w-full sm:w-1/2 sm:pr-8"
@@ -55,8 +55,10 @@ import TextField from "../Forms/TextField.vue";
 const store = useStore();
 
 const newGuest = ref({});
+const form = ref(null);
 
 const add = async (toggle) => {
+  if (!form.value.reportValidity()) return;
   const r = await store.dispatch("createGuest", newGuest.value);
   if (r.ok) {
     toggle();
