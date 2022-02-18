@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"errors"
 	"github.com/gabe565/matrimony/internal/config"
 	"github.com/gabe565/matrimony/internal/database/models"
 	"gorm.io/gorm"
@@ -46,7 +47,9 @@ func InitRSVP(db *gorm.DB) http.HandlerFunc {
 			return
 		}
 
-		err := db.Where(&queryGuest, "FirstName", "LastName").Find(&queryGuest).Error
+		err := db.Preload("Party").
+			Where(&queryGuest, "FirstName", "LastName").
+			Find(&queryGuest).Error
 		if err != nil {
 			panic(err)
 		}
@@ -125,12 +128,13 @@ func InitRSVP(db *gorm.DB) http.HandlerFunc {
 	}
 }
 
+var ErrInvalidSessionPassword = errors.New("invalid session password")
+
 func RSVPResponse(db *gorm.DB) http.HandlerFunc {
 	type Body struct {
 		ID              uint                   `json:"id"`
 		SessionPassword string                 `json:"sessionPassword"`
 		Values          map[string]interface{} `json:"values"`
-		Value           string                 `json:"value"`
 	}
 
 	checkAuth := func(r *http.Request) (*models.Guest, Body, error) {
@@ -144,13 +148,16 @@ func RSVPResponse(db *gorm.DB) http.HandlerFunc {
 			Model: models.Model{
 				ID: body.ID,
 			},
-			Party: models.Party{
-				SessionPassword: body.SessionPassword,
-			},
 		}
-		err = db.Where(&guest, "ID", "SessionPassword").Find(&guest).Error
+		err = db.Preload("Party").
+			Where(&guest, "ID", "SessionPassword").
+			Find(&guest).Error
 		if err != nil {
 			return nil, body, err
+		}
+
+		if guest.Party.SessionPassword != body.SessionPassword {
+			panic(ErrInvalidSessionPassword)
 		}
 
 		return &guest, body, nil
