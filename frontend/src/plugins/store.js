@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import { filterHouseholdQuestion } from "../util/formatQuestion";
 
 const { localStorage } = window;
 
@@ -75,10 +76,15 @@ export default createStore({
         return result;
       }
       const { questions } = state;
+      const isPartyHead =
+        state.persistent.party.headId === state.persistent.activeId;
       const response = getters.activeResponse;
       for (const questionSection of questions) {
         const section = Object.entries(questionSection);
-        result = result.concat(section);
+        result = result.concat(
+          section.filter((e) => filterHouseholdQuestion(isPartyHead, e[1]))
+        );
+
         for (const [type, question] of section) {
           const { field } = question;
           if (field in response && response[field]) {
@@ -87,7 +93,10 @@ export default createStore({
                 const answer = question[response[field]];
                 if (answer.followup) {
                   result = result.concat(
-                    answer.followup.map((q) => Object.entries(q)).flat()
+                    answer.followup
+                      .map((q) => Object.entries(q))
+                      .flat()
+                      .filter((e) => filterHouseholdQuestion(isPartyHead, e[1]))
                   );
                 }
                 break;
@@ -98,7 +107,10 @@ export default createStore({
                 );
                 if (answer && answer.followup) {
                   result = result.concat(
-                    answer.followup.map((q) => Object.entries(q)).flat()
+                    answer.followup
+                      .map((q) => Object.entries(q))
+                      .flat()
+                      .filter((e) => filterHouseholdQuestion(isPartyHead, e[1]))
                   );
                 }
                 break;

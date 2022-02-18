@@ -35,6 +35,7 @@ func InitRSVP(db *gorm.DB) http.HandlerFunc {
 		Guests          []guest `json:"guests"`
 		ID              uint    `json:"id"`
 		SessionPassword string  `json:"sessionPassword"`
+		HeadId          uint    `json:"headId"`
 	}
 
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -95,6 +96,7 @@ func InitRSVP(db *gorm.DB) http.HandlerFunc {
 				SessionPassword: queryGuest.Party.SessionPassword,
 			}
 
+			var headId uint
 			for _, g := range guests {
 				var last string
 				if g.LastName != nil {
@@ -111,7 +113,12 @@ func InitRSVP(db *gorm.DB) http.HandlerFunc {
 					LastName:  last,
 					HasRSVP:   hasRsvp,
 				})
+
+				if g.ID < headId || headId == 0 {
+					headId = g.ID
+				}
 			}
+			response.HeadId = headId
 
 			j, err := json.Marshal(response)
 			if err != nil {
