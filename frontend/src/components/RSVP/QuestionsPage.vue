@@ -98,13 +98,18 @@ const guestName = computed(() => {
 });
 const party = computed(() => store.state.persistent.party);
 const responses = computed(() => store.getters.activeResponse);
-const allResponsesDone = computed(
-  () =>
-    Object.values(store.state.persistent.responseSaved).filter((e) => e)
-      .length === Object.values(store.state.persistent.responses).length
-);
 const questions = computed(() => store.getters.visibleQuestions);
 const hasActive = computed(() => store.state.persistent.activeId !== 0);
+const allResponsesDone = computed(() => {
+  const responseSaved = Object.values(
+    store.state.persistent.responseSaved
+  ).filter((e) => e);
+  if (responseSaved.length === 0) return false;
+  return (
+    responseSaved.length ===
+    Object.values(store.state.persistent.responses).length
+  );
+});
 
 if (!party.value.guests) {
   router.replace("/rsvp/begin");
