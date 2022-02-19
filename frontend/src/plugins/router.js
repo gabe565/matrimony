@@ -65,6 +65,6 @@ export default createRouter({
         resolve({ el: to.hash });
       });
     }
-    return { top: 0 };
+    return false;
   },
 });
