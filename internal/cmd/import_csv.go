@@ -38,7 +38,7 @@ func main() {
 	db.Exec("DELETE FROM parties")
 
 	r := csv.NewReader(f)
-	var importCount uint
+	var count uint
 	var fieldNames []string
 	for {
 		row, err := r.Read()
@@ -50,9 +50,9 @@ func main() {
 		}
 
 		// Set field names
-		if importCount == 0 {
+		if count == 0 {
 			fieldNames = row
-			importCount += 1
+			count += 1
 			continue
 		}
 
@@ -66,9 +66,9 @@ func main() {
 			log.Fatalln(err)
 		}
 
-		importCount += 1
+		count += 1
 	}
-	log.Println(fmt.Sprintf("Imported %d rows", importCount))
+	log.Println(fmt.Sprintf("Imported %d rows", count))
 }
 
 var ErrUnknownColumn = errors.New("unknown column")
