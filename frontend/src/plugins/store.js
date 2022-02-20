@@ -61,7 +61,7 @@ export default createStore({
     activeGuest(state) {
       if (state.activeGuestId) {
         return state.persistent.party.guests.find(
-          (guest) => guest.id === state.persistent.activeGuestId
+          (guest) => guest.id === state.activeGuestId
         );
       }
       return {};
