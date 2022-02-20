@@ -12,7 +12,11 @@
     </template>
 
     <template #body="{ toggle }">
-      <form ref="form" class="flex flex-wrap" @submit.prevent="add(toggle)">
+      <form
+        ref="form"
+        class="flex flex-wrap"
+        @submit.prevent="onSubmit(toggle)"
+      >
         <transition>
           <matrimony-alert v-if="error" class="mb-8" @dismiss="error = null">
             {{ error }}
@@ -24,6 +28,9 @@
           class="w-full sm:w-1/2 sm:pr-8"
           required
           autofocus
+          :errors="v$.first.$errors"
+          @input="v$.first.$touch"
+          @blur="v$.first.$touch"
         >
           First Name
         </input-field>
@@ -37,13 +44,17 @@
     <template #footer="{ toggle }">
       <matrimony-button color="alt" @click.prevent="toggle">
         <template #prefix-icon>
-          <font-awesome-icon :icon="['fas', 'xmark']" class="text-xl" />
+          <font-awesome-icon :icon="['fas', 'xmark']" class="text-xl fa-fw" />
         </template>
         Cancel
       </matrimony-button>
-      <matrimony-button @click.prevent="add(toggle)">
+      <matrimony-button @click.prevent="onSubmit(toggle)">
         <template #prefix-icon>
-          <font-awesome-icon :icon="['fas', 'plus']" class="text-xl" />
+          <font-awesome-icon
+            :icon="loading ? ['fad', 'spinner-third'] : ['fas', 'plus']"
+            :class="{ 'animate-spin': loading }"
+            class="text-xl fa-fw"
+          />
         </template>
         Add
       </matrimony-button>
@@ -54,6 +65,8 @@
 <script setup>
 import { ref } from "vue";
 import { useStore } from "vuex";
+import { required } from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
 import MatrimonyModal from "../MatrimonyModal.vue";
 import MatrimonyButton from "../MatrimonyButton.vue";
 import InputField from "../Forms/InputField.vue";
@@ -65,23 +78,31 @@ const store = useStore();
 const newGuest = ref({});
 const form = ref(null);
 const error = ref(null);
+const loading = ref(false);
+const rules = {
+  first: { required },
+};
+const v$ = useVuelidate(rules, newGuest);
 
-const add = async (toggle) => {
+const onSubmit = async (toggle) => {
+  if (!(await v$.value.$validate())) return;
+
+  loading.value = true;
   error.value = null;
   if (!form.value.reportValidity()) return;
-  let r;
   try {
-    r = await store.dispatch("createGuest", newGuest.value);
+    const r = await store.dispatch("createGuest", newGuest.value);
+    if (r.ok) {
+      toggle();
+      newGuest.value = {};
+    } else {
+      error.value = ErrGeneric;
+    }
   } catch (err) {
     console.error(err);
     error.value = ErrGeneric;
-    return;
-  }
-  if (r.ok) {
-    toggle();
-    newGuest.value = {};
-  } else {
-    error.value = ErrGeneric;
+  } finally {
+    loading.value = false;
   }
 };
 </script>
