@@ -1,5 +1,5 @@
 <template>
-  <div class="root">
+  <div class="flex flex-nowrap items-stretch">
     <slot />
   </div>
 </template>

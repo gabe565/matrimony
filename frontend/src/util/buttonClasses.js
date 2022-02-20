@@ -1,5 +1,5 @@
 export const base =
-  "duration-200 transition-color font-medium rounded-full text-center disabled:opacity-50";
+  "flex flex-wrap items-center justify-center content-center duration-200 transition-color font-medium rounded-full text-center disabled:opacity-50";
 
 export const colors = {
   blue: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-700 dark:hover:bg-blue-800 dark:focus:ring-blue-800 dark:border-gray-600 disabled:bg-blue-700 disabled:dark:bg-blue-600",
@@ -19,7 +19,7 @@ export const colors = {
 };
 
 export const sizes = {
-  icon: "p-3.5 aspect-square items-center inline-flex",
+  icon: "p-3.5 aspect-square items-center",
   xs: "inline-block px-3 py-2 text-xs",
   sm: "inline-block px-3 py-2 text-sm",
   md: "inline-block px-5 py-2.5",
