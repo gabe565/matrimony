@@ -8,12 +8,12 @@
     ]"
   >
     <input
-      ref="input"
       v-model="model"
       type="radio"
       :name="name"
       :value="value"
       class="w-4 h-4 mr-4"
+      :required="required"
       :disabled="disabled"
       :readonly="readonly"
     />
@@ -28,6 +28,7 @@ const props = defineProps({
   name: { type: String, default: "" },
   value: { type: String, required: true },
   modelValue: { type: String, required: true },
+  required: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
 });

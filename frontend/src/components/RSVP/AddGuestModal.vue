@@ -19,17 +19,17 @@
           </matrimony-alert>
         </transition>
 
-        <text-field
+        <input-field
           v-model="newGuest.first"
           class="w-full sm:w-1/2 sm:pr-8"
           required
           autofocus
         >
           First Name
-        </text-field>
-        <text-field v-model="newGuest.last" class="w-full sm:w-1/2">
+        </input-field>
+        <input-field v-model="newGuest.last" class="w-full sm:w-1/2">
           Last Name
-        </text-field>
+        </input-field>
         <input type="submit" class="hidden" />
       </form>
     </template>
@@ -56,7 +56,7 @@ import { ref } from "vue";
 import { useStore } from "vuex";
 import MatrimonyModal from "../MatrimonyModal.vue";
 import MatrimonyButton from "../MatrimonyButton.vue";
-import TextField from "../Forms/TextField.vue";
+import InputField from "../Forms/InputField.vue";
 import MatrimonyAlert from "../MatrimonyAlert.vue";
 import { ErrGeneric } from "../../strings/strings";
 

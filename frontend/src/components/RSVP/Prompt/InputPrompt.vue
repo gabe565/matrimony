@@ -1,12 +1,12 @@
 <template>
-  <text-field v-model="value" class="mb-6">
+  <input-field v-model="value" class="mb-6">
     {{ question.prompt }}
-  </text-field>
+  </input-field>
 </template>
 
 <script setup>
 import { computed } from "vue";
-import TextField from "../../Forms/TextField.vue";
+import InputField from "../../Forms/InputField.vue";
 
 const props = defineProps({
   question: { type: Object, required: true },

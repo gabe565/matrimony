@@ -12,26 +12,33 @@
     </transition>
 
     <div class="flex flex-wrap">
-      <text-field
+      <input-field
         v-model="query.first"
         class="w-full sm:w-1/2 sm:pr-8"
         required
         autofocus
+        :errors="v$.first.$errors"
+        @input="v$.first.$touch"
+        @blur="v$.first.$touch"
       >
         First Name
-      </text-field>
-      <text-field v-model="query.last" class="w-full sm:w-1/2">
+      </input-field>
+      <input-field v-model="query.last" class="w-full sm:w-1/2">
         Last Name
-      </text-field>
+      </input-field>
     </div>
-    <text-field v-model="query.email">
+    <input-field
+      v-model="query.email"
+      :errors="v$.email.$errors"
+      @blur="v$.email.$touch"
+    >
       Email Address
       <template #prefix-icon>
         <font-awesome-icon :icon="['fas', 'envelope']" />
       </template>
-    </text-field>
+    </input-field>
 
-    <matrimony-form-button class="ml-auto mr-30" size="lg">
+    <matrimony-form-button type="submit" class="ml-auto mr-30" size="lg">
       Next
       <template #icon>
         <font-awesome-icon
@@ -48,7 +55,9 @@
 import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import TextField from "../Forms/TextField.vue";
+import { required, email } from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
+import InputField from "../Forms/InputField.vue";
 import MatrimonyAlert from "../MatrimonyAlert.vue";
 import MatrimonyFormButton from "../Forms/MatrimonyFormButton.vue";
 import { ErrGeneric, ErrNoUserMatch } from "../../strings/strings";
@@ -57,10 +66,17 @@ const router = useRouter();
 const store = useStore();
 
 const query = computed(() => store.state.persistent.query);
+const rules = {
+  first: { required },
+  email: { email },
+};
+const v$ = useVuelidate(rules, query);
 
 const loading = ref(false);
 const error = ref(null);
 const submit = async () => {
+  if (!(await v$.value.$validate())) return;
+
   loading.value = true;
   error.value = null;
   store.commit("setQuery", query.value);

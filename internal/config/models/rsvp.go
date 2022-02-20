@@ -16,8 +16,9 @@ type Questions struct {
 }
 
 type Question struct {
-	Field  string `yaml:"field" json:"field"`
-	Prompt string `yaml:"prompt" json:"prompt"`
+	Field    string `yaml:"field" json:"field"`
+	Prompt   string `yaml:"prompt" json:"prompt"`
+	Required bool   `yaml:"required" json:"required"`
 }
 
 type ConditionalQuestion struct {

@@ -25,14 +25,44 @@
             <div
               class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
             >
+              <!-- Responding button -->
               <matrimony-form-button
-                type="button"
-                :disabled="active === guest.id"
+                v-if="active === guest.id"
+                @click.prevent="active = 0"
+              >
+                Responding
+                <template #icon>
+                  <font-awesome-icon
+                    :icon="['fas', 'chevron-down']"
+                    class="ml-0.5 fa-fw"
+                  />
+                </template>
+              </matrimony-form-button>
+
+              <!-- Saved button -->
+              <matrimony-form-button
+                v-else-if="responseSaved[guest.id]"
+                color="green"
                 @click.prevent="active = guest.id"
               >
-                <template v-if="active === guest.id">Answering</template>
-                <template v-else-if="responseSaved[guest.id]">Saved</template>
-                <template v-else>Respond</template>
+                Saved
+                <template #icon>
+                  <font-awesome-icon
+                    :icon="['fas', 'check']"
+                    class="ml-0.5 fa-fw"
+                  />
+                </template>
+              </matrimony-form-button>
+
+              <!-- Respond button -->
+              <matrimony-form-button v-else @click.prevent="active = guest.id">
+                Respond
+                <template #icon>
+                  <font-awesome-icon
+                    :icon="['fas', 'pencil']"
+                    class="ml-0.5 fa-fw"
+                  />
+                </template>
               </matrimony-form-button>
             </div>
           </div>
@@ -53,8 +83,6 @@ import { useStore } from "vuex";
 import MatrimonyFormButton from "../../Forms/MatrimonyFormButton.vue";
 import MatrimonyButtonGroup from "../../MatrimonyButtonGroup.vue";
 import MatrimonyButton from "../../MatrimonyButton.vue";
-import TextField from "../../Forms/TextField.vue";
-import MatrimonyModal from "../../MatrimonyModal.vue";
 import AddGuestModal from "../AddGuestModal.vue";
 
 const store = useStore();
@@ -63,8 +91,8 @@ const guests = computed(() => store.state.persistent.party.guests);
 const responseSaved = computed(() => store.state.persistent.responseSaved);
 
 const active = computed({
-  get: () => store.state.persistent.activeId,
-  set: (e) => store.commit("active", e),
+  get: () => store.state.activeGuestId,
+  set: (e) => store.commit("setActiveGuestId", e),
 });
 
 const editing = ref(false);

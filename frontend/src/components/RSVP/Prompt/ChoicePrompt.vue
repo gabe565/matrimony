@@ -1,9 +1,13 @@
 <template>
-  <div>
-    <div class="mb-1 text-sm font-medium text-slate-900 dark:text-slate-200">
+  <div class="mb-4">
+    <div
+      v-if="question.prompt"
+      class="mb-1 text-sm font-medium text-slate-900 dark:text-slate-200"
+    >
       {{ question.prompt }}
+      <span v-if="required" class="text-red-600"> *</span>
     </div>
-    <radio-button-group class="mb-4">
+    <radio-button-group>
       <big-radio-button
         v-for="choice in question.choices"
         v-model="value"
@@ -15,6 +19,9 @@
         {{ choice.answer }}
       </big-radio-button>
     </radio-button-group>
+    <div v-for="error in errors" class="text-red-300 dark:text-red-600">
+      {{ error.$message }}
+    </div>
   </div>
 </template>
 
@@ -28,7 +35,9 @@ const props = defineProps({
   question: { type: Object, required: true },
   modelValue: { type: String, default: "" },
   disabled: { type: Boolean, default: false },
+  required: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
+  errors: { type: Array, default: () => [] },
 });
 
 const emit = defineEmits(["update:modelValue"]);

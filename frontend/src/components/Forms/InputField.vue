@@ -1,11 +1,12 @@
 <template>
   <div class="mb-6">
     <label
+      v-if="$slots.default"
       :for="id"
       class="block mb-1 text-sm font-medium text-slate-900 dark:text-slate-200"
     >
       <slot />
-      <span v-if="required && $slots.default" class="text-red-600">*</span>
+      <span v-if="required" class="text-red-600"> *</span>
     </label>
     <div class="relative">
       <div
@@ -19,17 +20,28 @@
         ref="input"
         v-model="value"
         :type="type"
-        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 shadow-sm"
+        class="bg-gray-50 border text-gray-900 rounded-xl block w-full dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white shadow-sm"
         :class="[
           ...classes,
-          { 'pl-10': $slots['prefix-icon'], 'cursor-not-allowed': disabled },
+          {
+            'pl-10': $slots['prefix-icon'],
+            'cursor-not-allowed': disabled,
+          },
+          [
+            errors.length
+              ? 'border-red-300 dark:border-red-600 focus: border-red-300 focus:ring-red-300 dark:focus:ring-red-600 focus:border-red-600'
+              : 'border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 dark:focus:ring-blue-500',
+          ],
         ]"
         :placeholder="placeholder"
-        :required="required"
         :disabled="disabled"
         :readonly="readonly"
         :autofocus="autofocus"
+        @blur="emit('blur', $event)"
       />
+    </div>
+    <div v-for="error in errors" class="text-red-300 dark:text-red-600">
+      {{ error.$message }}
     </div>
   </div>
 </template>
@@ -48,9 +60,9 @@ const props = defineProps({
   disabled: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
   autofocus: { type: Boolean, default: false },
+  errors: { type: Array, default: () => [] },
 });
-
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue", "blur"]);
 
 const value = computed({
   get: () => props.modelValue,
@@ -80,6 +92,6 @@ onMounted(() => {
 
 <script>
 export default {
-  name: "TextField",
+  name: "InputField",
 };
 </script>

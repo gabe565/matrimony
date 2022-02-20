@@ -7,7 +7,6 @@ const defaultPersistence = {
   query: {},
   party: {},
   responses: {},
-  activeId: 0,
   currentQuestion: 0,
   responseSaved: {},
 };
@@ -20,6 +19,7 @@ export default createStore({
   state: () => ({
     persistent: loadState() || defaultPersistence,
     questions: [],
+    activeGuestId: 0,
   }),
   mutations: {
     setQuery(state, query) {
@@ -33,20 +33,19 @@ export default createStore({
     setQuestions(state, questions) {
       state.questions = questions;
     },
-    active(state, id) {
-      state.persistent.activeId = id;
+    setActiveGuestId(state, id) {
       if (!state.persistent.responses[id]) {
         state.persistent.responses[id] = {};
       }
+      state.activeGuestId = id;
       saveState(state);
     },
     setResponses(state, responses) {
-      state.persistent.responses[state.persistent.activeId] = responses;
+      state.persistent.responses[state.activeGuestId] = responses;
       saveState(state);
     },
     setSaved(state) {
-      state.persistent.responseSaved[state.persistent.activeId] = true;
-      state.persistent.activeId = 0;
+      state.persistent.responseSaved[state.activeGuestId] = true;
       saveState(state);
     },
     addGuest(state, guest) {
@@ -60,28 +59,33 @@ export default createStore({
   },
   getters: {
     activeGuest(state) {
-      if (state.persistent.activeId) {
+      if (state.activeGuestId) {
         return state.persistent.party.guests.find(
-          (guest) => guest.id === state.persistent.activeId
+          (guest) => guest.id === state.persistent.activeGuestId
         );
       }
       return {};
     },
-    activeResponse(state, getters) {
-      if (getters.activeGuest) {
-        return state.persistent.responses[state.persistent.activeId];
+    partyHeadGuest(state) {
+      if (state.persistent.party.guests.length) {
+        return state.persistent.party.guests[0];
       }
       return {};
     },
-    visibleQuestions(state, getters) {
+    activeResponse(state, getters) {
+      if (getters.activeGuestId) {
+        return state.persistent.responses[state.persistent.activeGuestId];
+      }
+      return {};
+    },
+    visibleQuestions(state) {
       let result = [];
-      if (!state.persistent.activeId) {
+      if (!state.activeGuestId) {
         return result;
       }
       const { questions } = state;
-      const isPartyHead =
-        state.persistent.party.headId === state.persistent.activeId;
-      const response = getters.activeResponse;
+      const isPartyHead = state.persistent.party.headId === state.activeGuestId;
+      const response = state.persistent.responses[state.activeGuestId] || {};
       for (const questionSection of questions) {
         const section = Object.entries(questionSection);
         result = result.concat(
@@ -162,7 +166,7 @@ export default createStore({
         method: "PUT",
         body: JSON.stringify({
           values: responses,
-          id: context.getters.activeGuest.id,
+          id: context.state.activeGuestId,
           sessionPassword: context.state.persistent.party.sessionPassword,
         }),
       });
