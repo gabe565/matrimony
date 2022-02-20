@@ -7,6 +7,7 @@
     >
       Answering for {{ guestName }}
     </h4>
+
     <transition-group
       name="list"
       tag="form"
@@ -26,13 +27,18 @@
         @input="v$[question.field].$touch"
         @blur="v$[question.field].$touch"
       />
-      <div key="next-button" class="w-full flex">
-        <matrimony-form-button
-          key="next-button"
-          type="submit"
-          class="mx-auto"
-          size="lg"
-        >
+
+      <matrimony-alert
+        v-if="error"
+        key="alert"
+        class="mb-8"
+        @dismiss="error = null"
+      >
+        {{ error }}
+      </matrimony-alert>
+
+      <div key="save-button" class="w-full flex">
+        <matrimony-form-button type="submit" class="mx-auto" size="lg">
           Save
           <template #icon>
             <font-awesome-icon
@@ -59,6 +65,7 @@ import AttendancePrompt from "./Prompt/AttendancePrompt.vue";
 import InputPrompt from "./Prompt/InputPrompt.vue";
 import ChoicePrompt from "./Prompt/ChoicePrompt.vue";
 import { ErrGeneric } from "../../strings/strings";
+import MatrimonyAlert from "../MatrimonyAlert.vue";
 
 const store = useStore();
 const questions = computed(() => store.getters.visibleQuestions);
@@ -100,19 +107,18 @@ const onSubmit = async () => {
 
   loading.value = true;
   error.value = null;
-  let r;
   try {
-    r = await store.dispatch("respond", responses.value);
+    const r = await store.dispatch("respond", responses.value);
     if (r.ok) {
       store.commit("setActiveGuestId", 0);
+    } else {
+      error.value = ErrGeneric;
     }
   } catch (err) {
     console.error(err);
+    error.value = ErrGeneric;
   } finally {
     loading.value = false;
-  }
-  if (!r.ok) {
-    error.value = ErrGeneric;
   }
 };
 </script>
