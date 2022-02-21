@@ -7,7 +7,6 @@ import (
 	"github.com/gabe565/matrimony/internal/database/models"
 	httpModels "github.com/gabe565/matrimony/internal/server/models"
 	"github.com/go-chi/render"
-	"github.com/mattn/go-sqlite3"
 	"gorm.io/gorm"
 	"net/http"
 	"strings"
@@ -284,15 +283,7 @@ func RSVPCreateGuest(db *gorm.DB) http.HandlerFunc {
 		body.Guest.PartyID = party.ID
 		err = db.Table("guests").Create(&body.Guest).Error
 		if err != nil {
-			sqliteErr, ok := err.(sqlite3.Error)
-			if ok {
-				if sqliteErr.Code == sqlite3.ErrConstraint {
-					http.Error(w, err.Error(), 400)
-					return
-				}
-			}
 			panic(err)
-			return
 		}
 
 		j, err := json.Marshal(body.Guest)
