@@ -30,7 +30,6 @@ type guest struct {
 	FirstName string `json:"first"`
 	LastName  string `json:"last"`
 	PartyID   uint   `json:"partyId"`
-	HasRSVP   bool   `json:"hasRSVP" gorm:"-"`
 }
 
 func InitRSVP(db *gorm.DB) http.HandlerFunc {
@@ -140,13 +139,11 @@ func InitRSVP(db *gorm.DB) http.HandlerFunc {
 
 			var rsvp map[string]interface{}
 			err = json.Unmarshal(g.RSVP, &rsvp)
-			_, hasRsvp := rsvp["confirmed"]
 
 			response.Guests = append(response.Guests, guest{
 				ID:        g.ID,
 				FirstName: g.FirstName,
 				LastName:  last,
-				HasRSVP:   hasRsvp,
 			})
 
 			if g.ID < headId || headId == 0 {
