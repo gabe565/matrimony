@@ -150,15 +150,14 @@ export default createStore({
         Object.entries(state.persistent.query)
       );
       const r = await fetch(`/api/rsvp/init?${params}`);
+      const j = await r.json();
       if (r.ok) {
-        const party = await r.json();
-        if (party.id !== state.persistent.party.id) {
-          console.log("reset");
+        if (j.id !== state.persistent.party.id) {
           commit("resetPersistence");
         }
-        commit("setParty", party);
+        commit("setParty", j);
       }
-      return r;
+      return j;
     },
     async respond(context, responses) {
       context.commit("setResponses", responses);

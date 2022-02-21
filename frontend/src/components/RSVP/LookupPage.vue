@@ -60,7 +60,7 @@ import useVuelidate from "@vuelidate/core";
 import InputField from "../Forms/InputField.vue";
 import MatrimonyAlert from "../MatrimonyAlert.vue";
 import MatrimonyFormButton from "../Forms/MatrimonyFormButton.vue";
-import { ErrGeneric, ErrNoUserMatch } from "../../strings/strings";
+import { ErrGeneric } from "../../strings/strings";
 
 const router = useRouter();
 const store = useStore();
@@ -82,10 +82,10 @@ const submit = async () => {
   store.commit("setQuery", query.value);
   try {
     const j = await store.dispatch("fetchParty");
-    if (j.ok) {
-      await router.push("/rsvp/questions");
+    if (j.error) {
+      error.value = j.error;
     } else {
-      error.value = ErrNoUserMatch;
+      await router.push("/rsvp/questions");
     }
   } catch (err) {
     console.error(err);
