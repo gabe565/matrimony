@@ -46,7 +46,7 @@ func InitRSVP(db *gorm.DB) http.HandlerFunc {
 	}
 
 	ErrInvalidEmail := httpModels.Error{
-		Error:      `We found you, but the email address provided does not match what we have on file. Please try again with a different email address.`,
+		Error:      `We found you, but the email address provided does not match the one we have on file. Please try again with a different email address.`,
 		StatusCode: 400,
 	}
 
@@ -67,7 +67,7 @@ func InitRSVP(db *gorm.DB) http.HandlerFunc {
 		}
 
 		var queryGuest models.Guest
-		err = db.Debug().Preload("Party").
+		err = db.Preload("Party").
 			Where("lower(first_name) = ? and lower(last_name) = ?", first, last).
 			Find(&queryGuest).Error
 		if err != nil {
@@ -95,19 +95,21 @@ func InitRSVP(db *gorm.DB) http.HandlerFunc {
 		// Save email
 		if email != "" {
 			queryGuest.EmailAddress = &email
-		}
 
-		err = db.Select("EmailAddress", "SessionPassword").Save(&queryGuest).Error
-		if err != nil {
-			panic(err)
+			err = db.Select("EmailAddress").Save(&queryGuest).Error
+			if err != nil {
+				panic(err)
+			}
 		}
 
 		// Generate session password
-		err = queryGuest.Party.GenerateSessionPassword()
-		if err != nil {
-			panic(err)
+		if queryGuest.Party.SessionPassword == "" {
+			err = queryGuest.Party.GenerateSessionPassword()
+			if err != nil {
+				panic(err)
+			}
+			err = db.Select("SessionPassword").Save(&queryGuest.Party).Error
 		}
-		err = db.Select("SessionPassword").Save(&queryGuest.Party).Error
 
 		// Find guests in party
 		var guests []models.Guest
