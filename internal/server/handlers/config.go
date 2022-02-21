@@ -1,19 +1,21 @@
 package handlers
 
 import (
-	"encoding/json"
 	"github.com/gabe565/matrimony/internal/config"
+	"github.com/gabe565/matrimony/internal/config/models"
+	"github.com/go-chi/render"
 	"net/http"
 )
 
-func GetConfig(w http.ResponseWriter, r *http.Request) {
-	j, err := json.Marshal(config.Config)
-	if err != nil {
-		panic(err)
-	}
+type GetConfigResponse models.Config
 
-	_, err = w.Write(j)
-	if err != nil {
+func (GetConfigResponse) Render(w http.ResponseWriter, r *http.Request) error {
+	return nil
+}
+
+func GetConfig(w http.ResponseWriter, r *http.Request) {
+	response := (*GetConfigResponse)(config.Config)
+	if err := render.Render(w, r, response); err != nil {
 		return
 	}
 }

@@ -6,13 +6,14 @@ import (
 )
 
 var ErrUnauthorized = CreateErrorFromStatusCode(http.StatusUnauthorized)
+var ErrNotFound = CreateErrorFromStatusCode(http.StatusNotFound)
 
-type Error struct {
-	Error      string `json:"error"`
+type ErrorResponse struct {
+	Message    string `json:"error"`
 	StatusCode int    `json:"-"`
 }
 
-func (e Error) Render(w http.ResponseWriter, r *http.Request) error {
+func (e ErrorResponse) Render(w http.ResponseWriter, r *http.Request) error {
 	if e.StatusCode == 0 {
 		e.StatusCode = 500
 	}
@@ -20,9 +21,13 @@ func (e Error) Render(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
-func CreateErrorFromStatusCode(statusCode int) Error {
-	return Error{
-		Error:      http.StatusText(statusCode),
+func CreateErrorFromStatusCode(statusCode int) ErrorResponse {
+	return ErrorResponse{
+		Message:    http.StatusText(statusCode),
 		StatusCode: statusCode,
 	}
+}
+
+func (e ErrorResponse) Error() string {
+	return e.Message
 }

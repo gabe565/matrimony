@@ -2,7 +2,9 @@ package server
 
 import (
 	"github.com/gabe565/matrimony/internal/server/handlers"
+	"github.com/gabe565/matrimony/internal/server/handlers/rsvp"
 	middleware2 "github.com/gabe565/matrimony/internal/server/middleware"
+	"github.com/gabe565/matrimony/internal/server/models"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/httprate"
@@ -67,17 +69,17 @@ func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 				r.Get("/party", handlers.ListParty)
 				r.Get("/moments", handlers.ListMoments(dataFs))
 				r.Get("/ical/{section}/{key}", handlers.GetIcal())
-				r.Get("/rsvp/questions", handlers.ListRSVPQuestions)
+				r.Get("/rsvp/questions", rsvp.ListQuestions)
 
 			})
 
 			r.Group(func(r chi.Router) {
 				r.Use(httprate.LimitByIP(10, time.Minute))
-				r.Get("/rsvp/init", handlers.InitRSVP(db))
+				r.Get("/rsvp/init", rsvp.Init(db))
 				r.Group(func(r chi.Router) {
 					r.Use(middleware2.LogBody)
-					r.Put("/rsvp/response", handlers.RSVPResponse(db))
-					r.Post("/rsvp/guest/add", handlers.RSVPCreateGuest(db))
+					r.Put("/rsvp/response", rsvp.Respond(db))
+					r.Post("/rsvp/guest/add", rsvp.CreateGuest(db))
 				})
 			})
 
@@ -101,7 +103,9 @@ func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 		})
 
 		r.HandleFunc("/*", func(w http.ResponseWriter, r *http.Request) {
-			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
+			if err := render.Render(w, r, models.ErrNotFound); err != nil {
+				panic(err)
+			}
 			return
 		})
 	})
