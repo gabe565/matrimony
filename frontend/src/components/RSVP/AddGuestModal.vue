@@ -91,12 +91,12 @@ const onSubmit = async (toggle) => {
   error.value = null;
   if (!form.value.reportValidity()) return;
   try {
-    const r = await store.dispatch("createGuest", newGuest.value);
-    if (r.ok) {
+    const j = await store.dispatch("createGuest", newGuest.value);
+    if (j.error) {
+      error.value = j.error;
+    } else {
       toggle();
       newGuest.value = {};
-    } else {
-      error.value = ErrGeneric;
     }
   } catch (err) {
     console.error(err);

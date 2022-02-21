@@ -172,7 +172,7 @@ export default createStore({
       if (r.ok) {
         context.commit("setSaved");
       }
-      return r;
+      return r.json();
     },
     async createGuest(context, guest) {
       const r = await fetch("/api/rsvp/guest/add", {
@@ -183,11 +183,11 @@ export default createStore({
           sessionPassword: context.state.persistent.party.sessionPassword,
         }),
       });
+      const j = await r.json();
       if (r.ok) {
-        const j = await r.json();
         context.commit("addGuest", j);
       }
-      return r;
+      return j;
     },
   },
 });

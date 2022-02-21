@@ -108,11 +108,11 @@ const onSubmit = async () => {
   loading.value = true;
   error.value = null;
   try {
-    const r = await store.dispatch("respond", responses.value);
-    if (r.ok) {
-      store.commit("setActiveGuestId", 0);
+    const j = await store.dispatch("respond", responses.value);
+    if (j.error) {
+      error.value = j.error;
     } else {
-      error.value = ErrGeneric;
+      store.commit("setActiveGuestId", 0);
     }
   } catch (err) {
     console.error(err);

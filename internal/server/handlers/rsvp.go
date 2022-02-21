@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"errors"
 	"github.com/gabe565/matrimony/internal/config"
 	"github.com/gabe565/matrimony/internal/database/models"
 	httpModels "github.com/gabe565/matrimony/internal/server/models"
@@ -166,8 +165,6 @@ func InitRSVP(db *gorm.DB) http.HandlerFunc {
 	}
 }
 
-var ErrInvalidSessionPassword = errors.New("invalid session password")
-
 func RSVPResponse(db *gorm.DB) http.HandlerFunc {
 	type Body struct {
 		ID              uint                   `json:"id"`
@@ -175,40 +172,28 @@ func RSVPResponse(db *gorm.DB) http.HandlerFunc {
 		Values          map[string]interface{} `json:"values"`
 	}
 
-	checkAuth := func(r *http.Request) (*models.Guest, Body, error) {
+	return func(w http.ResponseWriter, r *http.Request) {
 		var body Body
 		err := json.NewDecoder(r.Body).Decode(&body)
 		if err != nil {
 			panic(err)
 		}
 
-		guest := models.Guest{
-			Model: models.Model{
-				ID: body.ID,
-			},
-		}
-		err = db.Preload("Party").
-			Where(&guest, "ID", "SessionPassword").
+		// Find guest by given ID
+		var guest models.Guest
+		err = db.Debug().Preload("Party").
+			Where("id = ?", body.ID).
 			Find(&guest).Error
-		if err != nil {
-			return nil, body, err
-		}
-
-		if guest.Party.SessionPassword != body.SessionPassword {
-			panic(ErrInvalidSessionPassword)
-		}
-
-		return &guest, body, nil
-	}
-
-	return func(w http.ResponseWriter, r *http.Request) {
-		guest, body, err := checkAuth(r)
 		if err != nil {
 			panic(err)
 		}
 
-		if guest.ID == 0 {
-			http.Error(w, http.StatusText(http.StatusUnauthorized), http.StatusUnauthorized)
+		// Trigger error if guest not found or invalid password
+		if guest.ID == 0 || guest.Party.SessionPassword != body.SessionPassword {
+			err = render.Render(w, r, httpModels.ErrUnauthorized)
+			if err != nil {
+				panic(err)
+			}
 			return
 		}
 
@@ -242,7 +227,10 @@ func RSVPResponse(db *gorm.DB) http.HandlerFunc {
 			panic(err)
 		}
 
-		w.WriteHeader(http.StatusOK)
+		_, err = w.Write([]byte("{}"))
+		if err != nil {
+			panic(err)
+		}
 	}
 }
 
@@ -253,31 +241,27 @@ func RSVPCreateGuest(db *gorm.DB) http.HandlerFunc {
 		Guest           guest  `json:"guest"`
 	}
 
-	checkAuth := func(r *http.Request) (*models.Party, Body, error) {
+	return func(w http.ResponseWriter, r *http.Request) {
 		var body Body
 		err := json.NewDecoder(r.Body).Decode(&body)
 		if err != nil {
 			panic(err)
 		}
 
-		party := models.Party{
-			Model: models.Model{
-				ID: body.PartyID,
-			},
-			SessionPassword: body.SessionPassword,
-		}
-		err = db.Where(&party, "ID", "SessionPassword").Find(&party).Error
-		if err != nil {
-			return nil, body, err
-		}
-
-		return &party, body, nil
-	}
-
-	return func(w http.ResponseWriter, r *http.Request) {
-		party, body, err := checkAuth(r)
+		var party models.Party
+		err = db.
+			Where("id = ? and session_password = ?", body.PartyID, body.SessionPassword).
+			Find(&party).Error
 		if err != nil {
 			panic(err)
+		}
+
+		if party.ID == 0 {
+			err = render.Render(w, r, httpModels.ErrUnauthorized)
+			if err != nil {
+				panic(err)
+			}
+			return
 		}
 
 		body.Guest.PartyID = party.ID
