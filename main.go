@@ -1,7 +1,6 @@
 package main
 
 import (
-	"embed"
 	"fmt"
 	"github.com/gabe565/matrimony/internal/config"
 	"github.com/gabe565/matrimony/internal/database"
@@ -17,14 +16,11 @@ import (
 
 const EnvPrefix = "MATRIMONY_"
 
-//go:embed frontend/dist
-var dist embed.FS
-
 func main() {
 	var err error
 
 	address := flag.String("address", ":3000", "Override listen address.")
-	staticDir := flag.String("static", "", "Override static asset directory. Useful for development. If left empty, embedded assets are used.")
+	frontendDir := flag.String("frontend", defaultFrontend, "Override frontend asset directory."+frontendHelpExt)
 	flag.Parse()
 
 	// Load flags from envs
@@ -50,16 +46,16 @@ func main() {
 		panic(err)
 	}
 
-	var contentFs fs.FS
-	if *staticDir != "" {
-		contentFs = os.DirFS(*staticDir)
+	var frontendFs fs.FS
+	if *frontendDir != "" {
+		frontendFs = os.DirFS(*frontendDir)
 	} else {
-		contentFs, err = fs.Sub(dist, "frontend/dist")
+		frontendFs, err = fs.Sub(embeddedFrontend, "frontend/dist")
 		if err != nil {
 			panic(err)
 		}
 	}
-	router := server.Router(db, contentFs, datadir.PublicFS())
+	router := server.Router(db, frontendFs, datadir.PublicFS())
 	log.Println("Listening on " + *address)
 	err = http.ListenAndServe(*address, router)
 	if err != nil {

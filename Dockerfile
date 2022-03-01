@@ -21,8 +21,6 @@ RUN set -x \
         'linux/arm64') export GOARCH=arm64 ;; \
         *) echo "Unsupported target: $TARGETPLATFORM" && exit 1 ;; \
     esac \
-    && mkdir -p frontend/dist \
-    && echo stub >frontend/dist/gitkeep \
     && go build -ldflags="-w -s"
 
 
@@ -43,6 +41,5 @@ COPY --from=go-builder /app/matrimony ./
 COPY --from=node-builder /app/dist dist/
 
 ENV MATRIMONY_ADDRESS ":80"
-ENV MATRIMONY_STATIC "dist"
 ENV MATRIMONY_DATA "/data"
 CMD ["./matrimony"]
