@@ -81,7 +81,7 @@ const rules = computed(() => {
 });
 const activeGuestId = computed(() => store.state.activeGuestId);
 const responses = computed(
-  () => store.state.persistent.responses[activeGuestId.value]
+  () => store.state.persistent.responses[activeGuestId.value] || {}
 );
 const v$ = useVuelidate(rules, responses);
 

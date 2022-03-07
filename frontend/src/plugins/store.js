@@ -34,9 +34,6 @@ export default createStore({
       state.questions = questions;
     },
     setActiveGuestId(state, id) {
-      if (!state.persistent.responses[id]) {
-        state.persistent.responses[id] = {};
-      }
       state.activeGuestId = id;
       saveState(state);
     },
@@ -54,6 +51,7 @@ export default createStore({
     },
     resetPersistence(state) {
       state.persistent = defaultPersistence;
+      state.activeGuestId = 0;
       saveState(state);
     },
     replaceResponses(state, { responseSaved, responses }) {
