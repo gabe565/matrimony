@@ -77,7 +77,7 @@ func Init(db *gorm.DB) http.HandlerFunc {
 		}
 
 		// Email does not match
-		if queryGuest.EmailAddress != nil && *queryGuest.EmailAddress != email {
+		if queryGuest.EmailAddress != nil && strings.ToLower(*queryGuest.EmailAddress) != email {
 			err = render.Render(w, r, ErrInvalidEmail)
 			if err != nil {
 				panic(err)
