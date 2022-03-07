@@ -46,9 +46,9 @@ func Init(db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var err error
 
-		first := strings.ToLower(r.URL.Query().Get("first"))
-		last := strings.ToLower(r.URL.Query().Get("last"))
-		email := strings.ToLower(r.URL.Query().Get("email"))
+		first := strings.Trim(strings.ToLower(r.URL.Query().Get("first")), " ")
+		last := strings.Trim(strings.ToLower(r.URL.Query().Get("last")), " ")
+		email := strings.Trim(strings.ToLower(r.URL.Query().Get("email")), " ")
 
 		// First name is required
 		if first == "" {
