@@ -9,7 +9,7 @@ RUN apk add --no-cache gcc g++
 COPY go.mod go.sum ./
 RUN go mod download
 
-COPY main.go .
+COPY *.go .
 COPY internal/ internal/
 ARG TARGETPLATFORM
 # Set Golang build envs based on Docker platform string
@@ -38,7 +38,7 @@ FROM alpine
 WORKDIR /app
 RUN apk add --no-cache lame
 COPY --from=go-builder /app/matrimony ./
-COPY --from=node-builder /app/dist dist/
+COPY --from=node-builder /app/dist frontend/
 
 ENV MATRIMONY_ADDRESS ":80"
 ENV MATRIMONY_DATA "/data"
