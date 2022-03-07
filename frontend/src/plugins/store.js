@@ -56,6 +56,11 @@ export default createStore({
       state.persistent = defaultPersistence;
       saveState(state);
     },
+    replaceResponses(state, { responseSaved, responses }) {
+      state.persistent.responseSaved = responseSaved;
+      state.persistent.responses = responses;
+      saveState(state);
+    },
   },
   getters: {
     activeGuest(state) {
@@ -156,6 +161,24 @@ export default createStore({
           commit("resetPersistence");
         }
         commit("setParty", j);
+      }
+      return j;
+    },
+    async fetchResponses(context) {
+      const params = new URLSearchParams(
+        Object.entries({
+          id: context.state.persistent.party.id,
+        })
+      );
+      const r = await fetch(`/api/rsvp/responses?${params}`, {
+        headers: {
+          Authorization: `Bearer ${context.state.persistent.party.sessionPassword}`,
+        },
+      });
+      const j = await r.json();
+      if (r.ok) {
+        context.commit("replaceResponses", j);
+        saveState(context.state);
       }
       return j;
     },

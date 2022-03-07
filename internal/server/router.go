@@ -80,6 +80,7 @@ func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 				r.Group(func(r chi.Router) {
 					r.Use(middleware2.LogBody)
 					r.Put("/rsvp/response", rsvp.Respond(db))
+					r.Get("/rsvp/responses", rsvp.GetResponses(db))
 					r.Post("/rsvp/guest/add", rsvp.CreateGuest(db))
 				})
 			})

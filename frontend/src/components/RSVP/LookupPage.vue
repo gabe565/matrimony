@@ -81,11 +81,16 @@ const submit = async () => {
   error.value = null;
   store.commit("setQuery", query.value);
   try {
-    const j = await store.dispatch("fetchParty");
+    let j = await store.dispatch("fetchParty");
     if (j.error) {
       error.value = j.error;
     } else {
-      await router.push("/rsvp/questions");
+      j = await store.dispatch("fetchResponses");
+      if (j.error) {
+        error.value = j.error;
+      } else {
+        await router.push("/rsvp/questions");
+      }
     }
   } catch (err) {
     console.error(err);
