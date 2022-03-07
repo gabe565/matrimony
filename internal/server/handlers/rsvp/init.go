@@ -86,7 +86,7 @@ func Init(db *gorm.DB) http.HandlerFunc {
 		}
 
 		// Save email
-		if *queryGuest.EmailAddress == "" && email != "" {
+		if queryGuest.EmailAddress == nil && email != "" {
 			queryGuest.EmailAddress = &email
 
 			err = db.Select("EmailAddress").Save(&queryGuest).Error
