@@ -10,13 +10,13 @@ import (
 )
 
 type ManifestResponse struct {
-	Name            string        `json:"name"`
-	ShortName       string        `json:"short_name"`
-	StartUrl        string        `json:"start_url"`
-	ThemeColor      string        `json:"theme_color"`
-	BackgroundColor string        `json:"background_color"`
-	Display         string        `json:"display"`
-	Icons           []interface{} `json:"icons"`
+	Name            string `json:"name"`
+	ShortName       string `json:"short_name"`
+	StartUrl        string `json:"start_url"`
+	ThemeColor      string `json:"theme_color"`
+	BackgroundColor string `json:"background_color"`
+	Display         string `json:"display"`
+	Icons           []any  `json:"icons"`
 }
 
 func (ManifestResponse) Render(w http.ResponseWriter, r *http.Request) error {

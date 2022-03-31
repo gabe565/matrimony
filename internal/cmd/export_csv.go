@@ -121,7 +121,7 @@ func guestFields(db *gorm.DB, guest models.Guest) ([]string, error) {
 
 	r = append(r, fmt.Sprintf("%d", guest.Party.ID))
 
-	var rsvp map[string]interface{}
+	var rsvp map[string]any
 	if guest.RSVP != nil {
 		err = json.Unmarshal(guest.RSVP, &rsvp)
 		if err != nil {
@@ -150,7 +150,7 @@ func guestFields(db *gorm.DB, guest models.Guest) ([]string, error) {
 	return r, nil
 }
 
-func valueOrEmptyString(val interface{}) interface{} {
+func valueOrEmptyString(val any) any {
 	if val != nil {
 		return val
 	}

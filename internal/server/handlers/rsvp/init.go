@@ -132,7 +132,7 @@ func Init(db *gorm.DB) http.HandlerFunc {
 				last = *g.LastName
 			}
 
-			var rsvp map[string]interface{}
+			var rsvp map[string]any
 			err = json.Unmarshal(g.RSVP, &rsvp)
 
 			response.Guests = append(response.Guests, guest{

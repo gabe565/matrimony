@@ -76,7 +76,7 @@ var ErrUnknownColumn = errors.New("unknown column")
 func createGuest(db *gorm.DB, fieldNames, row []string) (models.Guest, error) {
 	var err error
 	var guest models.Guest
-	rsvpResponse := make(map[string]interface{})
+	rsvpResponse := make(map[string]any)
 	for key, value := range row {
 		if value == "" {
 			continue

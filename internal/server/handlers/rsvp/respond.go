@@ -10,9 +10,9 @@ import (
 )
 
 type RespondRequest struct {
-	ID              uint                   `json:"id"`
-	SessionPassword string                 `json:"sessionPassword"`
-	Values          map[string]interface{} `json:"values"`
+	ID              uint           `json:"id"`
+	SessionPassword string         `json:"sessionPassword"`
+	Values          map[string]any `json:"values"`
 }
 
 func (request RespondRequest) Bind(r *http.Request) error {
@@ -68,11 +68,11 @@ func Respond(db *gorm.DB) http.HandlerFunc {
 			panic(err)
 		}
 
-		var guestJson map[string]interface{}
+		var guestJson map[string]any
 		if guestRSVPStr != nil {
 			err = json.Unmarshal([]byte(guestRSVPStr.(string)), &guestJson)
 		} else {
-			guestJson = make(map[string]interface{})
+			guestJson = make(map[string]any)
 		}
 
 		for k, v := range body.Values {

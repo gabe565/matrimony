@@ -35,7 +35,7 @@ func GetIndex(rootFs fs.FS) http.HandlerFunc {
 			}
 		}
 
-		err = tpl.Execute(w, map[string]interface{}{
+		err = tpl.Execute(w, map[string]any{
 			"title":       config.Config.Title(),
 			"title_short": config.Config.TitleShort(),
 			"description": config.Config.EventInfo.Greeting,
