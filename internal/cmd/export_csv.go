@@ -20,6 +20,8 @@ import (
 var ErrInvalidFieldNum = errors.New("invalid number of fields")
 
 func main() {
+	start := time.Now()
+
 	filename := flag.StringP("filename", "f", "./data/export.csv", "Guest list csv")
 	flag.Parse()
 
@@ -102,7 +104,7 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	log.Println(fmt.Sprintf("Exported %d rows", count))
+	log.Println(fmt.Sprintf("Exported %d rows in %v", count, time.Since(start).Round(time.Millisecond)))
 }
 
 func guestFields(db *gorm.DB, guest models.Guest) ([]string, error) {
