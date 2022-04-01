@@ -14,6 +14,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"time"
 )
 
 var ErrInvalidFieldNum = errors.New("invalid number of fields")
@@ -110,14 +111,17 @@ func guestFields(db *gorm.DB, guest models.Guest) ([]string, error) {
 		guest.FirstName,
 	}
 
-	r = append(r, ptrOrEmptyString(guest.LastName))
-	r = append(r, ptrOrEmptyString(guest.EmailAddress))
+	r = append(r, dereferenceOrEmpty[string](guest.LastName))
+	r = append(r, dereferenceOrEmpty[string](guest.EmailAddress))
 
-	tagNames := make([]string, 0, len(guest.Tags))
-	for _, tag := range guest.Tags {
-		tagNames = append(tagNames, tag.Name)
+	var tagNames strings.Builder
+	for i, tag := range guest.Tags {
+		if i > 0 {
+			tagNames.WriteString(", ")
+		}
+		tagNames.WriteString(tag.Name)
 	}
-	r = append(r, strings.Join(tagNames, ", "))
+	r = append(r, tagNames.String())
 
 	r = append(r, fmt.Sprintf("%d", guest.Party.ID))
 
@@ -129,37 +133,39 @@ func guestFields(db *gorm.DB, guest models.Guest) ([]string, error) {
 		}
 	}
 
-	r = append(r, valueOrEmptyString(rsvp["RSVP"]).(string))
+	r = append(r, castOrEmpty[string](rsvp["RSVP"]))
 	switch rsvp["Number Attending"].(type) {
 	case float64:
-		s := fmt.Sprintf("%.0f", valueOrEmptyString(rsvp["Number Attending"]).(float64))
+		s := fmt.Sprintf("%.0f", castOrEmpty[float64](rsvp["Number Attending"]))
 		r = append(r, s)
 	case string:
-		r = append(r, valueOrEmptyString(rsvp["Number Attending"]).(string))
+		r = append(r, castOrEmpty[string](rsvp["Number Attending"]))
 	default:
 		r = append(r, "")
 	}
-	r = append(r, valueOrEmptyString(rsvp["Note To The Couple"]).(string))
-	r = append(r, valueOrEmptyString(rsvp["How do you know the couple"]).(string))
-	r = append(r, valueOrEmptyString(rsvp["Honeymoon"]).(string))
-	r = append(r, valueOrEmptyString(rsvp["Mail Invitation"]).(string))
-	r = append(r, valueOrEmptyString(rsvp["Mailing Address"]).(string))
+	r = append(r, castOrEmpty[string](rsvp["Note To The Couple"]))
+	r = append(r, castOrEmpty[string](rsvp["How do you know the couple"]))
+	r = append(r, castOrEmpty[string](rsvp["Honeymoon"]))
+	r = append(r, castOrEmpty[string](rsvp["Mail Invitation"]))
+	r = append(r, castOrEmpty[string](rsvp["Mailing Address"]))
 	r = append(r, guest.CreatedAt.Format("2006-01-02 15:04:05"))
 	r = append(r, guest.UpdatedAt.Format("2006-01-02 15:04:05"))
 
 	return r, nil
 }
 
-func valueOrEmptyString(val any) any {
+func castOrEmpty[T any](val any) T {
 	if val != nil {
-		return val
+		return val.(T)
 	}
-	return ""
+	var empty T
+	return empty
 }
 
-func ptrOrEmptyString(val *string) string {
+func dereferenceOrEmpty[T any](val *T) T {
 	if val != nil {
 		return *val
 	}
-	return ""
+	var empty T
+	return empty
 }
