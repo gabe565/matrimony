@@ -42,6 +42,12 @@ const lifecycle = {
 };
 </script>
 
+<script>
+export default {
+  name: "LazyImage",
+};
+</script>
+
 <style scoped>
 img[lazy="loading"] {
   @apply opacity-0;
@@ -50,9 +56,3 @@ img[lazy="loaded"] {
   @apply opacity-100;
 }
 </style>
-
-<script>
-export default {
-  name: "LazyImage",
-};
-</script>

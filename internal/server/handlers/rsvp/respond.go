@@ -71,6 +71,9 @@ func Respond(db *gorm.DB) http.HandlerFunc {
 		var guestJson map[string]any
 		if guestRSVPStr != nil {
 			err = json.Unmarshal([]byte(guestRSVPStr.(string)), &guestJson)
+			if err != nil {
+				panic(err)
+			}
 		} else {
 			guestJson = make(map[string]any)
 		}

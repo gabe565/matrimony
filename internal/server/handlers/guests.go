@@ -79,7 +79,6 @@ func CreateGuest(db *gorm.DB) http.HandlerFunc {
 				}
 			}
 			panic(err)
-			return
 		}
 
 		j, err := json.Marshal(guest)

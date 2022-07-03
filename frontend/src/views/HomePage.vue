@@ -82,6 +82,6 @@ const sectionTypes = computed(() => ({
 
 <script>
 export default {
-  name: "Home",
+  name: "HomePage",
 };
 </script>

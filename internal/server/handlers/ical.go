@@ -47,7 +47,7 @@ func GetIcal() http.HandlerFunc {
 
 		cal := ics.NewCalendar()
 		cal.SetMethod(ics.MethodRequest)
-		calEvent := cal.AddEvent(fmt.Sprintf("%s", uuid.New()))
+		calEvent := cal.AddEvent(uuid.New().String())
 		calEvent.SetCreatedTime(time.Now())
 		calEvent.SetDtStampTime(time.Now())
 		calEvent.SetModifiedAt(time.Now())

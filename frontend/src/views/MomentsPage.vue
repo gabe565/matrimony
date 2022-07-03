@@ -60,6 +60,6 @@ const showModal = (src) => {
 
 <script>
 export default {
-  name: "Moments",
+  name: "MomentsPage",
 };
 </script>

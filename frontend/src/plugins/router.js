@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
+import HomePage from "../views/HomePage.vue";
 import NotFound from "../views/NotFound.vue";
-import Moments from "../views/Moments.vue";
+import MomentsPage from "../views/MomentsPage.vue";
 import RSVP from "../views/RSVP.vue";
 import { waitForElement } from "../util/waitForElement";
 import LookupPage from "../components/RSVP/LookupPage.vue";
@@ -11,14 +11,14 @@ import FinishRSVP from "../components/RSVP/FinishRSVP.vue";
 const router = [
   {
     path: "/",
-    component: Home,
+    component: HomePage,
     meta: {
       headerCollapseY: () => window.innerHeight,
     },
   },
   {
     path: "/moments",
-    component: Moments,
+    component: MomentsPage,
     meta: {
       headerCollapseY: 100,
     },

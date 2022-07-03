@@ -59,7 +59,6 @@ func GuestRSVPAuth(db *gorm.DB) func(http.Handler) http.Handler {
 			}
 
 			w.WriteHeader(http.StatusUnauthorized)
-			return
 		})
 	}
 }

@@ -108,7 +108,6 @@ func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 			if err := render.Render(w, r, models.ErrNotFound); err != nil {
 				panic(err)
 			}
-			return
 		})
 	})
 

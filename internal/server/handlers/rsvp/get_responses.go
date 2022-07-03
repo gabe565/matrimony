@@ -81,6 +81,5 @@ func GetResponses(db *gorm.DB) http.HandlerFunc {
 		if err != nil {
 			panic(err)
 		}
-		return
 	}
 }

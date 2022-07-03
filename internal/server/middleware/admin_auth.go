@@ -23,7 +23,6 @@ func AdminAuth(next http.Handler) http.Handler {
 
 		w.Header().Add("WWW-Authenticate", `Basic realm="Admin"`)
 		w.WriteHeader(http.StatusUnauthorized)
-		return
 	})
 }
 

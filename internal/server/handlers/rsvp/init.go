@@ -102,6 +102,9 @@ func Init(db *gorm.DB) http.HandlerFunc {
 				panic(err)
 			}
 			err = db.Select("SessionPassword").Save(&queryGuest.Party).Error
+			if err != nil {
+				panic(err)
+			}
 		}
 
 		// Find guests in party
@@ -133,7 +136,9 @@ func Init(db *gorm.DB) http.HandlerFunc {
 			}
 
 			var rsvp map[string]any
-			err = json.Unmarshal(g.RSVP, &rsvp)
+			if err = json.Unmarshal(g.RSVP, &rsvp); err != nil {
+				panic(err)
+			}
 
 			response.Guests = append(response.Guests, guest{
 				ID:        g.ID,
@@ -151,6 +156,5 @@ func Init(db *gorm.DB) http.HandlerFunc {
 		if err != nil {
 			panic(err)
 		}
-		return
 	}
 }
