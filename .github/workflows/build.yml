@@ -60,10 +60,10 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      - name: Configure FontAwesome token
+        run: echo 'FONTAWESOME_NPM_AUTH_TOKEN=${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}' >> $GITHUB_ENV
       - name: Install dependencies
         run: npm --prefix frontend install --prefer-offline --no-audit
-        env:
-          FONTAWESOME_NPM_AUTH_TOKEN: ${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
       - run: npm --prefix frontend run lint
 
   build:
