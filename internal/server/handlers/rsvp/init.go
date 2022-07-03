@@ -136,8 +136,10 @@ func Init(db *gorm.DB) http.HandlerFunc {
 			}
 
 			var rsvp map[string]any
-			if err = json.Unmarshal(g.RSVP, &rsvp); err != nil {
-				panic(err)
+			if g.RSVP.String() != "" {
+				if err = json.Unmarshal(g.RSVP, &rsvp); err != nil {
+					panic(err)
+				}
 			}
 
 			response.Guests = append(response.Guests, guest{
