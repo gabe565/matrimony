@@ -102,7 +102,7 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	log.Println(fmt.Sprintf("Exported %d rows in %v", count, time.Since(start).Round(time.Millisecond)))
+	log.Printf("Exported %d rows in %v\n", count, time.Since(start).Round(time.Millisecond))
 }
 
 func guestFields(db *gorm.DB, guest models.Guest) ([]string, error) {

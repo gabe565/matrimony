@@ -66,7 +66,7 @@ func main() {
 
 		count += 1
 	}
-	log.Println(fmt.Sprintf("Imported %d rows", count))
+	log.Printf("Imported %d rows\n", count)
 }
 
 var ErrUnknownColumn = errors.New("unknown column")
