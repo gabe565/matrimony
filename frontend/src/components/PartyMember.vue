@@ -9,6 +9,8 @@
           <lazy-image
             :src="member.image"
             :alt="`Photo of ${member.first} ${member.last}`"
+            :fallback-icon="['fas', 'person']"
+            fallback-class="text-6xl sm:text-[9em] text-slate-300 dark:text-slate-700"
             class="flex-shrink-0 rounded-lg h-40 sm:h-60 xl:h-72 w-40 sm:w-60 xl:w-72 mb-2 pointer-events-none"
           />
           <h2
@@ -32,6 +34,7 @@
       <template #body>
         <div class="flex flex-shrink flex-col md:flex-row items-center">
           <lazy-image
+            v-if="member.image"
             :src="member.image"
             :alt="`Photo of ${member.first} ${member.last}`"
             class="flex-shrink-0 max-w-full rounded-lg h-80 w-80 mb-2 pointer-events-none"
