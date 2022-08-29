@@ -16,6 +16,9 @@ import {
   faPlus,
   faPenToSquare,
   faPerson,
+  faUser,
+  faUserGroup,
+  faTag,
 } from "@fortawesome/pro-solid-svg-icons";
 import { faRingsWedding, faPartyHorn } from "@fortawesome/pro-thin-svg-icons";
 import { faArrowRight, faArrowLeft } from "@fortawesome/pro-regular-svg-icons";
@@ -42,5 +45,8 @@ library.add(
   faPartyHorn,
   faPlus,
   faPenToSquare,
-  faPerson
+  faPerson,
+  faUser,
+  faUserGroup,
+  faTag
 );
