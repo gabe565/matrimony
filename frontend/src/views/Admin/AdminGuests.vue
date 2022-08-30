@@ -127,7 +127,7 @@ const columns = [
   {
     name: "party",
     label: "Party",
-    field: (val) => val.party.id,
+    field: (val) => val.party?.id || "",
   },
   {
     name: "first",
