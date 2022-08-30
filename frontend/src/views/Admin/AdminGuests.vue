@@ -23,45 +23,6 @@
         table-class="z-0"
         :fullscreen="fullscreen"
       >
-        <template #top-left>
-          <div class="flex">
-            <q-input
-              v-model="filters.name"
-              dense
-              debounce="300"
-              label="Name"
-              clearable
-            />
-
-            <q-toggle
-              v-model="filters.responded"
-              label="Responded"
-              toggle-indeterminate
-            />
-
-            <q-toggle
-              v-model="filters.attending"
-              label="Attending"
-              toggle-indeterminate
-            />
-
-            <q-toggle
-              v-model="filters.mail_invite"
-              label="Mail Invite"
-              toggle-indeterminate
-            />
-
-            <q-input
-              v-model="filters.party"
-              dense
-              debounce="300"
-              label="Party"
-              clearable
-              class="pl-3"
-            />
-          </div>
-        </template>
-
         <template #top-right>
           <q-select
             v-model="visibleColumns"
@@ -77,6 +38,61 @@
             options-cover
             style="min-width: 150px"
           />
+
+          <q-btn flat round dense :icon="fasFilter" class="q-ml-md">
+            <q-menu v-model="showFilters" class="q-pa-md">
+              <div class="row no-wrap items-center">
+                <div class="col">
+                  <div class="text-h6">Filters</div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <q-input
+                    v-model="filters.name"
+                    dense
+                    debounce="300"
+                    label="Name"
+                    clearable
+                  />
+
+                  <q-input
+                    v-model="filters.party"
+                    dense
+                    debounce="300"
+                    label="Party"
+                    clearable
+                  />
+
+                  <q-toggle
+                    v-model="filters.responded"
+                    label="Responded"
+                    toggle-indeterminate
+                  />
+
+                  <q-toggle
+                    v-model="filters.attending"
+                    label="Attending"
+                    toggle-indeterminate
+                  />
+
+                  <q-toggle
+                    v-model="filters.mail_invite"
+                    label="Mail Invite"
+                    toggle-indeterminate
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col text-right">
+                  <q-btn color="primary" @click="showFilters = !showFilters"
+                    >Close</q-btn
+                  >
+                </div>
+              </div>
+            </q-menu>
+          </q-btn>
 
           <q-btn
             flat
@@ -94,7 +110,11 @@
 
 <script setup>
 import { ref } from "vue";
-import { fasExpand, fasCompress } from "@quasar/extras/fontawesome-v6";
+import {
+  fasExpand,
+  fasCompress,
+  fasFilter,
+} from "@quasar/extras/fontawesome-v6";
 
 const loading = ref(true);
 const guests = ref([]);
@@ -193,6 +213,7 @@ const visibleColumns = ref(
 
 const fullscreen = ref(false);
 const filters = ref({});
+const showFilters = ref(false);
 
 const filterName = (filter, row) => {
   if (filter) {
