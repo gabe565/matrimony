@@ -128,6 +128,7 @@ const columns = [
     name: "party",
     label: "Party",
     field: (val) => val.party?.id || "",
+    sortable: true,
   },
   {
     name: "first",
@@ -194,6 +195,7 @@ const columns = [
     label: "Mailing Address",
     align: "left",
     field: (val) => val.rsvp?.["Mailing Address"] || "",
+    sortable: true,
     hidden: true,
   },
   {
