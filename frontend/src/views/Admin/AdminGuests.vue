@@ -12,6 +12,7 @@
         :loading="loading"
         :rows="guests"
         :columns="columns"
+        :visible-columns="visibleColumns"
         row-key="id"
         :pagination="{ rowsPerPage: 0 }"
         virtual-scroll
@@ -62,6 +63,21 @@
         </template>
 
         <template #top-right>
+          <q-select
+            v-model="visibleColumns"
+            multiple
+            outlined
+            dense
+            options-dense
+            :display-value="$q.lang.table.columns"
+            emit-value
+            map-options
+            :options="columns"
+            option-value="name"
+            options-cover
+            style="min-width: 150px"
+          />
+
           <q-btn
             flat
             round
@@ -143,6 +159,7 @@ const columns = [
     align: "left",
     field: (val) => val.rsvp?.["How do you know the couple"] || "",
     sortable: true,
+    hidden: true,
   },
   {
     name: "mail_invite",
@@ -150,12 +167,14 @@ const columns = [
     align: "left",
     field: (val) => val.rsvp?.["Mail Invitation"] || "",
     sortable: true,
+    hidden: true,
   },
   {
     name: "address",
     label: "Mailing Address",
     align: "left",
     field: (val) => val.rsvp?.["Mailing Address"] || "",
+    hidden: true,
   },
   {
     name: "updatedAt",
@@ -168,6 +187,9 @@ const columns = [
     sortOrder: "da",
   },
 ];
+const visibleColumns = ref(
+  columns.filter((col) => !col.hidden).map((col) => col.name)
+);
 
 const fullscreen = ref(false);
 const filters = ref({});
