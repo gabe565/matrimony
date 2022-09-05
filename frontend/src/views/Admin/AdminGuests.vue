@@ -125,6 +125,13 @@ fetch("/api/guest").then(async (r) => {
 
 const columns = [
   {
+    name: "id",
+    label: "ID",
+    field: "id",
+    sortable: true,
+    hidden: true,
+  },
+  {
     name: "party",
     label: "Party",
     field: (val) => val.party?.id || "",
