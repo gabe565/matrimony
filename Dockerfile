@@ -30,6 +30,13 @@ WORKDIR /app
 COPY --from=go-builder /app/matrimony ./
 COPY --from=node-builder /app/dist frontend/
 
+ARG USERNAME=matrimony
+ARG UID=1000
+ARG GID=$UID
+RUN addgroup -g "$GID" "$USERNAME" \
+    && adduser -S -u "$UID" -G "$USERNAME" "$USERNAME"
+USER $USERNAME
+
 ENV MATRIMONY_ADDRESS ":80"
 ENV MATRIMONY_DATA "/data"
 CMD ["./matrimony"]
