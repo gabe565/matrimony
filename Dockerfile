@@ -37,6 +37,8 @@ RUN addgroup -g "$GID" "$USERNAME" \
     && adduser -S -u "$UID" -G "$USERNAME" "$USERNAME"
 USER $USERNAME
 
+VOLUME /data
+
 ENV MATRIMONY_ADDRESS ":80"
 ENV MATRIMONY_DATA "/data"
 CMD ["./matrimony"]
