@@ -7,7 +7,7 @@ repos:
       - id: go-vet
       - id: golangci-lint
   - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v8.20.0
+    rev: v8.24.0
     hooks:
       - id: eslint
         files: '^frontend/src'
