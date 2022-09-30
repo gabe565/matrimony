@@ -34,7 +34,7 @@
     "vue": "^3.2.39",
     "vue-markdown-render": "^2.0.0",
     "vue-router": "^4.1.5",
-    "vue3-lazyload": "^0.2.5-beta",
+    "vue3-lazyload": "^0.3.6",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
