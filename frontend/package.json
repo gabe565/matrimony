@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.19.1",
-    "@fontsource/dancing-script": "^4.5.3",
+    "@fontsource/dancing-script": "^4.5.9",
     "@fortawesome/fontawesome-pro": "^6.2.0",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/pro-duotone-svg-icons": "^6.0.0-beta3",
@@ -28,7 +28,7 @@
     "autoprefixer": "^10.4.12",
     "dayjs": "^1.11.5",
     "postcss": "^8.4.16",
-    "quasar": "^2.8.3",
+    "quasar": "^2.8.4",
     "tailwindcss": "^3.1.8",
     "vite": "^2.7.13",
     "vue": "^3.2.39",
