@@ -3,7 +3,6 @@ name: Build
 on: push
 
 env:
-  go_version: "1.18"
   node_version: "14"
 
 jobs:
@@ -16,7 +15,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: ^${{ env.go_version }}
+          go-version-file: go.mod
       - name: Lint
         uses: golangci/golangci-lint-action@v3
         with:
@@ -32,7 +31,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: ^${{ env.go_version }}
+          go-version-file: go.mod
       - uses: actions/cache@v3
         with:
           path: ~/go/pkg/mod
