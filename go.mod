@@ -9,7 +9,7 @@ require (
 	github.com/go-chi/httprate v0.7.0
 	github.com/go-chi/render v1.0.2
 	github.com/google/uuid v1.3.0
-	github.com/gosimple/slug v1.12.0
+	github.com/gosimple/slug v1.13.0
 	github.com/mattn/go-sqlite3 v1.14.15
 	github.com/spf13/pflag v1.0.5
 	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa
