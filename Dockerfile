@@ -27,6 +27,9 @@ RUN npm run build
 FROM alpine
 LABEL org.opencontainers.image.source="https://github.com/gabe565/matrimony"
 WORKDIR /app
+
+RUN apk add --no-cache tzdata
+
 COPY --from=go-builder /app/matrimony ./
 COPY --from=node-builder /app/dist frontend/
 
