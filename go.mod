@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/arran4/golang-ical v0.0.0-20220517104411-fd89fefb0182
-	github.com/fsnotify/fsnotify v1.5.4
+	github.com/fsnotify/fsnotify v1.6.0
 	github.com/go-chi/chi/v5 v5.0.7
 	github.com/go-chi/httprate v0.7.0
 	github.com/go-chi/render v1.0.2
@@ -26,6 +26,6 @@ require (
 	github.com/gosimple/unidecode v1.0.1 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
-	golang.org/x/sys v0.0.0-20220811171246-fbc7d0a398ab // indirect
+	golang.org/x/sys v0.0.0-20220908164124-27713097b956 // indirect
 	gorm.io/driver/mysql v1.3.6 // indirect
 )
