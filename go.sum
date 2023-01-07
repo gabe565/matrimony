@@ -5,8 +5,8 @@ github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03
 github.com/Masterminds/semver/v3 v3.1.1/go.mod h1:VPu/7SZ7ePZ3QOrcuXROw5FAcLl4a0cBrbBpGY/8hQs=
 github.com/ajg/form v1.5.1 h1:t9c7v8JUKu/XxOGBU0yjNpaMloxGEJhUkqFRq0ibGeU=
 github.com/ajg/form v1.5.1/go.mod h1:uL1WgH+h2mgNtvBq0339dVnzXdBETtL2LeUXaIv25UY=
-github.com/arran4/golang-ical v0.0.0-20220517104411-fd89fefb0182 h1:mUsKridvWp4dgfkO/QWtgGwuLtZYpjKgsm15JRRik3o=
-github.com/arran4/golang-ical v0.0.0-20220517104411-fd89fefb0182/go.mod h1:BSTTrYHuM12oAL8jDdcmPdw02SBThKYWNFHQlvEG6b0=
+github.com/arran4/golang-ical v0.0.0-20221122102835-109346913e54 h1:HfAA5Vxbo64UTckj+EW/hfBjvvcUcbcwWCASvypy8JU=
+github.com/arran4/golang-ical v0.0.0-20221122102835-109346913e54/go.mod h1:BSTTrYHuM12oAL8jDdcmPdw02SBThKYWNFHQlvEG6b0=
 github.com/cespare/xxhash/v2 v2.1.2 h1:YRXhKfTDauu4ajMg1TPgFO5jnlC2HCbmLXMcTG5cbYE=
 github.com/cespare/xxhash/v2 v2.1.2/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XLFGgcrjCOs=
 github.com/cockroachdb/apd v1.1.0/go.mod h1:8Sl8LxpKi29FqWXR16WEFZRNSz3SoPzUzeMeY4+DwBQ=

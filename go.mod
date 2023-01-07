@@ -3,7 +3,7 @@ module github.com/gabe565/matrimony
 go 1.18
 
 require (
-	github.com/arran4/golang-ical v0.0.0-20220517104411-fd89fefb0182
+	github.com/arran4/golang-ical v0.0.0-20221122102835-109346913e54
 	github.com/fsnotify/fsnotify v1.6.0
 	github.com/go-chi/chi/v5 v5.0.7
 	github.com/go-chi/httprate v0.7.0
