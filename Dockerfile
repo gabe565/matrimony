@@ -1,7 +1,4 @@
-ARG GO_VERSION=1.19
-ARG NODE_VERSION=16
-
-FROM golang:$GO_VERSION-alpine as go-builder
+FROM golang:1.19-alpine as go-builder
 WORKDIR /app
 
 RUN apk add --no-cache gcc musl-dev
@@ -14,7 +11,7 @@ COPY internal/ internal/
 RUN go build -ldflags="-w -s"
 
 
-FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-alpine AS node-builder
+FROM --platform=$BUILDPLATFORM node:16-alpine AS node-builder
 WORKDIR /app
 
 COPY frontend/package.json frontend/package-lock.json frontend/.npmrc ./
