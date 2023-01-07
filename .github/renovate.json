@@ -40,6 +40,10 @@
     {
       "matchManagers": ["github-actions"],
       "automerge": true
+    },
+    {
+      "matchPackageNames": ["github.com/mattn/go-sqlite3"],
+      "allowedVersions": "< 2"
     }
   ],
   "hostRules": [
