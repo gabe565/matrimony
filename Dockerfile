@@ -11,7 +11,7 @@ COPY internal/ internal/
 RUN go build -ldflags="-w -s"
 
 
-FROM --platform=$BUILDPLATFORM node:16-alpine AS node-builder
+FROM --platform=$BUILDPLATFORM node:18-alpine AS node-builder
 WORKDIR /app
 
 COPY frontend/package.json frontend/package-lock.json frontend/.npmrc ./
