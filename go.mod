@@ -12,7 +12,7 @@ require (
 	github.com/gosimple/slug v1.13.1
 	github.com/mattn/go-sqlite3 v1.14.16
 	github.com/spf13/pflag v1.0.5
-	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa
+	golang.org/x/crypto v0.5.0
 	gopkg.in/yaml.v3 v3.0.1
 	gorm.io/datatypes v1.0.7
 	gorm.io/driver/sqlite v1.4.4
@@ -26,6 +26,6 @@ require (
 	github.com/gosimple/unidecode v1.0.1 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
-	golang.org/x/sys v0.0.0-20220908164124-27713097b956 // indirect
+	golang.org/x/sys v0.4.0 // indirect
 	gorm.io/driver/mysql v1.3.6 // indirect
 )
