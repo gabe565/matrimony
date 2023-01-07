@@ -66,7 +66,7 @@ jobs:
           images: |
             ghcr.io/gabe565/matrimony
           tags: |
-            type=raw,priority=1000,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,priority=1000,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
             type=ref,event=branch
             type=sha
       - name: Set up QEMU
