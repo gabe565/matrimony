@@ -28,7 +28,7 @@
     "autoprefixer": "10.4.13",
     "dayjs": "1.11.7",
     "postcss": "8.4.21",
-    "quasar": "2.10.0",
+    "quasar": "2.11.4",
     "tailwindcss": "3.2.4",
     "vite": "2.9.15",
     "vue": "3.2.41",
