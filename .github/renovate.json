@@ -1,45 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
-  ],
-  "ignorePresets": [":prHourlyLimit2"],
-  "labels": [
-    "dependencies",
-    "{{datasource}}",
-    "{{updateType}}"
-  ],
-  "commitMessagePrefix": ":arrow_up:",
-  "regexManagers": [
-    {
-      "fileMatch": ["Dockerfile"],
-      "matchStrings": ["node:(?<currentValue>.+)-alpine"],
-      "depNameTemplate": "node",
-      "datasourceTemplate": "node",
-      "versioningTemplate": "node"
-    }
+    "github>gabe565/renovate-config"
   ],
   "packageRules": [
     {
-      "matchUpdateTypes": ["lockFileMaintenance", "pin"],
-      "commitMessagePrefix": ":pushpin:"
-    },
-    {
-      "matchUpdateTypes": ["rollback"],
-      "commitMessagePrefix": ":arrow_down:"
-    },
-    {
-      "matchManagers": ["dockerfile"],
-      "matchPackageNames": ["node"],
-      "enabled": false
-    },
-    {
       "matchPackageNames": ["sass"],
       "allowedVersions": "<= 1.32"
-    },
-    {
-      "matchManagers": ["github-actions"],
-      "automerge": true
     },
     {
       "matchPackageNames": ["github.com/mattn/go-sqlite3"],
