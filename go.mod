@@ -6,7 +6,7 @@ require (
 	github.com/arran4/golang-ical v0.0.0-20221122102835-109346913e54
 	github.com/fsnotify/fsnotify v1.6.0
 	github.com/go-chi/chi/v5 v5.0.8
-	github.com/go-chi/httprate v0.7.0
+	github.com/go-chi/httprate v0.7.1
 	github.com/go-chi/render v1.0.2
 	github.com/google/uuid v1.3.0
 	github.com/gosimple/slug v1.13.1
