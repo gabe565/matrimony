@@ -1,6 +1,6 @@
 module github.com/gabe565/matrimony
 
-go 1.18
+go 1.19
 
 require (
 	github.com/arran4/golang-ical v0.0.0-20221122102835-109346913e54
