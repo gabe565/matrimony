@@ -29,7 +29,7 @@
     "dayjs": "1.11.7",
     "postcss": "8.4.21",
     "quasar": "2.11.6",
-    "tailwindcss": "3.2.6",
+    "tailwindcss": "3.2.7",
     "vite": "4.1.1",
     "vue": "3.2.47",
     "vue-markdown-render": "2.0.1",
