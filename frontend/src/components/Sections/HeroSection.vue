@@ -8,7 +8,7 @@
   </div>
 
   <div
-    class="sticky top-0 -z-10 container mx-auto pb-2 lg:pb-6 h-screen flex flex-col justify-center text-center pt-20 lg:pt-0 text-accent-50"
+    class="sticky top-0 -z-10 container mx-auto pb-2 lg:pb-6 h-screen flex flex-col justify-center text-center pt-20 text-accent-50"
   >
     <div class="h-[40rem] lg:h-[48rem] w-full relative">
       <!-- Image -->
