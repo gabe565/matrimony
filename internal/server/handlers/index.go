@@ -1,13 +1,14 @@
 package handlers
 
 import (
-	"github.com/gabe565/matrimony/internal/config"
-	"github.com/gabe565/matrimony/internal/server/helpers"
 	"html/template"
 	"io/fs"
 	"net/http"
 	"os"
 	"path"
+
+	"github.com/gabe565/matrimony/internal/config"
+	"github.com/gabe565/matrimony/internal/server/helpers"
 )
 
 func GetIndex(rootFs fs.FS) http.HandlerFunc {

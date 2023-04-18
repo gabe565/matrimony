@@ -1,9 +1,10 @@
 package config
 
 import (
-	"github.com/gabe565/matrimony/internal/config/models"
 	"log"
 	"time"
+
+	"github.com/gabe565/matrimony/internal/config/models"
 )
 
 func ExampleConfig() *models.Config {

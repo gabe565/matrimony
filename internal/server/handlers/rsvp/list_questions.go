@@ -1,10 +1,11 @@
 package rsvp
 
 import (
+	"net/http"
+
 	"github.com/gabe565/matrimony/internal/config"
 	configModels "github.com/gabe565/matrimony/internal/config/models"
 	"github.com/go-chi/render"
-	"net/http"
 )
 
 type ListQuestionsResponse []configModels.Questions

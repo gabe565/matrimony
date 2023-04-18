@@ -3,19 +3,22 @@ package handlers
 import (
 	"errors"
 	"fmt"
+	"net/http"
+	"strconv"
+	"time"
+
 	"github.com/arran4/golang-ical"
 	"github.com/gabe565/matrimony/internal/config"
 	"github.com/gabe565/matrimony/internal/server/helpers"
 	"github.com/go-chi/chi/v5"
 	"github.com/google/uuid"
 	"github.com/gosimple/slug"
-	"net/http"
-	"strconv"
-	"time"
 )
 
-var ErrInvalidSection = errors.New("invalid section")
-var ErrInvalidEvent = errors.New("invalid event")
+var (
+	ErrInvalidSection = errors.New("invalid section")
+	ErrInvalidEvent   = errors.New("invalid event")
+)
 
 func GetIcal() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {

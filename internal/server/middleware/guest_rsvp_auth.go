@@ -3,9 +3,10 @@ package middleware
 import (
 	"context"
 	"encoding/json"
+	"net/http"
+
 	"github.com/gabe565/matrimony/internal/database/models"
 	"gorm.io/gorm"
-	"net/http"
 )
 
 type ContextKey string

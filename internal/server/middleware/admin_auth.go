@@ -1,9 +1,10 @@
 package middleware
 
 import (
+	"net/http"
+
 	"github.com/gabe565/matrimony/internal/config"
 	"github.com/gabe565/matrimony/internal/config/models"
-	"net/http"
 )
 
 func AdminAuth(next http.Handler) http.Handler {

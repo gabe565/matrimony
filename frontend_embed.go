@@ -11,5 +11,7 @@ import "embed"
 //go:embed frontend/dist
 var embeddedFrontend embed.FS
 
-var defaultFrontend string
-var frontendHelpExt = " If left empty, embedded assets are used."
+var (
+	defaultFrontend string
+	frontendHelpExt = " If left empty, embedded assets are used."
+)

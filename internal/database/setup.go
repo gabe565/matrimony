@@ -1,22 +1,21 @@
 package database
 
 import (
+	"log"
+	"os"
+	"time"
+
 	"github.com/gabe565/matrimony/internal/database/models"
 	"github.com/gabe565/matrimony/internal/datadir"
 	flag "github.com/spf13/pflag"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"log"
-	"os"
-	"time"
 )
 
 const DefaultFilename = "database.sqlite3"
 
-var (
-	Filepath string
-)
+var Filepath string
 
 func init() {
 	flag.StringVar(&Filepath, "db-file", DefaultFilepath(), "SQLite database filename")

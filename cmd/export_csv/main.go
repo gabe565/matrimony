@@ -5,14 +5,15 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/gabe565/matrimony/internal/database"
-	"github.com/gabe565/matrimony/internal/database/models"
-	flag "github.com/spf13/pflag"
-	"gorm.io/gorm"
 	"log"
 	"os"
 	"strings"
 	"time"
+
+	"github.com/gabe565/matrimony/internal/database"
+	"github.com/gabe565/matrimony/internal/database/models"
+	flag "github.com/spf13/pflag"
+	"gorm.io/gorm"
 )
 
 var ErrInvalidFieldNum = errors.New("invalid number of fields")
@@ -23,7 +24,7 @@ func main() {
 	filename := flag.StringP("filename", "f", "./data/export.csv", "Guest list csv")
 	flag.Parse()
 
-	f, err := os.OpenFile(*filename, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
+	f, err := os.OpenFile(*filename, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0o644)
 	if err != nil {
 		log.Fatalln(err)
 	}

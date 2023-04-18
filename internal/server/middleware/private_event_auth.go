@@ -1,10 +1,11 @@
 package middleware
 
 import (
+	"net/http"
+
 	"github.com/gabe565/matrimony/internal/config"
 	"github.com/gabe565/matrimony/internal/config/models"
 	"github.com/go-chi/chi/v5/middleware"
-	"net/http"
 )
 
 func PrivateEventAuth(next http.Handler) http.Handler {

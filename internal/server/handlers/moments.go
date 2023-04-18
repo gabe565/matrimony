@@ -2,15 +2,18 @@ package handlers
 
 import (
 	"encoding/json"
-	"github.com/gabe565/matrimony/internal/datadir"
 	"io/fs"
 	"net/http"
 	"path"
 	"strings"
+
+	"github.com/gabe565/matrimony/internal/datadir"
 )
 
-const MomentsDir = "moments"
-const ThumbDir = ".thumb"
+const (
+	MomentsDir = "moments"
+	ThumbDir   = ".thumb"
+)
 
 func ListMoments(fsys fs.FS) http.HandlerFunc {
 	type photo struct {

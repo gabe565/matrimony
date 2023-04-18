@@ -1,8 +1,9 @@
 package datadir
 
 import (
-	flag "github.com/spf13/pflag"
 	"path/filepath"
+
+	flag "github.com/spf13/pflag"
 )
 
 const Default = "data"

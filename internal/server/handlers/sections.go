@@ -2,8 +2,9 @@ package handlers
 
 import (
 	"encoding/json"
-	"github.com/gabe565/matrimony/internal/config"
 	"net/http"
+
+	"github.com/gabe565/matrimony/internal/config"
 )
 
 func ListSections(w http.ResponseWriter, r *http.Request) {

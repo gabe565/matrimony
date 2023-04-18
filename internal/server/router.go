@@ -1,6 +1,12 @@
 package server
 
 import (
+	"io/fs"
+	"net/http"
+	"os"
+	"strings"
+	"time"
+
 	"github.com/gabe565/matrimony/internal/server/handlers"
 	"github.com/gabe565/matrimony/internal/server/handlers/rsvp"
 	middleware2 "github.com/gabe565/matrimony/internal/server/middleware"
@@ -10,11 +16,6 @@ import (
 	"github.com/go-chi/httprate"
 	"github.com/go-chi/render"
 	"gorm.io/gorm"
-	"io/fs"
-	"net/http"
-	"os"
-	"strings"
-	"time"
 )
 
 func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
@@ -71,7 +72,6 @@ func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 				r.Get("/moments", handlers.ListMoments(dataFs))
 				r.Get("/ical/{section}/{key}", handlers.GetIcal())
 				r.Get("/rsvp/questions", rsvp.ListQuestions)
-
 			})
 
 			r.Group(func(r chi.Router) {
@@ -83,7 +83,6 @@ func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 					r.Post("/rsvp/guest/add", rsvp.CreateGuest(db))
 				})
 			})
-
 		})
 
 		r.Group(func(r chi.Router) {

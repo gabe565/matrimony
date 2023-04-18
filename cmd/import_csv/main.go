@@ -5,14 +5,15 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/gabe565/matrimony/internal/database"
-	"github.com/gabe565/matrimony/internal/database/models"
-	flag "github.com/spf13/pflag"
-	"gorm.io/gorm"
 	"io"
 	"log"
 	"os"
 	"strings"
+
+	"github.com/gabe565/matrimony/internal/database"
+	"github.com/gabe565/matrimony/internal/database/models"
+	flag "github.com/spf13/pflag"
+	"gorm.io/gorm"
 )
 
 func main() {

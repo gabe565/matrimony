@@ -1,10 +1,11 @@
 package handlers
 
 import (
+	"net/http"
+
 	"github.com/gabe565/matrimony/internal/config"
 	"github.com/gabe565/matrimony/internal/config/models"
 	"github.com/go-chi/render"
-	"net/http"
 )
 
 type GetConfigResponse models.Config

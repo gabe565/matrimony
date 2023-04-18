@@ -1,12 +1,15 @@
 package models
 
 import (
-	"github.com/go-chi/render"
 	"net/http"
+
+	"github.com/go-chi/render"
 )
 
-var ErrUnauthorized = CreateErrorFromStatusCode(http.StatusUnauthorized)
-var ErrNotFound = CreateErrorFromStatusCode(http.StatusNotFound)
+var (
+	ErrUnauthorized = CreateErrorFromStatusCode(http.StatusUnauthorized)
+	ErrNotFound     = CreateErrorFromStatusCode(http.StatusNotFound)
+)
 
 type ErrorResponse struct {
 	Message    string `json:"error"`

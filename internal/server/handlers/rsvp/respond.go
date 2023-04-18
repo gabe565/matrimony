@@ -2,11 +2,12 @@ package rsvp
 
 import (
 	"encoding/json"
+	"net/http"
+
 	"github.com/gabe565/matrimony/internal/database/models"
 	httpModels "github.com/gabe565/matrimony/internal/server/models"
 	"github.com/go-chi/render"
 	"gorm.io/gorm"
-	"net/http"
 )
 
 type RespondRequest struct {

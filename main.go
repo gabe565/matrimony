@@ -2,16 +2,17 @@ package main
 
 import (
 	"fmt"
-	"github.com/gabe565/matrimony/internal/config"
-	"github.com/gabe565/matrimony/internal/database"
-	"github.com/gabe565/matrimony/internal/datadir"
-	"github.com/gabe565/matrimony/internal/server"
-	flag "github.com/spf13/pflag"
 	"io/fs"
 	"log"
 	"net/http"
 	"os"
 	"strings"
+
+	"github.com/gabe565/matrimony/internal/config"
+	"github.com/gabe565/matrimony/internal/database"
+	"github.com/gabe565/matrimony/internal/datadir"
+	"github.com/gabe565/matrimony/internal/server"
+	flag "github.com/spf13/pflag"
 )
 
 const EnvPrefix = "MATRIMONY_"

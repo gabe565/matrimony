@@ -1,9 +1,10 @@
 package config
 
 import (
+	"log"
+
 	"github.com/fsnotify/fsnotify"
 	"github.com/gabe565/matrimony/internal/datadir"
-	"log"
 )
 
 func Watcher() {

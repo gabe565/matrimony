@@ -2,11 +2,12 @@ package handlers
 
 import (
 	"encoding/json"
-	"github.com/gabe565/matrimony/internal/config"
-	"github.com/go-chi/render"
 	"io/fs"
 	"net/http"
 	"os"
+
+	"github.com/gabe565/matrimony/internal/config"
+	"github.com/go-chi/render"
 )
 
 type ManifestResponse struct {

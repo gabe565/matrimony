@@ -2,14 +2,15 @@ package config
 
 import (
 	"errors"
-	"github.com/gabe565/matrimony/internal/config/models"
-	"github.com/gabe565/matrimony/internal/datadir"
-	flag "github.com/spf13/pflag"
-	"gopkg.in/yaml.v3"
 	"log"
 	"os"
 	"path/filepath"
 	"sync"
+
+	"github.com/gabe565/matrimony/internal/config/models"
+	"github.com/gabe565/matrimony/internal/datadir"
+	flag "github.com/spf13/pflag"
+	"gopkg.in/yaml.v3"
 )
 
 const DefaultFilename = "matrimony.yaml"
@@ -99,7 +100,7 @@ func SaveConfig() error {
 func saveConfig(conf *models.Config, confpath string) (err error) {
 	dir := filepath.Dir(confpath)
 	if _, err := os.Stat(dir); os.IsNotExist(err) {
-		err = os.Mkdir(dir, 0755)
+		err = os.Mkdir(dir, 0o755)
 		if err != nil {
 			return err
 		}
@@ -108,7 +109,7 @@ func saveConfig(conf *models.Config, confpath string) (err error) {
 	mu.Lock()
 	defer mu.Unlock()
 
-	out, err := os.OpenFile(confpath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
+	out, err := os.OpenFile(confpath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0o644)
 	if err != nil {
 		return err
 	}

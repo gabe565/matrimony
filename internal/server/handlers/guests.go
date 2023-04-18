@@ -3,12 +3,13 @@ package handlers
 import (
 	"encoding/json"
 	"errors"
+	"net/http"
+
 	"github.com/gabe565/matrimony/internal/database/models"
 	"github.com/go-chi/chi/v5"
 	"github.com/mattn/go-sqlite3"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
-	"net/http"
 )
 
 func ListGuests(db *gorm.DB) http.HandlerFunc {

@@ -2,9 +2,10 @@ package handlers
 
 import (
 	"encoding/json"
+	"net/http"
+
 	"github.com/gabe565/matrimony/internal/config"
 	"github.com/gabe565/matrimony/internal/config/models"
-	"net/http"
 )
 
 func ListParty(w http.ResponseWriter, r *http.Request) {
