@@ -8,7 +8,7 @@ RUN go mod download
 
 COPY *.go .
 COPY internal/ internal/
-RUN go build -ldflags="-w -s"
+RUN go build -ldflags="-w -s" -trimpath
 
 
 FROM --platform=$BUILDPLATFORM node:18-alpine AS node-builder
