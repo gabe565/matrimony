@@ -9,7 +9,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "@babel/eslint-parser": "7.19.1",
+    "@babel/eslint-parser": "7.22.5",
     "@fontsource/dancing-script": "4.5.11",
     "@fortawesome/fontawesome-pro": "6.3.0",
     "@fortawesome/fontawesome-svg-core": "6.3.0",
