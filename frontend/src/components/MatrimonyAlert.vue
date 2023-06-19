@@ -6,12 +6,14 @@
       <slot />
     </div>
     <a href="#" @click.prevent="$emit('dismiss')">
-      <font-awesome-icon :icon="['fas', 'xmark']" class="text-xl" />
+      <close-icon class="text-xl" />
     </a>
   </div>
 </template>
 
 <script setup>
+import CloseIcon from "~icons/mdi/window-close";
+
 defineEmits(["dismiss"]);
 </script>
 

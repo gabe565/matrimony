@@ -26,7 +26,7 @@
           @click.prevent="$router.back()"
         >
           <template #prefix-icon>
-            <font-awesome-icon :icon="['far', 'arrow-left']" class="mr-2" />
+            <arrow-left-icon class="mr-1" />
           </template>
           Back
         </matrimony-button>
@@ -39,6 +39,7 @@
 
 <script setup>
 import { reactive, ref } from "vue";
+import ArrowLeftIcon from "~icons/solar/alt-arrow-left-bold";
 import LazyImage from "../components/LazyImage.vue";
 import MatrimonyButton from "../components/MatrimonyButton.vue";
 import PhotoModal from "../components/Moments/PhotoModal.vue";

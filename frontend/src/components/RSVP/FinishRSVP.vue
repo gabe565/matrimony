@@ -8,13 +8,13 @@
     <matrimony-button-group class="mx-auto">
       <matrimony-button size="xl" @click.prevent="router.back()">
         <template #prefix-icon>
-          <font-awesome-icon :icon="['fas', 'pencil']" class="fa-fw" />
+          <edit-icon class="mr-1" />
         </template>
         Edit RSVP
       </matrimony-button>
       <matrimony-button to="/" size="xl">
         <template #prefix-icon>
-          <font-awesome-icon :icon="['fas', 'house']" class="fa-fw" />
+          <home-icon class="mr-1" />
         </template>
         Back to site
       </matrimony-button>
@@ -24,6 +24,8 @@
 
 <script setup>
 import { useRouter } from "vue-router";
+import EditIcon from "~icons/mdi/pencil";
+import HomeIcon from "~icons/mdi/home";
 import MatrimonyButton from "../MatrimonyButton.vue";
 import MatrimonyButtonGroup from "../MatrimonyButtonGroup.vue";
 

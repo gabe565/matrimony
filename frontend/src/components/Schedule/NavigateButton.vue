@@ -6,12 +6,13 @@
   >
     Navigate
     <template #icon>
-      <font-awesome-icon :icon="['fas', 'diamond-turn-right']" class="ml-2" />
+      <navigate-icon class="ml-2" />
     </template>
   </matrimony-button>
 </template>
 
 <script setup>
+import NavigateIcon from "~icons/solar/map-arrow-up-bold";
 import MatrimonyButton from "../MatrimonyButton.vue";
 
 defineProps({

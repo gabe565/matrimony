@@ -18,9 +18,8 @@
         :class="[atHero ? 'text-5xl mb-4' : 'text-3xl mb-2']"
         to="/#top"
       >
-        <font-awesome-icon
-          :icon="['fat', 'rings-wedding']"
-          class="lg:mr-3"
+        <rings-wedding-icon
+          class="lg:mr-3 w-[1em] h-[1em]"
           :class="[atHero ? 'mr-3' : 'mr-2']"
         />
         <span
@@ -29,9 +28,9 @@
         />
         <span v-else class="flex items-center">
           <template v-for="e in title">
-            <font-awesome-icon
+            <component
+              :is="e.icon"
               v-if="e.icon"
-              :icon="['fas', e.icon]"
               class="lg:mx-2 lg:text-lg motion-safe:animate-pulse"
               :class="[atHero ? 'text-lg mx-2' : 'text-sm mx-1.5']"
             />
@@ -59,10 +58,7 @@
         >
           RSVP
           <template #icon>
-            <font-awesome-icon
-              :icon="['fas', 'calendar-lines-pen']"
-              class="ml-2"
-            />
+            <rsvp-icon class="ml-2" />
           </template>
         </matrimony-button>
       </transition>
@@ -73,6 +69,9 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
+import RingsWeddingIcon from "~icons/matrimony/rings-wedding-thin";
+import HeartIcon from "~icons/mdi/heart";
+import RsvpIcon from "~icons/solar/calendar-bold";
 import { throttle } from "../util/throttle";
 import MatrimonyButton from "./MatrimonyButton.vue";
 import { passiveEventHandlerSupported } from "../util/passiveEventHandlerSupported";
@@ -91,7 +90,7 @@ const title = computed(() => {
   for (const [key, partner] of props.partners.entries()) {
     result.push({ text: partner.first });
     if (key !== props.partners.length - 1) {
-      result.push({ icon: "heart" });
+      result.push({ icon: HeartIcon });
     }
   }
   return result;

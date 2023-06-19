@@ -2,10 +2,7 @@
   <span
     class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900"
   >
-    <font-awesome-icon
-      :icon="['fas', 'calendar']"
-      class="w-3 h-3 text-blue-600 dark:text-blue-400"
-    />
+    <calendar-icon class="w-3 h-3 text-blue-600 dark:text-blue-400" />
   </span>
   <time
     class="mb-1 text-sm font-normal leading-none text-slate-400 dark:text-slate-500"
@@ -50,6 +47,7 @@
 
 <script setup>
 import { computed } from "vue";
+import CalendarIcon from "~icons/solar/calendar-minimalistic-bold";
 import MatrimonyButtonGroup from "./MatrimonyButtonGroup.vue";
 import NavigateButton from "./Schedule/NavigateButton.vue";
 import CalendarButton from "./Schedule/CalendarButton.vue";

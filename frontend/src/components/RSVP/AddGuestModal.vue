@@ -5,7 +5,7 @@
     <template #activator="{ on, attrs }">
       <matrimony-button v-bind="attrs" @click.prevent="on.click">
         <template #prefix-icon>
-          <font-awesome-icon :icon="['fas', 'plus']" class="text-xl" />
+          <add-icon class="pr-1 text-xl" />
         </template>
         Add a Guest
       </matrimony-button>
@@ -44,17 +44,14 @@
     <template #footer="{ toggle }">
       <matrimony-button color="alt" @click.prevent="toggle">
         <template #prefix-icon>
-          <font-awesome-icon :icon="['fas', 'xmark']" class="text-xl fa-fw" />
+          <close-icon class="text-xl pr-1" />
         </template>
         Cancel
       </matrimony-button>
       <matrimony-button @click.prevent="onSubmit(toggle)">
         <template #prefix-icon>
-          <font-awesome-icon
-            :icon="loading ? ['fad', 'spinner-third'] : ['fas', 'plus']"
-            :class="{ 'animate-spin': loading }"
-            class="text-xl fa-fw"
-          />
+          <spinner-icon v-if="loading" class="pr-1 animate-spin text-xl" />
+          <add-icon class="pr-1 text-xl" />
         </template>
         Add
       </matrimony-button>
@@ -67,6 +64,9 @@ import { ref } from "vue";
 import { useStore } from "vuex";
 import { required } from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
+import AddIcon from "~icons/mdi/account-plus";
+import SpinnerIcon from "~icons/gg/spinner";
+import CloseIcon from "~icons/mdi/window-close";
 import MatrimonyModal from "../MatrimonyModal.vue";
 import MatrimonyButton from "../MatrimonyButton.vue";
 import InputField from "../Forms/InputField.vue";

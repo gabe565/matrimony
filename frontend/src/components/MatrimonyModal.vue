@@ -41,7 +41,7 @@
                 size="icon"
                 @click.prevent="toggle"
               >
-                <font-awesome-icon :icon="['fas', 'xmark']" class="text-lg" />
+                <close-icon class="text-lg" />
               </matrimony-button>
             </div>
             <!-- Modal body -->
@@ -66,6 +66,7 @@
 <script setup>
 import { onUnmounted, ref, watch, watchEffect } from "vue";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
+import CloseIcon from "~icons/mdi/window-close";
 import MatrimonyButton from "./MatrimonyButton.vue";
 
 const props = defineProps({

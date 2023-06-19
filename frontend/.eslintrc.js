@@ -23,5 +23,7 @@ module.exports = {
     "vue/require-v-for-key": "off",
     "vue/valid-v-for": "off",
     "no-labels": ["error", { allowLoop: true }],
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
   },
 };

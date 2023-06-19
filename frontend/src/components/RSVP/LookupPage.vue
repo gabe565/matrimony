@@ -34,18 +34,15 @@
     >
       Email Address
       <template #prefix-icon>
-        <font-awesome-icon :icon="['fas', 'envelope']" />
+        <email-icon />
       </template>
     </input-field>
 
     <matrimony-form-button type="submit" class="ml-auto mr-30" size="lg">
       Next
       <template #icon>
-        <font-awesome-icon
-          :icon="loading ? ['fad', 'spinner-third'] : ['far', 'arrow-right']"
-          :class="{ 'animate-spin': loading }"
-          class="ml-2 fa-fw"
-        />
+        <spinner-icon v-if="loading" class="ml-2 animate-spin" />
+        <arrow-right-icon v-else class="ml-1" />
       </template>
     </matrimony-form-button>
   </form>
@@ -57,6 +54,9 @@ import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { required, email } from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
+import ArrowRightIcon from "~icons/solar/alt-arrow-right-bold";
+import SpinnerIcon from "~icons/gg/spinner";
+import EmailIcon from "~icons/mdi/email";
 import InputField from "../Forms/InputField.vue";
 import MatrimonyAlert from "../MatrimonyAlert.vue";
 import MatrimonyFormButton from "../Forms/MatrimonyFormButton.vue";

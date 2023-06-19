@@ -41,13 +41,8 @@
         <matrimony-form-button type="submit" class="mx-auto" size="lg">
           Save
           <template #icon>
-            <font-awesome-icon
-              :icon="
-                loading ? ['fad', 'spinner-third'] : ['fas', 'floppy-disk']
-              "
-              :class="{ 'animate-spin': loading }"
-              class="ml-2 fa-fw"
-            />
+            <spinner-icon v-if="loading" class="animate-spin ml-2" />
+            <save-icon v-else class="ml-2" />
           </template>
         </matrimony-form-button>
       </div>
@@ -60,6 +55,8 @@ import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
+import SaveIcon from "~icons/mdi/content-save";
+import SpinnerIcon from "~icons/gg/spinner";
 import MatrimonyFormButton from "../Forms/MatrimonyFormButton.vue";
 import AttendancePrompt from "./Prompt/AttendancePrompt.vue";
 import InputPrompt from "./Prompt/InputPrompt.vue";

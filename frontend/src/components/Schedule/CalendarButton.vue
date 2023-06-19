@@ -6,12 +6,13 @@
   >
     Add to Calendar
     <template #icon>
-      <font-awesome-icon :icon="['fas', 'calendar-plus']" class="ml-2" />
+      <calendar-add-icon class="ml-2" />
     </template>
   </matrimony-button>
 </template>
 
 <script setup>
+import CalendarAddIcon from "~icons/solar/calendar-add-bold";
 import MatrimonyButton from "../MatrimonyButton.vue";
 
 defineProps({

@@ -11,14 +11,13 @@
       v-if="loading || !src"
       class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
     >
-      <font-awesome-icon
+      <spinner-icon
         v-if="loading"
-        :icon="['fad', 'spinner-third']"
         class="ml-2 text-4xl dark:text-white animate-spin"
       />
-      <font-awesome-icon
+      <component
+        :is="fallbackIcon"
         v-else-if="fallbackIcon"
-        :icon="fallbackIcon"
         class="ml-2"
         :class="fallbackClass"
       />
@@ -28,13 +27,14 @@
 
 <script setup>
 import { ref } from "vue";
+import SpinnerIcon from "~icons/gg/spinner";
 
 const props = defineProps({
   src: { type: String, default: "" },
   alt: { type: String, default: "" },
   bgColor: { type: String, default: "bg-slate-100 dark:bg-slate-800" },
   contentFit: { type: String, default: "object-cover object-center" },
-  fallbackIcon: { type: Array, default: () => [] },
+  fallbackIcon: { type: Object, default: () => {} },
   fallbackClass: {
     type: [String, Array, Object],
     default: "text-7xl dark:text-white",

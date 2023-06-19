@@ -3,10 +3,9 @@
     <section
       class="relative lg:mt-40 text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-900 body-font rounded-t-2xl"
     >
-      <font-awesome-icon
+      <finished-icon
         v-if="route.path === '/rsvp/finish'"
-        :icon="['fat', 'party-horn']"
-        class="absolute left-0 top-0 p-20 text-[20em] opacity-[0.05]"
+        class="absolute left-0 top-0 p-5 text-[20em] opacity-10"
       />
       <div class="container px-5 py-24 mx-auto">
         <div class="text-center mb-4 text-slate-600 dark:text-slate-300">
@@ -35,6 +34,7 @@
 <script setup>
 import { computed } from "vue";
 import { useRoute } from "vue-router";
+import FinishedIcon from "~icons/solar/confetti-line-duotone";
 import { formatDate, FullDate } from "../util/formatDate";
 
 const props = defineProps({

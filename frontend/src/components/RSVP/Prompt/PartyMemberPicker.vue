@@ -6,11 +6,13 @@
       <h3 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
         Party Members
       </h3>
-      <matrimony-button size="icon" @click.prevent="editing = !editing">
-        <font-awesome-icon
-          :icon="['fas', editing ? 'check' : 'pen-to-square']"
-          class="text-xl"
-        />
+      <matrimony-button
+        size="icon"
+        class="text-xl"
+        @click.prevent="editing = !editing"
+      >
+        <done-icon v-if="editing" />
+        <users-edit-icon v-else />
       </matrimony-button>
     </div>
     <div class="flow-root">
@@ -32,10 +34,7 @@
               >
                 Responding
                 <template #icon>
-                  <font-awesome-icon
-                    :icon="['fas', 'chevron-down']"
-                    class="ml-0.5 fa-fw"
-                  />
+                  <chevron-down-icon class="ml-0.5 fa-fw" />
                 </template>
               </matrimony-form-button>
 
@@ -47,10 +46,7 @@
               >
                 Saved
                 <template #icon>
-                  <font-awesome-icon
-                    :icon="['fas', 'check']"
-                    class="ml-0.5 fa-fw"
-                  />
+                  <done-icon class="ml-0.5" />
                 </template>
               </matrimony-form-button>
 
@@ -58,10 +54,7 @@
               <matrimony-form-button v-else @click.prevent="active = guest.id">
                 Respond
                 <template #icon>
-                  <font-awesome-icon
-                    :icon="['fas', 'pencil']"
-                    class="ml-0.5 fa-fw"
-                  />
+                  <edit-icon class="ml-0.5 fa-fw" />
                 </template>
               </matrimony-form-button>
             </div>
@@ -80,6 +73,10 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
+import UsersEditIcon from "~icons/mdi/account-edit";
+import DoneIcon from "~icons/mdi/check";
+import ChevronDownIcon from "~icons/mdi/chevron-down";
+import EditIcon from "~icons/mdi/pencil";
 import MatrimonyFormButton from "../../Forms/MatrimonyFormButton.vue";
 import MatrimonyButtonGroup from "../../MatrimonyButtonGroup.vue";
 import MatrimonyButton from "../../MatrimonyButton.vue";

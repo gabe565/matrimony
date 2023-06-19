@@ -13,16 +13,13 @@
         <matrimony-button to="/moments" size="xl">
           {{ moments.content }}
           <template #icon>
-            <font-awesome-icon :icon="['fas', 'grid-2']" class="ml-2" />
+            <gallery-icon class="ml-2" />
           </template>
         </matrimony-button>
         <matrimony-button to="/rsvp" size="xl" color="green">
           {{ rsvp.content }}
           <template #icon>
-            <font-awesome-icon
-              :icon="['fas', 'calendar-lines-pen']"
-              class="ml-2"
-            />
+            <rsvp-icon class="ml-2" />
           </template>
         </matrimony-button>
       </matrimony-button-group>
@@ -31,6 +28,8 @@
 </template>
 
 <script setup>
+import GalleryIcon from "~icons/solar/gallery-wide-bold";
+import RsvpIcon from "~icons/solar/calendar-bold";
 import { toSlug } from "../../util/toSlug";
 import MatrimonyButton from "../MatrimonyButton.vue";
 import MatrimonyButtonGroup from "../MatrimonyButtonGroup.vue";

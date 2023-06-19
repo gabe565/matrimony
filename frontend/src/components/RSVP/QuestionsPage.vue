@@ -24,11 +24,8 @@
       >
         Submit RSVP
         <template #icon>
-          <font-awesome-icon
-            :icon="loading ? ['fad', 'spinner-third'] : ['fas', 'floppy-disk']"
-            :class="{ 'animate-spin': loading }"
-            class="ml-2 fa-fw"
-          />
+          <spinner-icon v-if="loading" class="animate-spin ml-2" />
+          <save-icon v-else class="ml-2" />
         </template>
       </matrimony-form-button>
     </transition>
@@ -39,6 +36,8 @@
 import { ref, computed, watch, nextTick } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import SaveIcon from "~icons/mdi/content-save";
+import SpinnerIcon from "~icons/gg/spinner";
 import MatrimonyAlert from "../MatrimonyAlert.vue";
 import MatrimonyFormButton from "../Forms/MatrimonyFormButton.vue";
 import PartyMemberPicker from "./Prompt/PartyMemberPicker.vue";

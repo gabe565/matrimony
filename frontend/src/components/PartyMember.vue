@@ -9,7 +9,7 @@
           <lazy-image
             :src="member.image"
             :alt="`Photo of ${member.first} ${member.last}`"
-            :fallback-icon="['fas', 'person']"
+            :fallback-icon="PersonIcon"
             fallback-class="text-6xl sm:text-[9em] text-slate-300 dark:text-slate-700"
             class="flex-shrink-0 rounded-lg h-40 sm:h-60 xl:h-72 w-40 sm:w-60 xl:w-72 mb-2 pointer-events-none"
           />
@@ -49,6 +49,7 @@
 
 <script setup>
 import { computed } from "vue";
+import PersonIcon from "~icons/solar/user-bold";
 import LazyImage from "./LazyImage.vue";
 import MatrimonyModal from "./MatrimonyModal.vue";
 import MatrimonyMarkdown from "./MatrimonyMarkdown.vue";

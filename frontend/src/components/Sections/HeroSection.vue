@@ -46,10 +46,9 @@
           <date-countdown class="pb-8 md:text-xl" :date="date" />
         </template>
 
-        <font-awesome-icon
-          :icon="['fas', 'chevron-down']"
-          class="motion-safe:animate-bounce text-xl pb-8"
-        />
+        <div class="pb-8 text-xl">
+          <arrow-down-icon class="inline motion-safe:animate-bounce" />
+        </div>
       </div>
     </div>
   </div>
@@ -57,6 +56,7 @@
 
 <script setup>
 import { computed } from "vue";
+import ArrowDownIcon from "~icons/solar/alt-arrow-down-linear";
 import DateCountdown from "../DateCountdown.vue";
 import { formatDate, FullDate } from "../../util/formatDate";
 import LazyImage from "../LazyImage.vue";

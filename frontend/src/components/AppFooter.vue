@@ -4,10 +4,7 @@
   >
     <span class="block text-sm text-gray-500 text-center dark:text-gray-400">
       Made with
-      <font-awesome-icon
-        :icon="['fas', 'heart']"
-        class="fa-fw text-red-500 dark:text-red-700"
-      />
+      <heart-icon inline class="inline text-red-500 dark:text-red-700" />
       by
       <a href="https://gabecook.com" class="underline" target="_blank"
         >gabe565</a
@@ -16,8 +13,6 @@
   </footer>
 </template>
 
-<script>
-export default {
-  name: "AppFooter",
-};
+<script setup>
+import HeartIcon from "~icons/mdi/heart";
 </script>
