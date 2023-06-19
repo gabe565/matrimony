@@ -76,7 +76,6 @@ import { throttle } from "../util/throttle";
 import MatrimonyButton from "./MatrimonyButton.vue";
 import { passiveEventHandlerSupported } from "../util/passiveEventHandlerSupported";
 import { toSlug } from "../util/toSlug";
-/* eslint-disable-next-line import/no-unresolved */
 import blueContourTablet from "../assets/blue_contour/tablet.svg?raw";
 
 const props = defineProps({

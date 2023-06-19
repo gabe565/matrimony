@@ -19,11 +19,9 @@
 </template>
 
 <script setup>
-/* eslint-disable import/no-unresolved */
 import blueContourTablet from "../assets/blue_contour/tablet.svg?raw";
 import blueContourTopRight from "../assets/blue_contour/top_right.svg?raw";
 import blueContourBottomLeft from "../assets/blue_contour/bottom_left.svg?raw";
-/* eslint-enable import/no-unresolved */
 </script>
 
 <script>
