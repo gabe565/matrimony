@@ -14,9 +14,9 @@ require (
 	github.com/spf13/pflag v1.0.5
 	golang.org/x/crypto v0.10.0
 	gopkg.in/yaml.v3 v3.0.1
-	gorm.io/datatypes v1.1.1
+	gorm.io/datatypes v1.2.0
 	gorm.io/driver/sqlite v1.4.4
-	gorm.io/gorm v1.24.6
+	gorm.io/gorm v1.24.7-0.20230306060331-85eaf9eeda11
 )
 
 require (
