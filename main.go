@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/fs"
 	"log"
 	"net/http"
 	"os"
@@ -21,7 +20,7 @@ func main() {
 	var err error
 
 	address := flag.String("address", ":3000", "Override listen address.")
-	frontendDir := flag.String("frontend", defaultFrontend, "Override frontend asset directory."+frontendHelpExt)
+	frontendDir := flag.String("frontend", "frontend", "Override frontend asset directory.")
 	flag.Parse()
 
 	// Load flags from envs
@@ -47,15 +46,7 @@ func main() {
 		panic(err)
 	}
 
-	var frontendFs fs.FS
-	if *frontendDir != "" {
-		frontendFs = os.DirFS(*frontendDir)
-	} else {
-		frontendFs, err = fs.Sub(embeddedFrontend, "frontend/dist")
-		if err != nil {
-			panic(err)
-		}
-	}
+	frontendFs := os.DirFS(*frontendDir)
 	router := server.Router(db, frontendFs, datadir.PublicFS())
 	log.Println("Listening on " + *address)
 	err = http.ListenAndServe(*address, router)
