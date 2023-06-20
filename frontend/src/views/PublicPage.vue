@@ -5,6 +5,7 @@
     :partners="config.partners"
     :loading="loading"
     :pages="sectionTitles"
+    :show-rsvp="config.rsvp?.enabled"
   />
   <router-view :config="config" />
   <app-footer />

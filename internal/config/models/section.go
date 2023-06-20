@@ -53,6 +53,7 @@ type LinksSection struct {
 }
 
 type Link struct {
+	Hidden  bool   `yaml:"hidden" json:"hidden,omitempty"`
 	Title   string `yaml:"title" json:"title,omitempty"`
 	Content string `yaml:"content" json:"content"`
 }

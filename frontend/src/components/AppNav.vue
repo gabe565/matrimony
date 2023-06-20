@@ -50,7 +50,7 @@
           {{ page }}
         </router-link>
       </nav>
-      <transition>
+      <transition v-if="showRsvp">
         <matrimony-button
           v-show="!route.path.startsWith('/rsvp')"
           to="/rsvp"
@@ -82,6 +82,7 @@ const props = defineProps({
   partners: { type: Array, default: () => [] },
   pages: { type: Array, default: () => [] },
   loading: { type: Boolean, default: false },
+  showRsvp: { type: Boolean, default: false },
 });
 
 const title = computed(() => {

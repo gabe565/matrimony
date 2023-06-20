@@ -10,13 +10,18 @@
         <section-title>{{ title }}</section-title>
       </div>
       <matrimony-button-group>
-        <matrimony-button to="/moments" size="xl">
+        <matrimony-button v-if="!moments.hidden" to="/moments" size="xl">
           {{ moments.content }}
           <template #icon>
             <gallery-icon class="ml-2" />
           </template>
         </matrimony-button>
-        <matrimony-button to="/rsvp" size="xl" color="green">
+        <matrimony-button
+          v-if="!rsvp.hidden"
+          to="/rsvp"
+          size="xl"
+          color="green"
+        >
           {{ rsvp.content }}
           <template #icon>
             <rsvp-icon class="ml-2" />
