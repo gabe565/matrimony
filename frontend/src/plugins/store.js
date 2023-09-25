@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import { filterHouseholdQuestion } from "../util/formatQuestion";
+import { API_URL } from "../config/api";
 
 const { localStorage } = window;
 
@@ -147,7 +148,7 @@ export default createStore({
   },
   actions: {
     async fetchQuestions({ commit }) {
-      const r = await fetch(`/api/rsvp/questions`);
+      const r = await fetch(`${API_URL}/api/rsvp/questions`);
       const questions = await r.json();
       commit("setQuestions", questions);
     },
@@ -155,7 +156,7 @@ export default createStore({
       const params = new URLSearchParams(
         Object.entries(state.persistent.query)
       );
-      const r = await fetch(`/api/rsvp/init?${params}`);
+      const r = await fetch(`${API_URL}/api/rsvp/init?${params}`);
       const j = await r.json();
       if (r.ok) {
         if (j.id !== state.persistent.party.id) {
@@ -171,7 +172,7 @@ export default createStore({
           id: context.state.persistent.party.id,
         })
       );
-      const r = await fetch(`/api/rsvp/responses?${params}`, {
+      const r = await fetch(`${API_URL}/api/rsvp/responses?${params}`, {
         headers: {
           Authorization: `Bearer ${context.state.persistent.party.sessionPassword}`,
         },
@@ -185,7 +186,7 @@ export default createStore({
     },
     async respond(context, responses) {
       context.commit("setResponses", responses);
-      const r = await fetch("/api/rsvp/response", {
+      const r = await fetch(`${API_URL}/api/rsvp/response`, {
         method: "PUT",
         body: JSON.stringify({
           values: responses,
@@ -199,7 +200,7 @@ export default createStore({
       return r.json();
     },
     async createGuest(context, guest) {
-      const r = await fetch("/api/rsvp/guest/add", {
+      const r = await fetch(`${API_URL}/api/rsvp/guest/add`, {
         method: "POST",
         body: JSON.stringify({
           guest,

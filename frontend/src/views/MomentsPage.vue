@@ -14,7 +14,7 @@
         <div class="masonry masonry-sm lg:masonry-md">
           <div v-for="file in files" class="py-3 break-inside">
             <lazy-image
-              :src="file.thumb"
+              :src="`${API_URL}${file.thumb}`"
               class="rounded-lg cursor-pointer"
               @click="showModal(file.src)"
             />
@@ -43,9 +43,10 @@ import ArrowLeftIcon from "~icons/solar/alt-arrow-left-bold";
 import LazyImage from "../components/LazyImage.vue";
 import MatrimonyButton from "../components/MatrimonyButton.vue";
 import PhotoModal from "../components/Moments/PhotoModal.vue";
+import { API_URL } from "../config/api";
 
 const files = ref([]);
-fetch("/api/moments").then(async (r) => {
+fetch(`${API_URL}/api/moments`).then(async (r) => {
   files.value = await r.json();
 });
 
@@ -54,7 +55,7 @@ const modalData = reactive({
   src: "",
 });
 const showModal = (src) => {
-  modalData.src = src;
+  modalData.src = `${API_URL}${src}`;
   modalData.show = true;
 };
 </script>

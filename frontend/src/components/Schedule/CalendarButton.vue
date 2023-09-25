@@ -1,6 +1,6 @@
 <template>
   <matrimony-button
-    :href="`/api/ical/${sectionKey}/${eventKey}`"
+    :href="`${API_URL}/ical/${sectionKey}/${eventKey}`"
     target="_blank"
     color="purple"
   >
@@ -14,6 +14,7 @@
 <script setup>
 import CalendarAddIcon from "~icons/solar/calendar-add-bold";
 import MatrimonyButton from "../MatrimonyButton.vue";
+import { API_URL } from "../../config/api";
 
 defineProps({
   sectionKey: { type: Number, default: 0 },

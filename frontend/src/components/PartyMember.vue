@@ -7,7 +7,7 @@
           v-on="on"
         >
           <lazy-image
-            :src="member.image"
+            :src="imageSrc"
             :alt="`Photo of ${member.first} ${member.last}`"
             :fallback-icon="PersonIcon"
             fallback-class="text-6xl sm:text-[9em] text-slate-300 dark:text-slate-700"
@@ -35,7 +35,7 @@
         <div class="flex flex-shrink flex-col md:flex-row items-center">
           <lazy-image
             v-if="member.image"
-            :src="member.image"
+            :src="imageSrc"
             :alt="`Photo of ${member.first} ${member.last}`"
             class="flex-shrink-0 max-w-full rounded-lg h-80 w-80 mb-2 pointer-events-none"
           />
@@ -53,6 +53,7 @@ import PersonIcon from "~icons/solar/user-bold";
 import LazyImage from "./LazyImage.vue";
 import MatrimonyModal from "./MatrimonyModal.vue";
 import MatrimonyMarkdown from "./MatrimonyMarkdown.vue";
+import { API_URL } from "../config/api";
 
 const props = defineProps({
   member: { type: Object, default: () => ({}) },
@@ -61,6 +62,8 @@ const props = defineProps({
 const textContent = computed(() =>
   props.member.text?.content ? `> ${props.member.text.content}` : ""
 );
+
+const imageSrc = computed(() => `${API_URL}${props.member.image}`);
 </script>
 
 <script>

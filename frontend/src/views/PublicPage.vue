@@ -18,10 +18,11 @@ import AppNav from "../components/AppNav.vue";
 import PatternBackground from "../components/PatternBackground.vue";
 import AppFooter from "../components/AppFooter.vue";
 import OffsetAnchor from "../components/OffsetAnchor.vue";
+import { API_URL } from "../config/api";
 
 const loading = ref(true);
 const config = ref({});
-fetch("/api/config").then(async (r) => {
+fetch(`${API_URL}/api/config`).then(async (r) => {
   config.value = await r.json();
   loading.value = false;
 });

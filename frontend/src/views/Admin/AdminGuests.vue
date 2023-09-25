@@ -115,10 +115,11 @@ import {
   fasCompress,
   fasFilter,
 } from "@quasar/extras/fontawesome-v6";
+import { API_URL } from "../../config/api";
 
 const loading = ref(true);
 const guests = ref([]);
-fetch("/api/guest").then(async (r) => {
+fetch(`${API_URL}/api/guest`).then(async (r) => {
   loading.value = false;
   guests.value = await r.json();
 });

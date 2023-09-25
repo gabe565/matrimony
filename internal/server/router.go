@@ -13,6 +13,7 @@ import (
 	"github.com/gabe565/matrimony/internal/server/models"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/go-chi/cors"
 	"github.com/go-chi/httprate"
 	"github.com/go-chi/render"
 	"gorm.io/gorm"
@@ -26,6 +27,7 @@ func Router(db *gorm.DB, rootFs fs.FS, dataFs fs.FS) *chi.Mux {
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 	r.Use(middleware.CleanPath)
+	r.Use(cors.AllowAll().Handler)
 
 	fileserver := http.FileServer(http.FS(rootFs))
 

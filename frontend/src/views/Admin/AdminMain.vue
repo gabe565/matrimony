@@ -40,6 +40,7 @@
 <script setup>
 import { ref } from "vue";
 import { fasBars, fasUser } from "@quasar/extras/fontawesome-v6";
+import { API_URL } from "../../config/api";
 
 // Import Quasar css
 import("quasar/src/css/index.sass");
@@ -48,7 +49,7 @@ const leftDrawerOpen = ref(false);
 
 const loading = ref(true);
 const config = ref({});
-fetch("/api/config").then(async (r) => {
+fetch(`${API_URL}/api/config`).then(async (r) => {
   config.value = await r.json();
   loading.value = false;
 });

@@ -17,13 +17,13 @@
         <lazy-image
           class="hidden md:block h-full w-full bg-cover object-cover lg:rounded-[1rem]"
           bg-color="bg-slate-500"
-          :src="image.src"
+          :src="src"
           :alt="alt"
         />
         <lazy-image
           class="md:hidden h-full w-full bg-cover object-cover lg:rounded-[1rem]"
           bg-color="bg-slate-500"
-          :src="image.src.replace('.jpg', '-mobile.jpg')"
+          :src="src.replace('.jpg', '-mobile.jpg')"
           :alt="alt"
         />
       </template>
@@ -60,6 +60,7 @@ import ArrowDownIcon from "~icons/solar/alt-arrow-down-linear";
 import DateCountdown from "../DateCountdown.vue";
 import { formatDate, FullDate } from "../../util/formatDate";
 import LazyImage from "../LazyImage.vue";
+import { API_URL } from "../../config/api";
 
 const props = defineProps({
   alt: { type: String, default: "" },
@@ -71,6 +72,8 @@ const props = defineProps({
 });
 
 const prettyDate = computed(() => formatDate(props.date, FullDate));
+const src = computed(() => `${API_URL}${props.image.src}`);
+console.log(src);
 </script>
 
 <script>
