@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@fontsource/dancing-script": "5.0.8",
-    "@iconify-json/gg": "1.1.5",
+    "@iconify-json/gg": "1.1.6",
     "@iconify-json/mdi": "1.1.54",
     "@iconify-json/solar": "1.1.1",
     "@quasar/extras": "1.16.6",
