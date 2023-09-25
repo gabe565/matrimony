@@ -6,7 +6,7 @@
   >
     Add to Calendar
     <template #icon>
-      <calendar-add-icon class="ml-2" />
+      <calendar-add-icon class="ml-2" aria-hidden="true" />
     </template>
   </matrimony-button>
 </template>

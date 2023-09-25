@@ -14,6 +14,7 @@
       <spinner-icon
         v-if="loading"
         class="ml-2 text-4xl dark:text-white animate-spin"
+        aria-hidden="true"
       />
       <component
         :is="fallbackIcon"

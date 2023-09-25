@@ -6,7 +6,7 @@
   >
     Navigate
     <template #icon>
-      <navigate-icon class="ml-2" />
+      <navigate-icon class="ml-2" aria-hidden="true" />
     </template>
   </matrimony-button>
 </template>

@@ -41,7 +41,7 @@
                 size="icon"
                 @click.prevent="toggle"
               >
-                <close-icon class="text-lg" />
+                <close-icon class="text-lg" aria-label="Close" />
               </matrimony-button>
             </div>
             <!-- Modal body -->

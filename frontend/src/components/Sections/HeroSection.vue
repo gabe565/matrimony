@@ -47,7 +47,10 @@
         </template>
 
         <div class="pb-8 text-xl">
-          <arrow-down-icon class="inline motion-safe:animate-bounce" />
+          <arrow-down-icon
+            class="inline motion-safe:animate-bounce"
+            aria-hidden="true"
+          />
         </div>
       </div>
     </div>

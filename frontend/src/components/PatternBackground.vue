@@ -6,10 +6,12 @@
       <!-- eslint-disable vue/no-v-html -->
       <div
         class="absolute bottom-0 left-0 -mb-10 md:-mb-44 -ml-1 w-1/3 md:w-[520px] fill-accent-900"
+        aria-hidden="true"
         v-html="blueContourBottomLeft"
       />
       <div
         class="absolute top-0 right-0 hidden lg:block -mt-20 -mr-16 w-[520px]"
+        aria-hidden="true"
         v-html="blueContourTopRight"
       />
 

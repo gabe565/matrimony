@@ -5,7 +5,7 @@
     <template #activator="{ on, attrs }">
       <matrimony-button v-bind="attrs" @click.prevent="on.click">
         <template #prefix-icon>
-          <add-icon class="pr-1 text-xl" />
+          <add-icon class="pr-1 text-xl" aria-hidden="true" />
         </template>
         Add a Guest
       </matrimony-button>
@@ -44,14 +44,18 @@
     <template #footer="{ toggle }">
       <matrimony-button color="alt" @click.prevent="toggle">
         <template #prefix-icon>
-          <close-icon class="text-xl pr-1" />
+          <close-icon class="text-xl pr-1" aria-hidden="true" />
         </template>
         Cancel
       </matrimony-button>
       <matrimony-button @click.prevent="onSubmit(toggle)">
         <template #prefix-icon>
-          <spinner-icon v-if="loading" class="pr-1 animate-spin text-xl" />
-          <add-icon class="pr-1 text-xl" />
+          <spinner-icon
+            v-if="loading"
+            class="pr-1 animate-spin text-xl"
+            aria-hidden="true"
+          />
+          <add-icon class="pr-1 text-xl" aria-hidden="true" />
         </template>
         Add
       </matrimony-button>

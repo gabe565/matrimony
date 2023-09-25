@@ -13,7 +13,7 @@
         <matrimony-button v-if="!moments.hidden" to="/moments" size="xl">
           {{ moments.content }}
           <template #icon>
-            <gallery-icon class="ml-2" />
+            <gallery-icon class="ml-2" aria-hidden="true" />
           </template>
         </matrimony-button>
         <matrimony-button
@@ -24,7 +24,7 @@
         >
           {{ rsvp.content }}
           <template #icon>
-            <rsvp-icon class="ml-2" />
+            <rsvp-icon class="ml-2" aria-hidden="true" />
           </template>
         </matrimony-button>
       </matrimony-button-group>

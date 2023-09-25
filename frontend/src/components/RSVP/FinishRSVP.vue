@@ -8,13 +8,13 @@
     <matrimony-button-group class="mx-auto">
       <matrimony-button size="xl" @click.prevent="router.back()">
         <template #prefix-icon>
-          <edit-icon class="mr-1" />
+          <edit-icon class="mr-1" aria-hidden="true" />
         </template>
         Edit RSVP
       </matrimony-button>
       <matrimony-button to="/" size="xl">
         <template #prefix-icon>
-          <home-icon class="mr-1" />
+          <home-icon class="mr-1" aria-hidden="true" />
         </template>
         Back to site
       </matrimony-button>

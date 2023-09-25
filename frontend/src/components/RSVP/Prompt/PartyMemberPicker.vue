@@ -11,8 +11,8 @@
         class="text-xl"
         @click.prevent="editing = !editing"
       >
-        <done-icon v-if="editing" />
-        <users-edit-icon v-else />
+        <done-icon v-if="editing" aria-label="Done" />
+        <users-edit-icon v-else aria-label="Edit" />
       </matrimony-button>
     </div>
     <div class="flow-root">

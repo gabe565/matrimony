@@ -2,16 +2,19 @@
   <span
     class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900"
   >
-    <calendar-icon class="w-3 h-3 text-blue-600 dark:text-blue-400" />
+    <calendar-icon
+      class="w-3 h-3 text-blue-600 dark:text-blue-400"
+      aria-hidden="true"
+    />
   </span>
+  <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
+    {{ title }}
+  </h3>
   <time
     class="mb-1 text-sm font-normal leading-none text-slate-400 dark:text-slate-500"
   >
     {{ startTime }}
   </time>
-  <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
-    {{ title }}
-  </h3>
   <p class="text-base font-normal text-slate-500 dark:text-slate-400">
     {{ description }}
   </p>

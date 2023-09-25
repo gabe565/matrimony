@@ -21,6 +21,7 @@
         <rings-wedding-icon
           class="lg:mr-3 w-[1em] h-[1em]"
           :class="[atHero ? 'mr-3' : 'mr-2']"
+          aria-hidden="true"
         />
         <span
           v-if="loading"
@@ -33,6 +34,7 @@
               v-if="e.icon"
               class="lg:mx-2 lg:text-lg motion-safe:animate-pulse"
               :class="[atHero ? 'text-lg mx-2' : 'text-sm mx-1.5']"
+              :aria-label="e.label"
             />
             <span v-else>{{ e.text }}</span>
           </template>
@@ -58,7 +60,7 @@
         >
           RSVP
           <template #icon>
-            <rsvp-icon class="ml-2" />
+            <rsvp-icon class="ml-2" aria-hidden="true" />
           </template>
         </matrimony-button>
       </transition>
@@ -90,7 +92,7 @@ const title = computed(() => {
   for (const [key, partner] of props.partners.entries()) {
     result.push({ text: partner.first });
     if (key !== props.partners.length - 1) {
-      result.push({ icon: HeartIcon });
+      result.push({ icon: HeartIcon, label: "and" });
     }
   }
   return result;

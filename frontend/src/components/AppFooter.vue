@@ -4,7 +4,11 @@
   >
     <span class="block text-sm text-gray-500 text-center dark:text-gray-400">
       Made with
-      <heart-icon inline class="inline text-red-500 dark:text-red-700" />
+      <heart-icon
+        inline
+        class="inline text-red-500 dark:text-red-700"
+        aria-label="love"
+      />
       by
       <a href="https://gabecook.com" class="underline" target="_blank"
         >gabe565</a

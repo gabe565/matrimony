@@ -26,7 +26,7 @@
           @click.prevent="$router.back()"
         >
           <template #prefix-icon>
-            <arrow-left-icon class="mr-1" />
+            <arrow-left-icon class="mr-1" aria-hidden="true" />
           </template>
           Back
         </matrimony-button>
