@@ -24,7 +24,7 @@
     "autoprefixer": "10.4.16",
     "dayjs": "1.11.10",
     "postcss": "8.4.33",
-    "quasar": "2.12.7",
+    "quasar": "2.14.2",
     "sass": "1.69.7",
     "tailwindcss": "3.4.1",
     "unplugin-icons": "0.18.2",
