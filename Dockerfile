@@ -8,6 +8,7 @@ RUN go mod download
 
 COPY *.go .
 COPY internal/ internal/
+ARG CGO_CFLAGS="-D_LARGEFILE64_SOURCE"
 RUN go build -ldflags="-w -s" -trimpath
 
 
