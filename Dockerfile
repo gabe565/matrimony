@@ -12,7 +12,7 @@ ARG CGO_CFLAGS="-D_LARGEFILE64_SOURCE"
 RUN go build -ldflags="-w -s" -trimpath
 
 
-FROM --platform=$BUILDPLATFORM node:18-alpine AS node-builder
+FROM --platform=$BUILDPLATFORM node:20-alpine AS node-builder
 WORKDIR /app
 
 COPY frontend/package.json frontend/package-lock.json frontend/.npmrc ./
