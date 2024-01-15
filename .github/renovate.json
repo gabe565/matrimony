@@ -3,11 +3,5 @@
   "extends": [
     "local>gabe565/renovate-config",
     "local>gabe565/renovate-config:golang"
-  ],
-  "packageRules": [
-    {
-      "matchPackageNames": ["github.com/mattn/go-sqlite3"],
-      "allowedVersions": "< 2"
-    }
   ]
 }
