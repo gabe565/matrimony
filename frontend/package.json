@@ -10,7 +10,7 @@
     "format": "prettier . --write --ignore-path .gitignore"
   },
   "dependencies": {
-    "@fontsource/dancing-script": "5.0.8",
+    "@fontsource/dancing-script": "5.0.16",
     "@iconify-json/gg": "1.1.9",
     "@iconify-json/mdi": "1.1.54",
     "@iconify-json/solar": "1.1.9",
