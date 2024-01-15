@@ -13,14 +13,5 @@
       "matchPackageNames": ["github.com/mattn/go-sqlite3"],
       "allowedVersions": "< 2"
     }
-  ],
-  "hostRules": [
-    {
-      "matchHost": "https://npm.fontawesome.com/",
-      "hostType": "npm",
-      "encrypted": {
-        "token": "wcFMA/xDdHCJBTolAQ//WbLhLZVDpHIUyWZ2qwFvaBoEqyUFJXtM4+ATyGmhLhSzwds/Uf0K3JGQvUZYH5db1MH7PJUvhmxz/RMz2dPgmWqkc5j9M4loIQhLE1XYl69zkI/uonsIhcDNxUKi1G7O5PE6THl23KvTF68OXMpTNg1wwTY7Hb3EUtAlUX5OJAUu73R+NnH5pzqhAqnhbTV14UXwN6pBLTtrquYLHTVV5Kf9PtRuME/Zejg1X0ncDHNbHhucmhTH3XkwzQVWvFQlXHk6RjuE3bmom7YN7/GGgTi8/7/t8NR3h1NMdw/Nh5ujPyQvJzDBcE2VJrhCXry30E2QbrxyMgEhgAv6h4s5kU3hWp7bdjiHVVGKUblH1gQpvx868t7WYyKwmupXEGphb1Lvmw4DkOgde+J1J84bEezsbqaeBp0hAKnmMWQ8LquElh0Gj1bS5YPq64NC46PVheQB5kJwcjwxBj067OkIL+KGUhC+lw9xZZbHMzgG73xit1AvotOYXy5p9TWVyIycbka4CDdJ4zk3NiBcw3il8zwmMdXB5Oe7kj63rzCbqanhFiNGqrz1CYd/dyFYPlt4coIqfdO+wYSqH5dznBQspdmN9OS2dJDPrB/LOrZqjU5AidSo7lU4YzpwODGYBPtkBhD+vlr+OCCJ4iPVcClpjGtXwGHXatubjLiJ9DyZpKvSewEmaVxKQc0ebhZZV++lnrhvC2Z0Qdnjrc3CVRWThGQMV3JnmzDMLll6XYrEU64A+3kv1DwaSl9isS9mKzatAxNGu41KGhEqvcPKmJTOpv0YmvFlMRibCf1U9/U4kGWjCa7zv/74eQ6TckSuE+uUZjcHrK4lRjilGALVMw"
-      }
-    }
   ]
 }
