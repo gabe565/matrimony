@@ -7,7 +7,7 @@ require (
 	github.com/fsnotify/fsnotify v1.6.0
 	github.com/go-chi/chi/v5 v5.0.10
 	github.com/go-chi/cors v1.2.1
-	github.com/go-chi/httprate v0.7.4
+	github.com/go-chi/httprate v0.8.0
 	github.com/go-chi/render v1.0.3
 	github.com/google/uuid v1.3.1
 	github.com/gosimple/slug v1.13.1
