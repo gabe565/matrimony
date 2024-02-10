@@ -11,7 +11,7 @@ require (
 	github.com/go-chi/render v1.0.3
 	github.com/google/uuid v1.6.0
 	github.com/gosimple/slug v1.13.1
-	github.com/mattn/go-sqlite3 v1.14.19
+	github.com/mattn/go-sqlite3 v1.14.22
 	github.com/spf13/pflag v1.0.5
 	golang.org/x/crypto v0.18.0
 	gopkg.in/yaml.v3 v3.0.1
