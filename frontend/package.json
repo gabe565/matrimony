@@ -22,7 +22,7 @@
     "@vuelidate/core": "2.0.3",
     "@vuelidate/validators": "2.0.4",
     "autoprefixer": "10.4.17",
-    "dayjs": "1.11.10",
+    "dayjs": "1.11.11",
     "postcss": "8.4.35",
     "quasar": "2.14.3",
     "sass": "1.70.0",
