@@ -15,7 +15,7 @@
     "@iconify-json/mdi": "1.1.64",
     "@iconify-json/solar": "1.1.9",
     "@quasar/extras": "1.16.9",
-    "@quasar/vite-plugin": "1.6.0",
+    "@quasar/vite-plugin": "1.7.0",
     "@tailwindcss/forms": "0.5.7",
     "@tailwindcss/typography": "0.5.10",
     "@vitejs/plugin-vue": "5.0.4",
