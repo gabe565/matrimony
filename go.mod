@@ -17,7 +17,7 @@ require (
 	gopkg.in/yaml.v3 v3.0.1
 	gorm.io/datatypes v1.2.0
 	gorm.io/driver/sqlite v1.5.5
-	gorm.io/gorm v1.25.7
+	gorm.io/gorm v1.25.11
 )
 
 require (
@@ -28,5 +28,6 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	golang.org/x/sys v0.17.0 // indirect
+	golang.org/x/text v0.14.0 // indirect
 	gorm.io/driver/mysql v1.4.7 // indirect
 )
