@@ -25,7 +25,7 @@
     "dayjs": "1.11.10",
     "postcss": "8.4.35",
     "quasar": "2.14.3",
-    "sass": "1.70.0",
+    "sass": "1.77.8",
     "tailwindcss": "3.4.1",
     "unplugin-icons": "0.18.5",
     "vite": "5.1.1",
