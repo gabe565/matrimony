@@ -18,7 +18,7 @@
     "@quasar/vite-plugin": "1.6.0",
     "@tailwindcss/forms": "0.5.7",
     "@tailwindcss/typography": "0.5.10",
-    "@vitejs/plugin-vue": "5.0.4",
+    "@vitejs/plugin-vue": "5.0.5",
     "@vuelidate/core": "2.0.3",
     "@vuelidate/validators": "2.0.4",
     "autoprefixer": "10.4.17",
