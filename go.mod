@@ -1,6 +1,6 @@
 module github.com/gabe565/matrimony
 
-go 1.22.0
+go 1.24.0
 
 require (
 	github.com/arran4/golang-ical v0.2.4
@@ -13,7 +13,7 @@ require (
 	github.com/gosimple/slug v1.13.1
 	github.com/mattn/go-sqlite3 v1.14.22
 	github.com/spf13/pflag v1.0.5
-	golang.org/x/crypto v0.19.0
+	golang.org/x/crypto v0.45.0
 	gopkg.in/yaml.v3 v3.0.1
 	gorm.io/datatypes v1.2.0
 	gorm.io/driver/sqlite v1.5.5
@@ -27,6 +27,6 @@ require (
 	github.com/gosimple/unidecode v1.0.1 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
-	golang.org/x/sys v0.17.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
 	gorm.io/driver/mysql v1.4.7 // indirect
 )
